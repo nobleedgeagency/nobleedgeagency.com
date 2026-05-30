@@ -82,4 +82,641 @@
     .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
     .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; }
-    .
+    .hero-badge { margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 900; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 20px; }
+    .hero-desc { font-size: 18px; color: var(--gray); line-height: 1.7; margin-bottom: 32px; max-width: 520px; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .stat-num { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #fff, var(--purple-soft)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 13px; color: var(--gray); margin-top: 2px; }
+    .hero-visual { position: relative; }
+    .hero-card-main { background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-purple); }
+    .hero-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .hero-card-title { font-size: 15px; font-weight: 700; }
+    .hero-card-badge { background: rgba(34,197,94,0.12); color: #4ade80; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(34,197,94,0.2); }
+    .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; margin-bottom: 16px; }
+    .bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--purple) 0%, var(--purple-light) 100%); opacity: 0.7; transition: opacity 0.3s; }
+    .bar:hover { opacity: 1; }
+    .chart-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .chart-stat { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px; }
+    .chart-stat-num { font-size: 20px; font-weight: 800; color: var(--white); }
+    .chart-stat-num.up { color: #4ade80; }
+    .chart-stat-label { font-size: 11px; color: var(--gray); margin-top: 2px; }
+    .hero-card-floating { position: absolute; background: var(--dark2); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px; }
+    .hero-card-floating-1 { top: -20px; right: -20px; }
+    .hero-card-floating-2 { bottom: -20px; left: -20px; }
+    .floating-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .floating-title { font-size: 13px; font-weight: 700; }
+    .floating-sub { font-size: 11px; color: var(--gray); }
+
+    .trust-band { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+    .trust-inner { display: flex; gap: 48px; align-items: center; }
+    .trust-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; color: var(--gray); font-size: 14px; font-weight: 500; }
+    .trust-item svg { color: var(--purple-soft); flex-shrink: 0; }
+
+    #pourquoi { padding: 100px 0; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 56px; }
+    .why-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all 0.3s ease; }
+    .why-card:hover { border-color: rgba(108,63,255,0.4); background: rgba(108,63,255,0.05); transform: translateY(-4px); box-shadow: var(--shadow-purple); }
+    .why-icon { width: 48px; height: 48px; background: rgba(108,63,255,0.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 22px; }
+    .why-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .why-desc { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    #services { padding: 100px 0; background: linear-gradient(180deg, transparent 0%, rgba(108,63,255,0.03) 50%, transparent 100%); }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .section-subtitle { margin: 0 auto; }
+    .cm-featured { background: linear-gradient(135deg, rgba(108,63,255,0.12) 0%, rgba(139,92,246,0.06) 100%); border: 1px solid rgba(108,63,255,0.3); border-radius: var(--radius-lg); padding: 40px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .cm-tag { display: inline-block; background: var(--purple); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+    .cm-title { font-size: clamp(22px, 3vw, 30px); font-weight: 800; margin-bottom: 12px; }
+    .cm-desc { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+    .cm-features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .cm-features li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray-light); }
+    .cm-features li::before { content: '✓'; color: var(--purple-soft); font-weight: 700; flex-shrink: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .service-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.3s ease; }
+    .service-card:hover { border-color: rgba(108,63,255,0.35); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .service-icon { font-size: 28px; margin-bottom: 16px; }
+    .service-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .service-desc { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+    .service-benefit { font-size: 12px; font-weight: 600; color: var(--purple-soft); background: rgba(108,63,255,0.08); padding: 6px 12px; border-radius: 8px; display: inline-block; }
+
+    #methode { padding: 100px 0; }
+    .method-header { text-align: center; margin-bottom: 64px; }
+    .method-header .section-subtitle { margin: 0 auto; }
+    .method-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; position: relative; }
+    .method-steps::before { content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); }
+    .method-step { text-align: center; padding: 0 16px; position: relative; }
+    .step-num { width: 72px; height: 72px; background: linear-gradient(135deg, var(--dark3), #2d1b69); border: 2px solid rgba(108,63,255,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 22px; font-weight: 900; color: var(--purple-soft); position: relative; z-index: 1; }
+    .step-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .step-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+    .step-benefit { font-size: 12px; color: var(--purple-soft); font-weight: 600; margin-top: 8px; }
+
+    #offres { padding: 100px 0; background: linear-gradient(180deg, transparent 0%, rgba(108,63,255,0.03) 50%, transparent 100%); }
+    .pricing-header { text-align: center; margin-bottom: 64px; }
+    .pricing-header .section-subtitle { margin: 0 auto; }
+    .offre-unique { max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, rgba(108,63,255,0.15) 0%, rgba(139,92,246,0.08) 100%); border: 1px solid rgba(108,63,255,0.5); border-radius: var(--radius-lg); padding: 48px; text-align: center; box-shadow: var(--shadow-purple); position: relative; }
+    .offre-unique .pricing-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--purple), var(--purple-light)); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 18px; border-radius: 100px; white-space: nowrap; }
+    .offre-unique h3 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+    .offre-unique .offre-sub { font-size: 16px; color: var(--gray); margin-bottom: 32px; }
+    .offre-features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 36px; text-align: left; }
+    .offre-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--gray-light); }
+    .offre-features li span.check { color: #4ade80; font-weight: 700; flex-shrink: 0; }
+    .offre-note { font-size: 13px; color: var(--gray); margin-top: 20px; font-style: italic; }
+
+    #realisations { padding: 100px 0; }
+    .real-header { margin-bottom: 56px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 48px; }
+    .kpi-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; }
+    .kpi-num { font-size: 38px; font-weight: 900; background: linear-gradient(135deg, #fff, var(--purple-soft)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+    .kpi-label { font-size: 13px; color: var(--gray); }
+    .case-studies { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .case-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .case-sector { font-size: 11px; font-weight: 700; color: var(--purple-soft); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .case-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+    .case-challenge { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+    .case-results { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .case-result { background: rgba(108,63,255,0.08); border-radius: 10px; padding: 12px; text-align: center; }
+    .case-result-num { font-size: 20px; font-weight: 800; color: var(--purple-soft); }
+    .case-result-label { font-size: 11px; color: var(--gray); margin-top: 2px; }
+    .case-placeholder { font-size: 12px; color: var(--gray); text-align: center; margin-top: 16px; font-style: italic; border-top: 1px solid var(--border); padding-top: 12px; }
+
+    #temoignages { padding: 100px 0; background: linear-gradient(180deg, transparent 0%, rgba(108,63,255,0.03) 50%, transparent 100%); }
+    .testi-header { text-align: center; margin-bottom: 56px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .testi-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all 0.3s; }
+    .testi-card:hover { border-color: rgba(108,63,255,0.3); transform: translateY(-3px); }
+    .testi-stars { color: #fbbf24; font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testi-quote { font-size: 15px; color: var(--gray-light); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--purple-light)); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .testi-name { font-size: 14px; font-weight: 700; }
+    .testi-role { font-size: 12px; color: var(--gray); }
+
+    #faq { padding: 100px 0; }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
+    .faq-item.open { border-color: rgba(108,63,255,0.3); }
+    .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 15px; font-weight: 600; user-select: none; }
+    .faq-question:hover { color: var(--purple-soft); }
+    .faq-icon { width: 24px; height: 24px; background: rgba(108,63,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; transition: transform 0.3s; color: var(--purple-soft); }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-answer-inner { padding: 0 24px 20px; font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+    #contact { padding: 100px 0; }
+    .cta-block { background: linear-gradient(135deg, rgba(108,63,255,0.15) 0%, rgba(139,92,246,0.08) 100%); border: 1px solid rgba(108,63,255,0.3); border-radius: 28px; padding: 72px 48px; text-align: center; position: relative; overflow: hidden; }
+    .cta-glow { position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 400px; height: 300px; background: radial-gradient(circle, rgba(108,63,255,0.2) 0%, transparent 70%); pointer-events: none; }
+    .cta-block h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 900; margin-bottom: 16px; line-height: 1.1; }
+    .cta-block p { font-size: 17px; color: var(--gray); max-width: 500px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .cta-reassurance { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .cta-reassure-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray); }
+    .cta-reassure-item::before { content: '✓'; color: #4ade80; font-weight: 700; }
+
+    .contact-form { max-width: 560px; margin: 48px auto 0; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--gray-light); }
+    .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; color: var(--white); font-size: 14px; font-family: inherit; transition: all 0.2s; outline: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(108,63,255,0.5); background: rgba(108,63,255,0.05); box-shadow: 0 0 0 3px rgba(108,63,255,0.1); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #4b5563; }
+    .form-group select option { background: #1a1a28; }
+    .form-submit { width: 100%; justify-content: center; padding: 16px; font-size: 16px; margin-top: 8px; }
+    .form-note { font-size: 12px; color: var(--gray); text-align: center; margin-top: 12px; }
+
+    footer { padding: 60px 0 32px; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; margin: 16px 0 20px; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 15px; transition: all 0.2s; }
+    .social-link:hover { background: rgba(108,63,255,0.15); border-color: rgba(108,63,255,0.4); transform: translateY(-2px); }
+    .footer-col h4 { font-size: 13px; font-weight: 700; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .footer-col a { display: block; color: var(--gray); font-size: 14px; text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact p { font-size: 14px; color: var(--gray); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+    .footer-bottom { padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { font-size: 13px; color: var(--gray); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 13px; color: var(--gray); text-decoration: none; }
+    .footer-bottom-links a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav, .header-cta .btn:not(:last-child) { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-desc, .hero-stats { justify-content: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-visual { display: none; }
+      .cm-featured { grid-template-columns: 1fr; }
+      .offre-features { grid-template-columns: 1fr; }
+      .kpi-row { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .method-steps { grid-template-columns: 1fr 1fr; }
+      .method-steps::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      .kpi-row { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-block { padding: 48px 24px; }
+      .method-steps { grid-template-columns: 1fr; }
+      .offre-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMenu()">✕</span>
+  <a href="#hero" onclick="toggleMenu()">Accueil</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#methode" onclick="toggleMenu()">Méthode</a>
+  <a href="#realisations" onclick="toggleMenu()">Réalisations</a>
+  <a href="#temoignages" onclick="toggleMenu()">Témoignages</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#contact" class="btn btn-primary" onclick="toggleMenu()">Réserver un appel</a>
+</div>
+
+<header id="mainHeader">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#hero" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="7" height="2.5" rx="0.5" fill="white"/>
+            <rect x="2" y="10.75" width="5.5" height="2.5" rx="0.5" fill="white"/>
+            <rect x="2" y="17.5" width="7" height="2.5" rx="0.5" fill="white"/>
+            <rect x="12.5" y="4" width="2.5" height="16" rx="0.5" fill="white"/>
+            <rect x="19" y="4" width="2.5" height="16" rx="0.5" fill="white"/>
+            <path d="M12.5 4 L22 20" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="logo-text">Noble<span>Edge</span></span>
+      </a>
+      <nav>
+        <a href="#pourquoi">Pourquoi nous</a>
+        <a href="#services">Services</a>
+        <a href="#methode">Méthode</a>
+        <a href="#offres">Offres</a>
+        <a href="#temoignages">Avis</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header-cta">
+        <a href="#contact" class="btn btn-primary" style="padding:11px 22px;font-size:14px;">Réserver un appel</a>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="badge">Agence marketing & communication</span></div>
+        <h1>Votre marque mérite<br /><span class="gradient-text">d'être vue, reconnue<br />et choisie.</span></h1>
+        <p class="hero-desc">Nous développons votre présence digitale, animons vos réseaux sociaux et transformons votre audience en clients — avec stratégie, créativité et rigueur.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Réserver un appel découverte
+          </a>
+          <a href="#services" class="btn btn-secondary">Découvrir nos services →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num">+150</div><div class="stat-label">Clients accompagnés</div></div>
+          <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfaction client</div></div>
+          <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Années d'expertise</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-main">
+          <div class="hero-card-header">
+            <span class="hero-card-title">Performance réseaux sociaux</span>
+            <span class="hero-card-badge">↑ +68% ce mois</span>
+          </div>
+          <div class="chart-bars">
+            <div class="bar" style="height:35%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar" style="height:85%"></div>
+            <div class="bar" style="height:75%"></div>
+            <div class="bar" style="height:100%"></div>
+          </div>
+          <div class="chart-stats">
+            <div class="chart-stat"><div class="chart-stat-num up">+2 840</div><div class="chart-stat-label">Nouveaux abonnés</div></div>
+            <div class="chart-stat"><div class="chart-stat-num up">+312%</div><div class="chart-stat-label">Taux d'engagement</div></div>
+            <div class="chart-stat"><div class="chart-stat-num">48.5K</div><div class="chart-stat-label">Portée organique</div></div>
+            <div class="chart-stat"><div class="chart-stat-num up">+94</div><div class="chart-stat-label">Leads générés</div></div>
+          </div>
+        </div>
+        <div class="hero-card-floating hero-card-floating-1">
+          <div class="floating-icon" style="background:rgba(59,130,246,0.15);">📱</div>
+          <div class="floating-text"><div class="floating-title">Publication planifiée</div><div class="floating-sub">7 posts cette semaine</div></div>
+        </div>
+        <div class="hero-card-floating hero-card-floating-2">
+          <div class="floating-icon" style="background:rgba(34,197,94,0.15);">✅</div>
+          <div class="floating-text"><div class="floating-title">Rapport livré</div><div class="floating-sub">Résultats du mois</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-band">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Stratégie personnalisée</div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Résultats mesurables</div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>Accompagnement humain</div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Pilotage data-driven</div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Gain de temps garanti</div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>Expertise multi-canal</div>
+    </div>
+  </div>
+</div>
+
+<section id="pourquoi">
+  <div class="container">
+    <div>
+      <p class="section-label">Pourquoi Noble Edge</p>
+      <h2 class="section-title">Arrêtez de publier au hasard.<br /><span class="gradient-text">Commencez à construire une marque.</span></h2>
+      <p class="section-subtitle">Beaucoup de marques sont présentes sur les réseaux sociaux. Peu d'entre elles y construisent quelque chose de solide. Nous, si.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🎯</div><div class="why-title">Stratégie taillée pour vous</div><div class="why-desc">Pas de template copié-collé. Chaque stratégie est construite selon votre secteur, vos objectifs et votre audience.</div></div>
+      <div class="why-card"><div class="why-icon">🎨</div><div class="why-title">Image de marque cohérente</div><div class="why-desc">Charte graphique, ton éditorial, univers visuel : nous construisons une identité reconnaissable et mémorable.</div></div>
+      <div class="why-card"><div class="why-icon">🗓️</div><div class="why-title">Communication régulière et pro</div><div class="why-desc">Fini les longues périodes de silence. Nous assurons une présence constante avec des contenus pertinents.</div></div>
+      <div class="why-card"><div class="why-icon">⏱️</div><div class="why-title">Vous gagnez du temps</div><div class="why-desc">Déléguer votre communication, c'est récupérer des heures précieuses. Nous gérons tout, vous validez.</div></div>
+      <div class="why-card"><div class="why-icon">💬</div><div class="why-title">Contenus qui engagent et vendent</div><div class="why-desc">Nos contenus sont pensés pour générer de l'engagement, attirer votre clientèle cible et accompagner le parcours d'achat.</div></div>
+      <div class="why-card"><div class="why-icon">📊</div><div class="why-title">Décisions basées sur les données</div><div class="why-desc">Chaque action est analysée, mesurée et optimisée. Rapports clairs chaque mois, ajustements en temps réel.</div></div>
+      <div class="why-card"><div class="why-icon">💰</div><div class="why-title">Vision orientée ROI</div><div class="why-desc">Chaque action est pensée pour générer un retour sur investissement mesurable : notoriété, leads ou ventes directes.</div></div>
+      <div class="why-card"><div class="why-icon">🤝</div><div class="why-title">Un vrai partenaire, pas un prestataire</div><div class="why-desc">Nous nous impliquons dans votre marque comme si c'était la nôtre. Transparence totale, succès partagé.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <p class="section-label">Nos services</p>
+      <h2 class="section-title">Tout ce qu'il faut pour <span class="gradient-text">dominer votre marché digital</span></h2>
+      <p class="section-subtitle">De la stratégie à l'exécution, nous couvrons l'ensemble de votre présence en ligne avec une approche intégrée et orientée résultats.</p>
+    </div>
+    <div class="cm-featured">
+      <div>
+        <span class="cm-tag">⭐ Service principal</span>
+        <h3 class="cm-title">Community Management<br /><span class="gradient-text">clé en main</span></h3>
+        <p class="cm-desc">Votre présence sociale mérite mieux que des publications improvisées. Nous gérons vos réseaux comme de véritables outils de croissance — avec stratégie, constance et créativité.</p>
+        <a href="#contact" class="btn btn-primary">Démarrer mon community management</a>
+      </div>
+      <ul class="cm-features">
+        <li>Gestion complète de vos réseaux sociaux</li>
+        <li>Calendrier éditorial mensuel</li>
+        <li>Création de visuels & contenus</li>
+        <li>Rédaction de captions engageantes</li>
+        <li>Publication programmée & optimisée</li>
+        <li>Modération des messages & commentaires</li>
+        <li>Animation de communauté</li>
+        <li>Stratégie d'engagement personnalisée</li>
+        <li>Reporting mensuel des performances</li>
+        <li>Recommandations d'optimisation</li>
+      </ul>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🧭</div><div class="service-title">Stratégie de communication</div><div class="service-desc">Audit digital, positionnement, ligne éditoriale, ton de marque et plan d'action mensuel.</div><span class="service-benefit">→ Une direction claire</span></div>
+      <div class="service-card"><div class="service-icon">✏️</div><div class="service-title">Création de contenu</div><div class="service-desc">Visuels, carrousels, stories, Reels, scripts vidéo, copywriting et templates de marque sur mesure.</div><span class="service-benefit">→ Du contenu qui performe</span></div>
+      <div class="service-card"><div class="service-icon">🎨</div><div class="service-title">Branding & Identité visuelle</div><div class="service-desc">Logo, charte graphique, palette de couleurs, typographies et univers visuel cohérent.</div><span class="service-benefit">→ Une marque reconnaissable</span></div>
+      <div class="service-card"><div class="service-icon">📣</div><div class="service-title">Publicité en ligne</div><div class="service-desc">Campagnes Meta Ads, Google Ads, génération de leads, retargeting et optimisation continue.</div><span class="service-benefit">→ Des leads à la demande</span></div>
+      <div class="service-card"><div class="service-icon">🔍</div><div class="service-title">SEO & Référencement</div><div class="service-desc">Optimisation on-page, mots-clés, rédaction SEO, référencement local et visibilité organique.</div><span class="service-benefit">→ Visible sur Google</span></div>
+      <div class="service-card"><div class="service-icon">🖥️</div><div class="service-title">Web & Landing pages</div><div class="service-desc">Création ou optimisation de landing pages orientées conversion, UX pensée pour transformer les visiteurs.</div><span class="service-benefit">→ Plus de conversions</span></div>
+      <div class="service-card"><div class="service-icon">📧</div><div class="service-title">Email marketing & Automation</div><div class="service-desc">Newsletters, séquences automatisées, relances prospects et scénarios de nurturing.</div><span class="service-benefit">→ Revenue automatisé</span></div>
+      <div class="service-card"><div class="service-icon">📈</div><div class="service-title">Reporting & Analyse</div><div class="service-desc">Tableaux de bord personnalisés, suivi des KPIs et recommandations stratégiques mensuelles.</div><span class="service-benefit">→ Décisions éclairées</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="container">
+    <div class="method-header">
+      <p class="section-label">Notre méthode</p>
+      <h2 class="section-title">Un processus structuré <span class="gradient-text">pour des résultats durables</span></h2>
+      <p class="section-subtitle">Chaque action suit une méthodologie éprouvée en 6 étapes pour maximiser l'impact de chaque euro investi.</p>
+    </div>
+    <div class="method-steps">
+      <div class="method-step"><div class="step-num">01</div><div class="step-title">Audit</div><div class="step-desc">Analyse complète de votre présence digitale, vos concurrents et opportunités inexploitées.</div><div class="step-benefit">→ On sait exactement où vous en êtes</div></div>
+      <div class="method-step"><div class="step-num">02</div><div class="step-title">Stratégie</div><div class="step-desc">Définition des objectifs, des cibles, des plateformes prioritaires et de la ligne éditoriale.</div><div class="step-benefit">→ Un cap clair et actionnable</div></div>
+      <div class="method-step"><div class="step-num">03</div><div class="step-title">Création</div><div class="step-desc">Production des contenus visuels, textuels et vidéo alignés avec votre identité de marque.</div><div class="step-benefit">→ Des contenus qui reflètent votre valeur</div></div>
+      <div class="method-step"><div class="step-num">04</div><div class="step-title">Diffusion</div><div class="step-desc">Publication au bon moment, sur les bonnes plateformes, avec une fréquence optimisée.</div><div class="step-benefit">→ Portée maximale garantie</div></div>
+      <div class="method-step"><div class="step-num">05</div><div class="step-title">Analyse</div><div class="step-desc">Suivi des KPIs clés, analyse des performances et identification des leviers à activer.</div><div class="step-benefit">→ Vous savez ce qui fonctionne</div></div>
+      <div class="method-step"><div class="step-num">06</div><div class="step-title">Optimisation</div><div class="step-desc">Ajustements continus de la stratégie et des contenus pour améliorer les résultats chaque mois.</div><div class="step-benefit">→ Une progression constante</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="offres">
+  <div class="container">
+    <div class="pricing-header">
+      <p class="section-label">Notre offre</p>
+      <h2 class="section-title">Un accompagnement <span class="gradient-text">100% sur mesure</span></h2>
+      <p class="section-subtitle">Pas de pack prédéfini. Chaque mission est construite selon vos objectifs, votre secteur et votre budget.</p>
+    </div>
+    <div class="offre-unique">
+      <div class="pricing-badge">⭐ Accompagnement personnalisé</div>
+      <h3>Community Management <span class="gradient-text">Sur Mesure</span></h3>
+      <p class="offre-sub">Une stratégie adaptée à votre marque, vos réseaux, vos objectifs.</p>
+      <ul class="offre-features">
+        <li><span class="check">✓</span> Gestion de vos réseaux sociaux (Instagram, Facebook, LinkedIn, TikTok...)</li>
+        <li><span class="check">✓</span> Création de visuels & contenus adaptés à votre marque</li>
+        <li><span class="check">✓</span> Calendrier éditorial mensuel personnalisé</li>
+        <li><span class="check">✓</span> Rédaction de captions engageantes & optimisées</li>
+        <li><span class="check">✓</span> Stories, Reels & formats courts selon votre stratégie</li>
+        <li><span class="check">✓</span> Modération des messages & commentaires</li>
+        <li><span class="check">✓</span> Animation de communauté & engagement actif</li>
+        <li><span class="check">✓</span> Reporting mensuel des performances</li>
+        <li><span class="check">✓</span> Réunion stratégique mensuelle</li>
+        <li><span class="check">✓</span> Recommandations & optimisation continue</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary" style="font-size:16px;padding:16px 40px;">Obtenir mon devis personnalisé →</a>
+      <p class="offre-note">Le volume de publications, les réseaux gérés et les services inclus sont définis ensemble selon vos besoins réels.</p>
+    </div>
+  </div>
+</section>
+
+<section id="realisations">
+  <div class="container">
+    <div class="real-header">
+      <p class="section-label">Nos résultats</p>
+      <h2 class="section-title">Des chiffres qui <span class="gradient-text">parlent pour nous</span></h2>
+      <p class="section-subtitle">Chaque client est une histoire de transformation. Voici ce que notre accompagnement produit concrètement.</p>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi-card"><div class="kpi-num">+150</div><div class="kpi-label">Clients accompagnés</div></div>
+      <div class="kpi-card"><div class="kpi-num">+280%</div><div class="kpi-label">Engagement moyen généré</div></div>
+      <div class="kpi-card"><div class="kpi-num">5M+</div><div class="kpi-label">Impressions générées</div></div>
+      <div class="kpi-card"><div class="kpi-num">98%</div><div class="kpi-label">Taux de satisfaction</div></div>
+    </div>
+    <div class="case-studies">
+      <div class="case-card">
+        <div class="case-sector">Restauration</div>
+        <div class="case-title">Restaurant local → marque incontournable</div>
+        <div class="case-challenge">Un restaurant avec zéro présence sur les réseaux, une clientèle locale limitée et aucune stratégie de communication.</div>
+        <div class="case-results">
+          <div class="case-result"><div class="case-result-num">+4 200</div><div class="case-result-label">Abonnés en 3 mois</div></div>
+          <div class="case-result"><div class="case-result-num">+67%</div><div class="case-result-label">Réservations</div></div>
+        </div>
+        <p class="case-placeholder">Votre cas client ici — contactez-nous pour intégrer vos résultats réels</p>
+      </div>
+      <div class="case-card">
+        <div class="case-sector">E-commerce / Mode</div>
+        <div class="case-title">Boutique en ligne → audience engagée</div>
+        <div class="case-challenge">Peu de trafic organique, faible engagement et coûts publicitaires élevés sans retour mesurable.</div>
+        <div class="case-results">
+          <div class="case-result"><div class="case-result-num">+312%</div><div class="case-result-label">Engagement organique</div></div>
+          <div class="case-result"><div class="case-result-num">×3</div><div class="case-result-label">Chiffre d'affaires</div></div>
+        </div>
+        <p class="case-placeholder">Votre cas client ici — contactez-nous pour intégrer vos résultats réels</p>
+      </div>
+      <div class="case-card">
+        <div class="case-sector">Prestataire de services</div>
+        <div class="case-title">Coach / Consultant → autorité digitale</div>
+        <div class="case-challenge">Expertise reconnue localement mais présence en ligne quasi inexistante et aucune génération de leads digitaux.</div>
+        <div class="case-results">
+          <div class="case-result"><div class="case-result-num">+120</div><div class="case-result-label">Leads en 60 jours</div></div>
+          <div class="case-result"><div class="case-result-num">+89%</div><div class="case-result-label">Visibilité LinkedIn</div></div>
+        </div>
+        <p class="case-placeholder">Votre cas client ici — contactez-nous pour intégrer vos résultats réels</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="temoignages">
+  <div class="container">
+    <div class="testi-header">
+      <p class="section-label">Témoignages</p>
+      <h2 class="section-title">Ils nous font <span class="gradient-text">confiance</span></h2>
+      <p class="section-subtitle">La satisfaction de nos clients est notre meilleure carte de visite.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Depuis que Noble Edge gère nos réseaux, notre restaurant affiche complet presque tous les week-ends. Stratégie, réactivité et créativité — je recommande les yeux fermés."</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sophie M.</div><div class="testi-role">Restauratrice, Lyon</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"En 2 mois, notre engagement a été multiplié par 4. L'équipe comprend vraiment notre secteur et nos contenus ressemblent enfin à notre marque."</p><div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name">Thomas R.</div><div class="testi-role">Fondateur, e-commerce mode</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"J'avais essayé de gérer mes réseaux moi-même mais je n'avais ni le temps ni les compétences. Aujourd'hui je génère des leads qualifiés chaque semaine — sans rien faire."</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Amélie D.</div><div class="testi-role">Coach business, Paris</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Un audit complet, des objectifs clairs et un plan d'action précis. 4 mois plus tard, notre présence digitale est méconnaissable. Excellent investissement."</p><div class="testi-author"><div class="testi-avatar">K</div><div><div class="testi-name">Karim B.</div><div class="testi-role">Directeur, PME bâtiment</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Noble Edge a refondu notre identité visuelle et pris en main nos réseaux. La cohérence est enfin là — notre clientèle remarque la différence."</p><div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name">Laura V.</div><div class="testi-role">Directrice marketing, startup SaaS</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Vos questions, <span class="gradient-text">nos réponses</span></h2>
+      <p class="section-subtitle">Tout ce que vous devez savoir avant de démarrer avec Noble Edge Agency.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Quels réseaux sociaux gérez-vous ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Nous gérons Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest et X. Selon votre secteur, nous vous recommandons les plateformes les plus pertinentes.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Travaillez-vous avec tous les secteurs d'activité ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Oui. Restauration, e-commerce, immobilier, santé, mode, services BtoB, coaching, artisanat, tourisme, startup tech... Notre approche est toujours adaptée à votre secteur et audience.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Comment fonctionne votre offre sur mesure ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Lors de notre appel découverte, nous analysons vos besoins, vos objectifs et votre budget. Nous construisons ensuite une proposition personnalisée avec les services et le volume adaptés à votre situation.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Créez-vous aussi les visuels et les textes ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Absolument. Visuels, carrousels, Reels, captions, scripts — nous gérons toute la production. Vous n'avez besoin que de valider.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Comment se passe le premier échange ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Un appel découverte gratuit de 30 minutes. On comprend votre situation, vos objectifs, et on vous prépare une proposition sur mesure sous 48h. Aucun engagement.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Faites-vous aussi la publicité payante ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Oui. Meta Ads, Google Ads, TikTok Ads — stratégie, création des visuels, paramétrage, ciblage, budget et optimisation continue.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Y a-t-il un engagement minimum ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner">Nos missions sont sans engagement minimum. Nous recommandons cependant 3 mois pour voir des résultats significatifs. Vous restez parce que vous êtes satisfait — pas parce que vous y êtes obligé.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="cta-block">
+      <div class="cta-glow"></div>
+      <p class="section-label" style="text-align:center;">Passez à l'action</p>
+      <h2>Prêt à faire passer votre marque<br /><span class="gradient-text">au niveau supérieur ?</span></h2>
+      <p>Prenez 30 minutes pour nous parler de votre projet. Aucun engagement, aucune pression — juste une conversation honnête sur ce que nous pouvons accomplir ensemble.</p>
+      <div class="cta-buttons">
+        <a href="#form" class="btn btn-primary" style="font-size:16px;padding:16px 32px;">📞 Réserver un appel découverte</a>
+        <a href="#form" class="btn btn-secondary" style="font-size:16px;padding:16px 32px;">Demander un devis →</a>
+      </div>
+      <div class="cta-reassurance">
+        <span class="cta-reassure-item">Appel gratuit & sans engagement</span>
+        <span class="cta-reassure-item">Réponse sous 24h</span>
+        <span class="cta-reassure-item">Proposition personnalisée</span>
+        <span class="cta-reassure-item">Accompagnement humain</span>
+      </div>
+    </div>
+    <div class="contact-form" id="form">
+      <div style="text-align:center;margin-bottom:32px;">
+        <h3 style="font-size:22px;font-weight:800;margin-bottom:8px;">Parlez-nous de votre projet</h3>
+        <p style="font-size:14px;color:var(--gray);">Remplissez ce formulaire et nous vous recontactons sous 24h.</p>
+      </div>
+      <form>
+        <div class="form-row">
+          <div class="form-group"><label>Prénom *</label><input type="text" placeholder="Votre prénom" required /></div>
+          <div class="form-group"><label>Nom *</label><input type="text" placeholder="Votre nom" required /></div>
+        </div>
+        <div class="form-group"><label>Email professionnel *</label><input type="email" placeholder="vous@exemple.com" required /></div>
+        <div class="form-group"><label>Entreprise</label><input type="text" placeholder="Votre entreprise ou marque" /></div>
+        <div class="form-group">
+          <label>Quel service vous intéresse ?</label>
+          <select>
+            <option value="">— Sélectionnez une option —</option>
+            <option>Community Management</option>
+            <option>Stratégie de communication</option>
+            <option>Création de contenu</option>
+            <option>Branding & Identité visuelle</option>
+            <option>Publicité en ligne (Ads)</option>
+            <option>SEO & Référencement</option>
+            <option>Web & Landing page</option>
+            <option>Email marketing & Automation</option>
+            <option>Accompagnement 360°</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Décrivez votre projet</label><textarea rows="4" placeholder="Ex : Je cherche à développer ma présence sur Instagram..."></textarea></div>
+        <button type="submit" class="btn btn-primary form-submit">Envoyer ma demande →</button>
+        <p class="form-note">🔒 Vos informations sont confidentielles et ne seront jamais partagées.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="7" height="2.5" rx="0.5" fill="white"/>
+              <rect x="2" y="10.75" width="5.5" height="2.5" rx="0.5" fill="white"/>
+              <rect x="2" y="17.5" width="7" height="2.5" rx="0.5" fill="white"/>
+              <rect x="12.5" y="4" width="2.5" height="16" rx="0.5" fill="white"/>
+              <rect x="19" y="4" width="2.5" height="16" rx="0.5" fill="white"/>
+              <path d="M12.5 4 L22 20" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="logo-text">Noble<span>Edge</span></span>
+        </a>
+        <p>Agence marketing & communication spécialisée dans le community management, la stratégie digitale et la création de contenu.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link">in</a>
+          <a href="#" class="social-link">ig</a>
+          <a href="#" class="social-link">fb</a>
+          <a href="#" class="social-link">tk</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Community Management</a>
+        <a href="#services">Stratégie digitale</a>
+        <a href="#services">Création de contenu</a>
+        <a href="#services">Branding & Identité</a>
+        <a href="#services">Publicité en ligne</a>
+        <a href="#services">SEO & Référencement</a>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <a href="#pourquoi">Pourquoi nous</a>
+        <a href="#methode">Notre méthode</a>
+        <a href="#realisations">Nos résultats</a>
+        <a href="#temoignages">Témoignages</a>
+        <a href="#offres">Notre offre</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p>📧 contact@nobleedge.agency</p>
+        <p>📞 +33 1 XX XX XX XX</p>
+        <p>📍 Paris, France</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:12px;padding:10px 20px;font-size:13px;">Réserver un appel</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Noble Edge Agency. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+</script>
+</body>
+</html>
