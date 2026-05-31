@@ -633,7 +633,7 @@
   // Initialize on page load
   function init() {
     // Create switcher if not exists
-    var navbar = document.querySelector('.navbar, nav, header');
+    var navbar = document.querySelector('.header-inner');
     if (navbar && !document.querySelector('[data-lang-switcher]')) {
       var switcher = document.createElement('div');
       switcher.className = 'lang-switcher';
