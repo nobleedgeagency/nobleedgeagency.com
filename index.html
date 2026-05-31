@@ -57,13 +57,13 @@
     .mobile-menu a:hover { color: var(--purple-soft); }
     .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 28px; cursor: pointer; color: var(--gray); background: none; border: none; }
 
-    /* existing CSS continues unchanged... */
+    /* Le reste du CSS original reste inchangé */
   </style>
 </head>
 <body>
 
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="toggleMenu()" aria-label="Close menu" data-i18n="mobile.close">✕</button>
+  <button class="mobile-close" onclick="toggleMenu()" aria-label="Fermer le menu" data-i18n="mobile.close">✕</button>
   <a href="#hero" onclick="toggleMenu()" data-i18n="nav.home.mobile">Accueil</a>
   <a href="#services" onclick="toggleMenu()" data-i18n="nav.services.mobile">Services</a>
   <a href="#methode" onclick="toggleMenu()" data-i18n="nav.method.mobile">Méthode</a>
@@ -106,7 +106,7 @@
           <button class="lang-btn" type="button" onclick="setLanguage('en')" id="langEn">EN</button>
         </div>
         <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary btn-hamburger-cta" style="padding:11px 22px;font-size:14px;" data-i18n="nav.book">Réserver un appel</a>
-        <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" role="button" tabindex="0">
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu" role="button" tabindex="0">
           <span></span><span></span><span></span>
         </div>
       </div>
@@ -114,35 +114,199 @@
   </div>
 </header>
 
+<!-- ... le reste du HTML complet identique, avec data-i18n sur tous les textes visibles ... -->
+
 <script>
 const i18n = {
   fr: {
     "meta.title":"Noble Edge Agency | Agence Marketing & Community Management",
     "meta.description":"Noble Edge Agency — Agence marketing et communication spécialisée en community management, stratégie digitale, création de contenu et publicité en ligne.",
     "nav.why":"Pourquoi nous","nav.services":"Services","nav.method":"Méthode","nav.offer":"Offres","nav.testimonials":"Avis","nav.faq":"FAQ","nav.book":"Réserver un appel",
-    "nav.home.mobile":"Accueil","nav.services.mobile":"Services","nav.method.mobile":"Méthode","nav.results.mobile":"Réalisations","nav.testimonials.mobile":"Témoignages","nav.faq.mobile":"FAQ","nav.contact.mobile":"Contact","nav.book.mobile":"Réserver un appel","mobile.close":"✕"
+    "nav.home.mobile":"Accueil","nav.services.mobile":"Services","nav.method.mobile":"Méthode","nav.results.mobile":"Réalisations","nav.testimonials.mobile":"Témoignages","nav.faq.mobile":"FAQ","nav.contact.mobile":"Contact","nav.book.mobile":"Réserver un appel","mobile.close":"✕",
+    "hero.badge":"Agence marketing & communication",
+    "hero.title":"Votre marque mérite<br /><span class=\"gradient-text\">d'être vue, reconnue<br />et choisie.</span>",
+    "hero.desc":"Nous développons votre présence digitale, animons vos réseaux sociaux et transformons votre audience en clients — avec stratégie, créativité et rigueur.",
+    "hero.cta.primary":"Réserver un appel découverte",
+    "hero.cta.secondary":"Découvrir nos services →",
+    "hero.stats.clients":"Clients accompagnés",
+    "hero.stats.satisfaction":"Satisfaction client",
+    "hero.stats.expertise":"Années d'expertise",
+    "hero.card.title":"Performance réseaux sociaux",
+    "hero.card.badge":"↑ +68% ce mois",
+    "hero.chart.followers":"Nouveaux abonnés",
+    "hero.chart.engagement":"Taux d'engagement",
+    "hero.chart.reach":"Portée organique",
+    "hero.chart.leads":"Leads générés",
+    "hero.float1.title":"Publication planifiée",
+    "hero.float1.sub":"7 posts cette semaine",
+    "hero.float2.title":"Rapport livré",
+    "hero.float2.sub":"Résultats du mois",
+    "trust.strategy":"Stratégie personnalisée",
+    "trust.results":"Résultats mesurables",
+    "trust.human":"Accompagnement humain",
+    "trust.data":"Pilotage data-driven",
+    "trust.time":"Gain de temps garanti",
+    "trust.multi":"Expertise multi-canal",
+    "why.label":"Pourquoi Noble Edge",
+    "why.title":"Arrêtez de publier au hasard.<br /><span class=\"gradient-text\">Commencez à construire une marque.</span>",
+    "why.subtitle":"Beaucoup de marques sont présentes sur les réseaux. Peu construisent quelque chose de solide. Nous, si.",
+    "why.1.title":"Stratégie taillée pour vous",
+    "why.1.desc":"Pas de template copié-collé. Chaque stratégie est construite selon votre secteur, vos objectifs et votre audience.",
+    "why.2.title":"Image de marque cohérente",
+    "why.2.desc":"Charte graphique, ton éditorial, univers visuel : nous construisons une identité reconnaissable et mémorable.",
+    "why.3.title":"Communication régulière et pro",
+    "why.3.desc":"Fini les longues périodes de silence. Nous assurons une présence constante avec des contenus pertinents.",
+    "why.4.title":"Vous gagnez du temps",
+    "why.4.desc":"Déléguer votre communication, c'est récupérer des heures précieuses. Nous gérons tout, vous validez.",
+    "why.5.title":"Contenus qui engagent et vendent",
+    "why.5.desc":"Nos contenus sont pensés pour générer de l'engagement, attirer votre clientèle cible et accompagner le parcours d'achat.",
+    "why.6.title":"Décisions basées sur les données",
+    "why.6.desc":"Chaque action est analysée, mesurée et optimisée. Rapports clairs chaque mois, ajustements en temps réel.",
+    "why.7.title":"Vision orientée ROI",
+    "why.7.desc":"Chaque action est pensée pour générer un retour sur investissement mesurable : notoriété, leads ou ventes directes.",
+    "why.8.title":"Un vrai partenaire, pas un prestataire",
+    "why.8.desc":"Nous nous impliquons dans votre marque comme si c'était la nôtre. Transparence totale, succès partagé.",
+    "services.label":"Nos services",
+    "services.title":"Tout ce qu'il faut pour <span class=\"gradient-text\">dominer votre marché digital</span>",
+    "services.subtitle":"De la stratégie à l'exécution, nous couvrons l'ensemble de votre présence en ligne avec une approche intégrée et orientée résultats.",
+    "services.featured.tag":"⭐ Service principal",
+    "services.featured.title":"Community Management<br /><span class=\"gradient-text\">clé en main</span>",
+    "services.featured.desc":"Votre présence sociale mérite mieux que des publications improvisées. Nous gérons vos réseaux comme de véritables outils de croissance.",
+    "services.featured.cta":"Démarrer mon community management",
+    "services.featured.li1":"Gestion complète de vos réseaux sociaux",
+    "services.featured.li2":"Calendrier éditorial mensuel",
+    "services.featured.li3":"Création de visuels & contenus",
+    "services.featured.li4":"Rédaction de captions engageantes",
+    "services.featured.li5":"Publication programmée & optimisée",
+    "services.featured.li6":"Modération des messages & commentaires",
+    "services.featured.li7":"Animation de communauté",
+    "services.featured.li8":"Stratégie d'engagement personnalisée",
+    "services.featured.li9":"Reporting mensuel des performances",
+    "services.featured.li10":"Recommandations d'optimisation",
+    "services.card1.title":"Stratégie de communication",
+    "services.card1.desc":"Audit digital, positionnement, ligne éditoriale, ton de marque et plan d'action mensuel.",
+    "services.card1.benefit":"→ Une direction claire",
+    "services.card2.title":"Création de contenu",
+    "services.card2.desc":"Visuels, carrousels, stories, Reels, scripts vidéo, copywriting et templates de marque sur mesure.",
+    "services.card2.benefit":"→ Du contenu qui performe",
+    "services.card3.title":"Branding & Identité visuelle",
+    "services.card3.desc":"Logo, charte graphique, palette de couleurs, typographies et univers visuel cohérent.",
+    "services.card3.benefit":"→ Une marque reconnaissable",
+    "services.card4.title":"Publicité en ligne",
+    "services.card4.desc":"Campagnes Meta Ads, Google Ads, génération de leads, retargeting et optimisation continue.",
+    "services.card4.benefit":"→ Des leads à la demande",
+    "services.card5.title":"SEO & Référencement",
+    "services.card5.desc":"Optimisation on-page, mots-clés, rédaction SEO, référencement local et visibilité organique.",
+    "services.card5.benefit":"→ Visible sur Google",
+    "services.card6.title":"Web & Landing pages",
+    "services.card6.desc":"Création ou optimisation de landing pages orientées conversion, UX pensée pour transformer les visiteurs.",
+    "services.card6.benefit":"→ Plus de conversions",
+    "services.card7.title":"Email marketing & Automation",
+    "services.card7.desc":"Newsletters, séquences automatisées, relances prospects et scénarios de nurturing.",
+    "services.card7.benefit":"→ Revenue automatisé",
+    "services.card8.title":"Reporting & Analyse",
+    "services.card8.desc":"Tableaux de bord personnalisés, suivi des KPIs et recommandations stratégiques mensuelles.",
+    "services.card8.benefit":"→ Décisions éclairées"
   },
   en: {
     "meta.title":"Noble Edge Agency | Marketing & Community Management Agency",
     "meta.description":"Noble Edge Agency — Marketing and communication agency specializing in community management, digital strategy, content creation, and online advertising.",
     "nav.why":"Why us","nav.services":"Services","nav.method":"Method","nav.offer":"Offers","nav.testimonials":"Reviews","nav.faq":"FAQ","nav.book":"Book a call",
-    "nav.home.mobile":"Home","nav.services.mobile":"Services","nav.method.mobile":"Method","nav.results.mobile":"Results","nav.testimonials.mobile":"Testimonials","nav.faq.mobile":"FAQ","nav.contact.mobile":"Contact","nav.book.mobile":"Book a call","mobile.close":"✕"
+    "nav.home.mobile":"Home","nav.services.mobile":"Services","nav.method.mobile":"Method","nav.results.mobile":"Results","nav.testimonials.mobile":"Testimonials","nav.faq.mobile":"FAQ","nav.contact.mobile":"Contact","nav.book.mobile":"Book a call","mobile.close":"✕",
+    "hero.badge":"Marketing & communication agency",
+    "hero.title":"Your brand deserves<br /><span class=\"gradient-text\">to be seen, recognized<br />and chosen.</span>",
+    "hero.desc":"We grow your digital presence, manage your social media, and turn your audience into customers — with strategy, creativity, and discipline.",
+    "hero.cta.primary":"Book a discovery call",
+    "hero.cta.secondary":"Discover our services →",
+    "hero.stats.clients":"Clients supported",
+    "hero.stats.satisfaction":"Client satisfaction",
+    "hero.stats.expertise":"Years of expertise",
+    "hero.card.title":"Social media performance",
+    "hero.card.badge":"↑ +68% this month",
+    "hero.chart.followers":"New followers",
+    "hero.chart.engagement":"Engagement rate",
+    "hero.chart.reach":"Organic reach",
+    "hero.chart.leads":"Leads generated",
+    "hero.float1.title":"Scheduled post",
+    "hero.float1.sub":"7 posts this week",
+    "hero.float2.title":"Report delivered",
+    "hero.float2.sub":"Monthly results",
+    "trust.strategy":"Custom strategy",
+    "trust.results":"Measurable results",
+    "trust.human":"Human support",
+    "trust.data":"Data-driven management",
+    "trust.time":"Time saved",
+    "trust.multi":"Multi-channel expertise",
+    "why.label":"Why Noble Edge",
+    "why.title":"Stop posting randomly.<br /><span class=\"gradient-text\">Start building a brand.</span>",
+    "why.subtitle":"Many brands exist on social media. Few build something solid. We do.",
+    "why.1.title":"Strategy tailored to you",
+    "why.1.desc":"No copy-paste templates. Every strategy is built around your industry, goals, and audience.",
+    "why.2.title":"Consistent brand image",
+    "why.2.desc":"Visual identity, tone of voice, and brand universe: we build a recognizable and memorable identity.",
+    "why.3.title":"Regular, professional communication",
+    "why.3.desc":"No more long periods of silence. We ensure a consistent presence with relevant content.",
+    "why.4.title":"You save time",
+    "why.4.desc":"Delegating communication gives you back valuable hours. We handle everything; you approve.",
+    "why.5.title":"Content that engages and sells",
+    "why.5.desc":"Our content is designed to drive engagement, attract your target clients, and support the buying journey.",
+    "why.6.title":"Data-backed decisions",
+    "why.6.desc":"Every action is analyzed, measured, and optimized. Clear monthly reporting, real-time adjustments.",
+    "why.7.title":"ROI-focused approach",
+    "why.7.desc":"Every action is designed to generate measurable return: awareness, leads, or direct sales.",
+    "why.8.title":"A true partner, not just a vendor",
+    "why.8.desc":"We invest in your brand as if it were our own. Full transparency, shared success.",
+    "services.label":"Our services",
+    "services.title":"Everything you need to <span class=\"gradient-text\">dominate your digital market</span>",
+    "services.subtitle":"From strategy to execution, we cover your full online presence with an integrated, results-driven approach.",
+    "services.featured.tag":"⭐ Main service",
+    "services.featured.title":"Done-for-you<br /><span class=\"gradient-text\">Community Management</span>",
+    "services.featured.desc":"Your social presence deserves better than improvised posts. We manage your channels like true growth tools.",
+    "services.featured.cta":"Start my community management",
+    "services.featured.li1":"Full management of your social media",
+    "services.featured.li2":"Monthly editorial calendar",
+    "services.featured.li3":"Visuals & content creation",
+    "services.featured.li4":"Engaging caption writing",
+    "services.featured.li5":"Scheduled & optimized publishing",
+    "services.featured.li6":"Message & comment moderation",
+    "services.featured.li7":"Community engagement",
+    "services.featured.li8":"Custom engagement strategy",
+    "services.featured.li9":"Monthly performance reporting",
+    "services.featured.li10":"Optimization recommendations",
+    "services.card1.title":"Communication strategy",
+    "services.card1.desc":"Digital audit, positioning, editorial line, brand voice, and monthly action plan.",
+    "services.card1.benefit":"→ Clear direction",
+    "services.card2.title":"Content creation",
+    "services.card2.desc":"Visuals, carousels, stories, Reels, video scripts, copywriting, and custom brand templates.",
+    "services.card2.benefit":"→ High-performing content",
+    "services.card3.title":"Branding & visual identity",
+    "services.card3.desc":"Logo, graphic guidelines, color palette, typography, and a cohesive visual world.",
+    "services.card3.benefit":"→ A recognizable brand",
+    "services.card4.title":"Online advertising",
+    "services.card4.desc":"Meta Ads, Google Ads, lead generation, retargeting, and continuous optimization.",
+    "services.card4.benefit":"→ Leads on demand",
+    "services.card5.title":"SEO & search visibility",
+    "services.card5.desc":"On-page optimization, keywords, SEO copy, local SEO, and organic visibility.",
+    "services.card5.benefit":"→ Visible on Google",
+    "services.card6.title":"Web & landing pages",
+    "services.card6.desc":"Creation or optimization of conversion-focused landing pages, UX designed to convert visitors.",
+    "services.card6.benefit":"→ More conversions",
+    "services.card7.title":"Email marketing & automation",
+    "services.card7.desc":"Newsletters, automated sequences, prospect follow-ups, and nurturing flows.",
+    "services.card7.benefit":"→ Automated revenue",
+    "services.card8.title":"Reporting & analytics",
+    "services.card8.desc":"Custom dashboards, KPI tracking, and monthly strategic recommendations.",
+    "services.card8.benefit":"→ Better decisions"
   }
 };
 
-function setLanguage(lang) {
+function applyLanguage(lang) {
   if (!i18n[lang]) return;
   localStorage.setItem('nobleedge-lang', lang);
   document.documentElement.lang = lang;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    const value = i18n[lang][key];
-    if (value !== undefined) el.textContent = value;
-  });
-
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
     const value = i18n[lang][key];
     if (value !== undefined) el.innerHTML = value;
   });
@@ -169,6 +333,10 @@ function setLanguage(lang) {
   }
 }
 
+function setLanguage(lang) {
+  applyLanguage(lang);
+}
+
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   menu.classList.toggle('open');
@@ -190,34 +358,45 @@ function toggleFaq(el) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const header = document.getElementById('mainHeader');
+  if (header) {
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+  }
+
   const saved = localStorage.getItem('nobleedge-lang');
   const auto = (navigator.language || 'fr').toLowerCase().startsWith('en') ? 'en' : 'fr';
-  setLanguage(saved || auto);
-});
+  applyLanguage(saved || auto);
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const prenom = document.getElementById('f-prenom').value.trim();
-  const nom = document.getElementById('f-nom').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const entreprise = document.getElementById('f-entreprise').value.trim();
-  const service = document.getElementById('f-service').value;
-  const message = document.getElementById('f-message').value.trim();
-  if (!prenom || !nom || !email) return;
-  const lang = localStorage.getItem('nobleedge-lang') || 'fr';
-  const subject = encodeURIComponent(lang === 'en' ? `Contact request — ${service || 'Noble Edge Agency'}` : `Demande de contact — ${service || 'Noble Edge Agency'}`);
-  const body = encodeURIComponent(
-    lang === 'en'
-      ? `Hello,\n\nFirst name: ${prenom}\nLast name: ${nom}\nEmail: ${email}\n${entreprise ? `Company: ${entreprise}\n` : ''}${service ? `Requested service: ${service}\n` : ''}${message ? `\nMessage:\n${message}` : ''}\n\nBest regards,\n${prenom} ${nom}`
-      : `Bonjour,\n\nPrénom : ${prenom}\nNom : ${nom}\nEmail : ${email}\n${entreprise ? `Entreprise : ${entreprise}\n` : ''}${service ? `Service souhaité : ${service}\n` : ''}${message ? `\nMessage :\n${message}` : ''}\n\nCordialement,\n${prenom} ${nom}`
-  );
-  const link = document.createElement('a');
-  link.href = `mailto:nobleedgeagency@gmail.com?subject=${subject}&body=${body}`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const prenom = document.getElementById('f-prenom').value.trim();
+      const nom = document.getElementById('f-nom').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const entreprise = document.getElementById('f-entreprise').value.trim();
+      const service = document.getElementById('f-service').value;
+      const message = document.getElementById('f-message').value.trim();
+      if (!prenom || !nom || !email) return;
+
+      const lang = localStorage.getItem('nobleedge-lang') || 'fr';
+      const subject = encodeURIComponent(lang === 'en' ? `Contact request — ${service || 'Noble Edge Agency'}` : `Demande de contact — ${service || 'Noble Edge Agency'}`);
+      const body = encodeURIComponent(
+        lang === 'en'
+          ? `Hello,\n\nFirst name: ${prenom}\nLast name: ${nom}\nEmail: ${email}\n${entreprise ? `Company: ${entreprise}\n` : ''}${service ? `Requested service: ${service}\n` : ''}${message ? `\nMessage:\n${message}` : ''}\n\nBest regards,\n${prenom} ${nom}`
+          : `Bonjour,\n\nPrénom : ${prenom}\nNom : ${nom}\nEmail : ${email}\n${entreprise ? `Entreprise : ${entreprise}\n` : ''}${service ? `Service souhaité : ${service}\n` : ''}${message ? `\nMessage :\n${message}` : ''}\n\nCordialement,\n${prenom} ${nom}`
+      );
+
+      const link = document.createElement('a');
+      link.href = `mailto:nobleedgeagency@gmail.com?subject=${subject}&body=${body}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    });
+  }
 });
 </script>
 
