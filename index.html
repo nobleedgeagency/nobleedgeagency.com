@@ -482,6 +482,40 @@
     }
   }
 
+    /* Language Switcher */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .lang-switcher button {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lang-switcher button:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .lang-switcher button.active {
+    color: var(--purple-light);
+    background: rgba(108, 63, 255, 0.15);
+  }
+  @media (max-width: 640px) {
+    .lang-switcher {
+      display: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -950,5 +984,6 @@ function toggleCookie(type){const el=document.getElementById(type==='analytics'?
 function saveCookieChoices(){const prefs={analytics:document.getElementById('toggleAnalytics').classList.contains('on'),personalization:document.getElementById('togglePersonalization').classList.contains('on')};localStorage.setItem('nobleedge-cookie-consent','custom');localStorage.setItem('nobleedge-cookie-prefs',JSON.stringify(prefs));document.getElementById('cookieBanner').classList.remove('show');closeCookieSettings()}
 document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
 </script>
+  483 src="i18n.js"></script>
 </body>
 </html>
