@@ -304,7 +304,185 @@
       .kpi-row { grid-template-columns: 1fr 1fr; }
       .kpi-num { font-size: 24px; }
     }
-  </style>
+    /* ===== COOKIE BANNER ===== */
+  .cookieOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .cookieOverlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  #cookieBanner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    max-width: 520px;
+    width: calc(100% - 32px);
+    background: var(--dark2);
+    border: 1px solid rgba(108,63,255,0.3);
+    border-radius: 20px;
+    padding: 24px 28px;
+    z-index: 9999;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  }
+  #cookieBanner.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  #cookieBanner h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  #cookieBanner p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  #cookieBanner .cookie-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  #cookieBanner .cookie-btns .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  #cookieSettings {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    max-width: 500px;
+    width: calc(100% - 32px);
+    max-height: 80vh;
+    overflow-y: auto;
+    background: var(--dark2);
+    border: 1px solid rgba(108,63,255,0.3);
+    border-radius: 20px;
+    padding: 32px;
+    z-index: 9999;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  }
+  #cookieSettings.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  #cookieSettings h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+  #cookieSettings h3 + p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  #cookieSettings .cookie-pref {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  #cookieSettings .cookie-pref:last-child {
+    border-bottom: none;
+  }
+  #cookieSettings .cookie-pref-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  #cookieSettings .cookie-pref-info p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  #cookieSettings .toggle {
+    width: 48px;
+    height: 26px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 13px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  #cookieSettings .toggle.on {
+    background: var(--purple);
+  }
+  #cookieSettings .toggle.on::after {
+    transform: translateX(22px);
+  }
+  #cookieSettings .toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  #cookieSettings .cookie-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+  #cookieSettings .cookie-actions .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  body.modal-open {
+    overflow: hidden;
+  }
+  @media (max-width: 640px) {
+    #cookieBanner {
+      bottom: 16px;
+      padding: 20px;
+      border-radius: 16px;
+    }
+    #cookieSettings {
+      padding: 24px;
+      border-radius: 16px;
+    }
+    #cookieSettings .toggle {
+      width: 44px;
+      height: 24px;
+    }
+    #cookieSettings .toggle::after {
+      width: 18px;
+      height: 18px;
+    }
+    #cookieSettings .toggle.on::after {
+      transform: translateX(20px);
+    }
+  }
+
+</style>
 </head>
 <body>
 
