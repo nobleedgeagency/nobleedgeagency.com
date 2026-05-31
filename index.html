@@ -8,7 +8,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ===== LANG SWITCH ===== */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.lang-btn {
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+  font-family: inherit;
+}
+.lang-btn.active {
+  background: var(--purple);
+  color: #fff;
+}
+.lang-btn:hover:not(.active) {
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --dark: #0a0a0f; --dark2: #12121a; --dark3: #1a1a28;
       --purple: #6c3fff; --purple-light: #8b5cf6; --purple-soft: #a78bfa;
@@ -337,14 +368,18 @@
         <span class="logo-text">Noble<span>Edge</span></span>
       </a>
       <nav>
-        <a href="#pourquoi">Pourquoi nous</a>
-        <a href="#services">Services</a>
-        <a href="#methode">Méthode</a>
-        <a href="#offres">Offres</a>
-        <a href="#temoignages">Avis</a>
-        <a href="#faq">FAQ</a>
+        <a href="#pourquoi" data-i18n="nav_why">Pourquoi nous</a>
+        <a href="#services" data-i18n="nav_services">Services </a>
+         <a href="#méthode" data-i18n="nav_method">Méthode </a>
+        <a href="#offres"    data-i18n="nav_offers">Offres</a>
+        <a href="#temoignages"data-i18n="nav_reviews">Témoignages</a>
+        <a href="#faq"data-i18n="nav_faq">FAQ </a>
       </nav>
       <div class="header-cta">
+        <div class="lang-switch">
+  <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
         <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary btn-hamburger-cta" style="padding:11px 22px;font-size:14px;">Réserver un appel</a>
         <div class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu" role="button" tabindex="0">
           <span></span><span></span><span></span>
@@ -669,6 +704,611 @@
 </footer>
 
 <script>
+  <script>
+/* ============================================================
+   TRANSLATIONS
+   ============================================================ */
+const i18n = {
+  fr: {
+    /* NAV */
+    nav_why: "Pourquoi nous",
+    nav_services: "Services",
+    nav_method: "Méthode",
+    nav_offers: "Offres",
+    nav_reviews: "Avis",
+    nav_faq: "FAQ",
+    btn_book: "Réserver un appel",
+
+    /* HERO */
+    hero_badge: "Agence marketing & communication",
+    hero_h1: "Votre marque mérite<br /><span class='gradient-text'>d'être vue, reconnue<br />et choisie.</span>",
+    hero_desc: "Nous développons votre présence digitale, animons vos réseaux sociaux et transformons votre audience en clients — avec stratégie, créativité et rigueur.",
+    btn_book_hero: "Réserver un appel découverte",
+    btn_services: "Découvrir nos services →",
+    stat_clients: "Clients accompagnés",
+    stat_satisfaction: "Satisfaction client",
+    stat_years: "Années d'expertise",
+    card_perf_title: "Performance réseaux sociaux",
+    card_perf_badge: "↑ +68% ce mois",
+    card_new_followers: "Nouveaux abonnés",
+    card_engagement: "Taux d'engagement",
+    card_reach: "Portée organique",
+    card_leads: "Leads générés",
+    floating_scheduled: "Publication planifiée",
+    floating_posts: "7 posts cette semaine",
+    floating_report: "Rapport livré",
+    floating_results: "Résultats du mois",
+
+    /* TRUST */
+    trust_1: "Stratégie personnalisée",
+    trust_2: "Résultats mesurables",
+    trust_3: "Accompagnement humain",
+    trust_4: "Pilotage data-driven",
+    trust_5: "Gain de temps garanti",
+    trust_6: "Expertise multi-canal",
+
+    /* POURQUOI */
+    label_why: "Pourquoi Noble Edge",
+    why_h2: "Arrêtez de publier au hasard.<br /><span class='gradient-text'>Commencez à construire une marque.</span>",
+    why_sub: "Beaucoup de marques sont présentes sur les réseaux. Peu construisent quelque chose de solide. Nous, si.",
+    why_t1: "Stratégie taillée pour vous",
+    why_d1: "Pas de template copié-collé. Chaque stratégie est construite selon votre secteur, vos objectifs et votre audience.",
+    why_t2: "Image de marque cohérente",
+    why_d2: "Charte graphique, ton éditorial, univers visuel : nous construisons une identité reconnaissable et mémorable.",
+    why_t3: "Communication régulière et pro",
+    why_d3: "Fini les longues périodes de silence. Nous assurons une présence constante avec des contenus pertinents.",
+    why_t4: "Vous gagnez du temps",
+    why_d4: "Déléguer votre communication, c'est récupérer des heures précieuses. Nous gérons tout, vous validez.",
+    why_t5: "Contenus qui engagent et vendent",
+    why_d5: "Nos contenus sont pensés pour générer de l'engagement, attirer votre clientèle cible et accompagner le parcours d'achat.",
+    why_t6: "Décisions basées sur les données",
+    why_d6: "Chaque action est analysée, mesurée et optimisée. Rapports clairs chaque mois, ajustements en temps réel.",
+    why_t7: "Vision orientée ROI",
+    why_d7: "Chaque action est pensée pour générer un retour sur investissement mesurable : notoriété, leads ou ventes directes.",
+    why_t8: "Un vrai partenaire, pas un prestataire",
+    why_d8: "Nous nous impliquons dans votre marque comme si c'était la nôtre. Transparence totale, succès partagé.",
+
+    /* SERVICES */
+    label_services: "Nos services",
+    services_h2: "Tout ce qu'il faut pour <span class='gradient-text'>dominer votre marché digital</span>",
+    services_sub: "De la stratégie à l'exécution, nous couvrons l'ensemble de votre présence en ligne avec une approche intégrée et orientée résultats.",
+    cm_tag: "⭐ Service principal",
+    cm_title: "Community Management<br /><span class='gradient-text'>clé en main</span>",
+    cm_desc: "Votre présence sociale mérite mieux que des publications improvisées. Nous gérons vos réseaux comme de véritables outils de croissance.",
+    btn_cm: "Démarrer mon community management",
+    cm_f1: "Gestion complète de vos réseaux sociaux",
+    cm_f2: "Calendrier éditorial mensuel",
+    cm_f3: "Création de visuels & contenus",
+    cm_f4: "Rédaction de captions engageantes",
+    cm_f5: "Publication programmée & optimisée",
+    cm_f6: "Modération des messages & commentaires",
+    cm_f7: "Animation de communauté",
+    cm_f8: "Stratégie d'engagement personnalisée",
+    cm_f9: "Reporting mensuel des performances",
+    cm_f10: "Recommandations d'optimisation",
+    sv_t1: "Stratégie de communication",
+    sv_d1: "Audit digital, positionnement, ligne éditoriale, ton de marque et plan d'action mensuel.",
+    sv_b1: "→ Une direction claire",
+    sv_t2: "Création de contenu",
+    sv_d2: "Visuels, carrousels, stories, Reels, scripts vidéo, copywriting et templates de marque sur mesure.",
+    sv_b2: "→ Du contenu qui performe",
+    sv_t3: "Branding & Identité visuelle",
+    sv_d3: "Logo, charte graphique, palette de couleurs, typographies et univers visuel cohérent.",
+    sv_b3: "→ Une marque reconnaissable",
+    sv_t4: "Publicité en ligne",
+    sv_d4: "Campagnes Meta Ads, Google Ads, génération de leads, retargeting et optimisation continue.",
+    sv_b4: "→ Des leads à la demande",
+    sv_t5: "SEO & Référencement",
+    sv_d5: "Optimisation on-page, mots-clés, rédaction SEO, référencement local et visibilité organique.",
+    sv_b5: "→ Visible sur Google",
+    sv_t6: "Web & Landing pages",
+    sv_d6: "Création ou optimisation de landing pages orientées conversion, UX pensée pour transformer les visiteurs.",
+    sv_b6: "→ Plus de conversions",
+    sv_t7: "Email marketing & Automation",
+    sv_d7: "Newsletters, séquences automatisées, relances prospects et scénarios de nurturing.",
+    sv_b7: "→ Revenue automatisé",
+    sv_t8: "Reporting & Analyse",
+    sv_d8: "Tableaux de bord personnalisés, suivi des KPIs et recommandations stratégiques mensuelles.",
+    sv_b8: "→ Décisions éclairées",
+
+    /* MÉTHODE */
+    label_method: "Notre méthode",
+    method_h2: "Un processus structuré <span class='gradient-text'>pour des résultats durables</span>",
+    method_sub: "Chaque action suit une méthodologie éprouvée en 6 étapes pour maximiser l'impact de chaque euro investi.",
+    step_t1: "Audit", step_d1: "Analyse complète de votre présence digitale, vos concurrents et opportunités inexploitées.", step_b1: "→ On sait exactement où vous en êtes",
+    step_t2: "Stratégie", step_d2: "Définition des objectifs, des cibles, des plateformes prioritaires et de la ligne éditoriale.", step_b2: "→ Un cap clair et actionnable",
+    step_t3: "Création", step_d3: "Production des contenus visuels, textuels et vidéo alignés avec votre identité de marque.", step_b3: "→ Des contenus qui reflètent votre valeur",
+    step_t4: "Diffusion", step_d4: "Publication au bon moment, sur les bonnes plateformes, avec une fréquence optimisée.", step_b4: "→ Portée maximale garantie",
+    step_t5: "Analyse", step_d5: "Suivi des KPIs clés, analyse des performances et identification des leviers à activer.", step_b5: "→ Vous savez ce qui fonctionne",
+    step_t6: "Optimisation", step_d6: "Ajustements continus de la stratégie et des contenus pour améliorer les résultats chaque mois.", step_b6: "→ Une progression constante",
+
+    /* OFFRES */
+    label_offers: "Notre offre",
+    offers_h2: "Un accompagnement <span class='gradient-text'>100% sur mesure</span>",
+    offers_sub: "Pas de pack prédéfini. Chaque mission est construite selon vos objectifs, votre secteur et votre budget.",
+    pricing_badge: "⭐ Accompagnement personnalisé",
+    offers_h3: "Community Management <span class='gradient-text'>Sur Mesure</span>",
+    offers_subsub: "Une stratégie adaptée à votre marque, vos réseaux, vos objectifs.",
+    of_f1: "Gestion de vos réseaux sociaux (Instagram, Facebook, LinkedIn, TikTok...)",
+    of_f2: "Création de visuels & contenus adaptés à votre marque",
+    of_f3: "Calendrier éditorial mensuel personnalisé",
+    of_f4: "Rédaction de captions engageantes & optimisées",
+    of_f5: "Stories, Reels & formats courts selon votre stratégie",
+    of_f6: "Modération des messages & commentaires",
+    of_f7: "Animation de communauté & engagement actif",
+    of_f8: "Reporting mensuel des performances",
+    of_f9: "Réunion stratégique mensuelle",
+    of_f10: "Recommandations & optimisation continue",
+    btn_quote: "Obtenir mon devis personnalisé →",
+    offers_note: "Le volume de publications, les réseaux gérés et les services inclus sont définis ensemble selon vos besoins réels.",
+
+    /* RÉALISATIONS */
+    label_results: "Nos résultats",
+    results_h2: "Des chiffres qui <span class='gradient-text'>parlent pour nous</span>",
+    results_sub: "Chaque client est une histoire de transformation. Voici ce que notre accompagnement produit concrètement.",
+    kpi_l1: "Clients accompagnés",
+    kpi_l2: "Engagement moyen généré",
+    kpi_l3: "Impressions générées",
+    kpi_l4: "Taux de satisfaction",
+    case_sector1: "Restauration",
+    case_title1: "Restaurant local → marque incontournable",
+    case_ch1: "Un restaurant avec zéro présence sur les réseaux, une clientèle locale limitée et aucune stratégie de communication.",
+    case_r1a: "Abonnés en 3 mois", case_r1b: "Réservations",
+    case_sector2: "E-commerce / Mode",
+    case_title2: "Boutique en ligne → audience engagée",
+    case_ch2: "Peu de trafic organique, faible engagement et coûts publicitaires élevés sans retour mesurable.",
+    case_r2a: "Engagement organique", case_r2b: "Chiffre d'affaires",
+    case_sector3: "Prestataire de services",
+    case_title3: "Coach / Consultant → autorité digitale",
+    case_ch3: "Expertise reconnue localement mais présence en ligne quasi inexistante et aucune génération de leads digitaux.",
+    case_r3a: "Leads en 60 jours", case_r3b: "Visibilité LinkedIn",
+    case_placeholder: "Cas client à venir",
+
+    /* TÉMOIGNAGES */
+    label_testi: "Témoignages",
+    testi_h2: "Ils nous font <span class='gradient-text'>confiance</span>",
+    testi_sub: "La satisfaction de nos clients est notre meilleure carte de visite.",
+    testi_q1: "\"Depuis que Noble Edge gère nos réseaux, notre restaurant affiche complet presque tous les week-ends. Stratégie, réactivité et créativité — je recommande les yeux fermés.\"",
+    testi_role1: "Restauratrice, Lyon",
+    testi_q2: "\"En 2 mois, notre engagement a été multiplié par 4. L'équipe comprend vraiment notre secteur et nos contenus ressemblent enfin à notre marque.\"",
+    testi_role2: "Fondateur, e-commerce mode",
+    testi_q3: "\"J'avais essayé de gérer mes réseaux moi-même mais je n'avais ni le temps ni les compétences. Aujourd'hui je génère des leads qualifiés chaque semaine.\"",
+    testi_role3: "Coach business, Paris",
+    testi_q4: "\"Un audit complet, des objectifs clairs et un plan d'action précis. 4 mois plus tard, notre présence digitale est méconnaissable. Excellent investissement.\"",
+    testi_role4: "Directeur, PME bâtiment",
+    testi_q5: "\"Noble Edge a refondu notre identité visuelle et pris en main nos réseaux. La cohérence est enfin là — notre clientèle remarque la différence.\"",
+    testi_role5: "Directrice marketing, startup SaaS",
+
+    /* FAQ */
+    label_faq: "FAQ",
+    faq_h2: "Vos questions, <span class='gradient-text'>nos réponses</span>",
+    faq_sub: "Tout ce que vous devez savoir avant de démarrer avec Noble Edge Agency.",
+    faq_q1: "Quels réseaux sociaux gérez-vous ?",
+    faq_a1: "Nous gérons Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest et X.",
+    faq_q2: "Travaillez-vous avec tous les secteurs d'activité ?",
+    faq_a2: "Oui. Restauration, e-commerce, immobilier, santé, mode, services BtoB, coaching, artisanat, tourisme, startup tech...",
+    faq_q3: "Comment fonctionne votre offre sur mesure ?",
+    faq_a3: "Lors de notre appel découverte, nous analysons vos besoins, vos objectifs et votre budget. Nous construisons ensuite une proposition personnalisée adaptée à votre situation.",
+    faq_q4: "Créez-vous aussi les visuels et les textes ?",
+    faq_a4: "Absolument. Visuels, carrousels, Reels, captions, scripts — nous gérons toute la production. Vous n'avez besoin que de valider.",
+    faq_q5: "Comment se passe le premier échange ?",
+    faq_a5: "Un appel découverte gratuit de 30 minutes. On comprend votre situation, vos objectifs, et on vous prépare une proposition sur mesure sous 48h. Aucun engagement.",
+    faq_q6: "Faites-vous aussi la publicité payante ?",
+    faq_a6: "Oui. Meta Ads, Google Ads, TikTok Ads — stratégie, création des visuels, paramétrage, ciblage, budget et optimisation continue.",
+    faq_q7: "Y a-t-il un engagement minimum ?",
+    faq_a7: "Nos missions sont sans engagement minimum. Nous recommandons cependant 3 mois pour voir des résultats significatifs.",
+
+    /* CONTACT */
+    label_contact: "Passez à l'action",
+    contact_h2: "Prêt à faire passer votre marque<br /><span class='gradient-text'>au niveau supérieur ?</span>",
+    contact_p: "Prenez 30 minutes pour nous parler de votre projet. Aucun engagement, aucune pression.",
+    btn_call: "📞 Réserver un appel découverte",
+    btn_devis: "Demander un devis →",
+    reassure_1: "Appel gratuit & sans engagement",
+    reassure_2: "Réponse sous 24h",
+    reassure_3: "Proposition personnalisée",
+    reassure_4: "Accompagnement humain",
+    form_title: "Parlez-nous de votre projet",
+    form_sub: "Remplissez ce formulaire et nous vous recontactons sous 24h.",
+    form_prenom: "Prénom *", form_prenom_ph: "Votre prénom",
+    form_nom: "Nom *", form_nom_ph: "Votre nom",
+    form_email: "Email professionnel *",
+    form_entreprise: "Entreprise", form_entreprise_ph: "Votre entreprise ou marque",
+    form_service_label: "Quel service vous intéresse ?",
+    form_service_default: "— Sélectionnez une option —",
+    form_message_label: "Décrivez votre projet",
+    form_message_ph: "Ex : Je cherche à développer ma présence sur Instagram...",
+    form_submit: "Envoyer ma demande →",
+    form_note: "🔒 Vos informations sont confidentielles et ne seront jamais partagées.",
+    form_success_title: "✅ Message envoyé !",
+    form_success_p: "Votre messagerie mail vient de s'ouvrir avec votre demande pré-remplie.<br>Cliquez sur <strong>Envoyer</strong> pour finaliser.",
+
+    /* FOOTER */
+    footer_desc: "Agence marketing & communication spécialisée dans le community management, la stratégie digitale et la création de contenu.",
+    footer_col1: "Services",
+    footer_col2: "Agence",
+    footer_col3: "Contact",
+    footer_sv1: "Community Management", footer_sv2: "Stratégie digitale",
+    footer_sv3: "Création de contenu", footer_sv4: "Branding & Identité",
+    footer_sv5: "Publicité en ligne", footer_sv6: "SEO & Référencement",
+    footer_ag1: "Pourquoi nous", footer_ag2: "Notre méthode",
+    footer_ag3: "Nos résultats", footer_ag4: "Témoignages",
+    footer_ag5: "Notre offre", footer_ag6: "FAQ",
+    footer_copyright: "© 2026 Noble Edge Agency. Tous droits réservés.",
+    footer_legal: "Mentions légales",
+    footer_privacy: "Politique de confidentialité",
+    footer_cgv: "CGV",
+
+    /* MOBILE MENU */
+    mob_home: "Accueil",
+    mob_close_label: "Fermer le menu",
+    mob_open_label: "Ouvrir le menu",
+  },
+
+  en: {
+    /* NAV */
+    nav_why: "Why us",
+    nav_services: "Services",
+    nav_method: "Method",
+    nav_offers: "Offers",
+    nav_reviews: "Reviews",
+    nav_faq: "FAQ",
+    btn_book: "Book a call",
+
+    /* HERO */
+    hero_badge: "Marketing & communication agency",
+    hero_h1: "Your brand deserves<br /><span class='gradient-text'>to be seen, recognized<br />and chosen.</span>",
+    hero_desc: "We grow your digital presence, manage your social media and turn your audience into clients — with strategy, creativity and precision.",
+    btn_book_hero: "Book a discovery call",
+    btn_services: "Explore our services →",
+    stat_clients: "Clients supported",
+    stat_satisfaction: "Client satisfaction",
+    stat_years: "Years of expertise",
+    card_perf_title: "Social media performance",
+    card_perf_badge: "↑ +68% this month",
+    card_new_followers: "New followers",
+    card_engagement: "Engagement rate",
+    card_reach: "Organic reach",
+    card_leads: "Leads generated",
+    floating_scheduled: "Scheduled post",
+    floating_posts: "7 posts this week",
+    floating_report: "Report delivered",
+    floating_results: "Monthly results",
+
+    /* TRUST */
+    trust_1: "Tailored strategy",
+    trust_2: "Measurable results",
+    trust_3: "Human support",
+    trust_4: "Data-driven management",
+    trust_5: "Guaranteed time savings",
+    trust_6: "Multi-channel expertise",
+
+    /* WHY */
+    label_why: "Why Noble Edge",
+    why_h2: "Stop posting randomly.<br /><span class='gradient-text'>Start building a brand.</span>",
+    why_sub: "Many brands are active on social media. Few build something solid. We do.",
+    why_t1: "Strategy built for you",
+    why_d1: "No copy-paste templates. Every strategy is crafted around your industry, goals and audience.",
+    why_t2: "Consistent brand image",
+    why_d2: "Visual identity, editorial tone, brand universe: we build a recognizable and memorable identity.",
+    why_t3: "Regular, professional communication",
+    why_d3: "No more long periods of silence. We ensure a consistent presence with relevant content.",
+    why_t4: "Save your time",
+    why_d4: "Delegating your communication means reclaiming precious hours. We handle everything, you approve.",
+    why_t5: "Content that engages and sells",
+    why_d5: "Our content is designed to drive engagement, attract your target audience and support the buying journey.",
+    why_t6: "Data-driven decisions",
+    why_d6: "Every action is analyzed, measured and optimized. Clear monthly reports, real-time adjustments.",
+    why_t7: "ROI-focused vision",
+    why_d7: "Every action is designed to generate a measurable return: brand awareness, leads or direct sales.",
+    why_t8: "A true partner, not just a vendor",
+    why_d8: "We invest in your brand as if it were our own. Full transparency, shared success.",
+
+    /* SERVICES */
+    label_services: "Our services",
+    services_h2: "Everything you need to <span class='gradient-text'>dominate your digital market</span>",
+    services_sub: "From strategy to execution, we cover your entire online presence with an integrated, results-driven approach.",
+    cm_tag: "⭐ Core service",
+    cm_title: "Community Management<br /><span class='gradient-text'>fully managed</span>",
+    cm_desc: "Your social presence deserves more than improvised posts. We manage your networks as true growth tools.",
+    btn_cm: "Start my community management",
+    cm_f1: "Full management of your social networks",
+    cm_f2: "Monthly editorial calendar",
+    cm_f3: "Visual & content creation",
+    cm_f4: "Engaging caption writing",
+    cm_f5: "Scheduled & optimized publishing",
+    cm_f6: "Message & comment moderation",
+    cm_f7: "Community animation",
+    cm_f8: "Personalized engagement strategy",
+    cm_f9: "Monthly performance reporting",
+    cm_f10: "Optimization recommendations",
+    sv_t1: "Communication strategy",
+    sv_d1: "Digital audit, positioning, editorial line, brand tone and monthly action plan.",
+    sv_b1: "→ A clear direction",
+    sv_t2: "Content creation",
+    sv_d2: "Visuals, carousels, stories, Reels, video scripts, copywriting and custom brand templates.",
+    sv_b2: "→ Content that performs",
+    sv_t3: "Branding & Visual identity",
+    sv_d3: "Logo, brand guidelines, color palette, typography and a coherent visual universe.",
+    sv_b3: "→ A recognizable brand",
+    sv_t4: "Online advertising",
+    sv_d4: "Meta Ads, Google Ads campaigns, lead generation, retargeting and continuous optimization.",
+    sv_b4: "→ Leads on demand",
+    sv_t5: "SEO & Search ranking",
+    sv_d5: "On-page optimization, keywords, SEO writing, local SEO and organic visibility.",
+    sv_b5: "→ Visible on Google",
+    sv_t6: "Web & Landing pages",
+    sv_d6: "Creation or optimization of conversion-focused landing pages, UX designed to convert visitors.",
+    sv_b6: "→ More conversions",
+    sv_t7: "Email marketing & Automation",
+    sv_d7: "Newsletters, automated sequences, prospect follow-ups and nurturing workflows.",
+    sv_b7: "→ Automated revenue",
+    sv_t8: "Reporting & Analytics",
+    sv_d8: "Custom dashboards, KPI tracking and monthly strategic recommendations.",
+    sv_b8: "→ Informed decisions",
+
+    /* METHOD */
+    label_method: "Our method",
+    method_h2: "A structured process <span class='gradient-text'>for lasting results</span>",
+    method_sub: "Every action follows a proven 6-step methodology to maximize the impact of every euro invested.",
+    step_t1: "Audit", step_d1: "Full analysis of your digital presence, competitors and untapped opportunities.", step_b1: "→ We know exactly where you stand",
+    step_t2: "Strategy", step_d2: "Defining objectives, targets, priority platforms and editorial direction.", step_b2: "→ A clear and actionable roadmap",
+    step_t3: "Creation", step_d3: "Production of visual, written and video content aligned with your brand identity.", step_b3: "→ Content that reflects your value",
+    step_t4: "Distribution", step_d4: "Publishing at the right time, on the right platforms, with an optimized frequency.", step_b4: "→ Maximum reach guaranteed",
+    step_t5: "Analysis", step_d5: "Tracking key KPIs, performance analysis and identifying growth levers.", step_b5: "→ You know what works",
+    step_t6: "Optimization", step_d6: "Continuous adjustments to strategy and content to improve results every month.", step_b6: "→ Constant progress",
+
+    /* OFFERS */
+    label_offers: "Our offer",
+    offers_h2: "A <span class='gradient-text'>100% custom</span> partnership",
+    offers_sub: "No predefined packages. Every mission is built around your goals, industry and budget.",
+    pricing_badge: "⭐ Personalized support",
+    offers_h3: "Community Management <span class='gradient-text'>Tailored to You</span>",
+    offers_subsub: "A strategy adapted to your brand, your networks, your goals.",
+    of_f1: "Social media management (Instagram, Facebook, LinkedIn, TikTok...)",
+    of_f2: "Custom visual & content creation for your brand",
+    of_f3: "Personalized monthly editorial calendar",
+    of_f4: "Engaging & optimized caption writing",
+    of_f5: "Stories, Reels & short formats aligned with your strategy",
+    of_f6: "Message & comment moderation",
+    of_f7: "Community animation & active engagement",
+    of_f8: "Monthly performance reporting",
+    of_f9: "Monthly strategy meeting",
+    of_f10: "Ongoing recommendations & optimization",
+    btn_quote: "Get my personalized quote →",
+    offers_note: "The volume of posts, managed networks and included services are defined together based on your actual needs.",
+
+    /* RESULTS */
+    label_results: "Our results",
+    results_h2: "Numbers that <span class='gradient-text'>speak for themselves</span>",
+    results_sub: "Every client is a transformation story. Here's what our support produces in practice.",
+    kpi_l1: "Clients supported",
+    kpi_l2: "Average engagement generated",
+    kpi_l3: "Impressions generated",
+    kpi_l4: "Satisfaction rate",
+    case_sector1: "Restaurant industry",
+    case_title1: "Local restaurant → must-visit brand",
+    case_ch1: "A restaurant with zero social media presence, a limited local clientele and no communication strategy.",
+    case_r1a: "Followers in 3 months", case_r1b: "Reservations",
+    case_sector2: "E-commerce / Fashion",
+    case_title2: "Online store → engaged audience",
+    case_ch2: "Low organic traffic, weak engagement and high ad costs with no measurable return.",
+    case_r2a: "Organic engagement", case_r2b: "Revenue",
+    case_sector3: "Service providers",
+    case_title3: "Coach / Consultant → digital authority",
+    case_ch3: "Locally recognized expertise but near-zero online presence and no digital lead generation.",
+    case_r3a: "Leads in 60 days", case_r3b: "LinkedIn visibility",
+    case_placeholder: "Case study coming soon",
+
+    /* TESTIMONIALS */
+    label_testi: "Testimonials",
+    testi_h2: "They <span class='gradient-text'>trust us</span>",
+    testi_sub: "Our clients' satisfaction is our best testimonial.",
+    testi_q1: "\"Since Noble Edge took over our social media, our restaurant is fully booked almost every weekend. Strategy, responsiveness and creativity — I recommend them without hesitation.\"",
+    testi_role1: "Restaurant owner, Lyon",
+    testi_q2: "\"In 2 months, our engagement was multiplied by 4. The team truly understands our industry and our content finally looks like our brand.\"",
+    testi_role2: "Founder, fashion e-commerce",
+    testi_q3: "\"I had tried managing my own social media but had neither the time nor the skills. Now I generate qualified leads every week.\"",
+    testi_role3: "Business coach, Paris",
+    testi_q4: "\"A thorough audit, clear goals and a precise action plan. 4 months later, our digital presence is unrecognizable. Excellent investment.\"",
+    testi_role4: "Director, construction SME",
+    testi_q5: "\"Noble Edge rebuilt our visual identity and took over our social media. The consistency is finally there — our clients notice the difference.\"",
+    testi_role5: "Marketing Director, SaaS startup",
+
+    /* FAQ */
+    label_faq: "FAQ",
+    faq_h2: "Your questions, <span class='gradient-text'>our answers</span>",
+    faq_sub: "Everything you need to know before getting started with Noble Edge Agency.",
+    faq_q1: "Which social networks do you manage?",
+    faq_a1: "We manage Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest and X.",
+    faq_q2: "Do you work with all industries?",
+    faq_a2: "Yes. Restaurants, e-commerce, real estate, healthcare, fashion, B2B services, coaching, trades, tourism, tech startups...",
+    faq_q3: "How does your custom offer work?",
+    faq_a3: "During our discovery call, we analyze your needs, goals and budget. We then build a personalized proposal tailored to your situation.",
+    faq_q4: "Do you also create visuals and copy?",
+    faq_a4: "Absolutely. Visuals, carousels, Reels, captions, scripts — we handle the entire production. You just need to approve.",
+    faq_q5: "How does the first meeting go?",
+    faq_a5: "A free 30-minute discovery call. We understand your situation and goals, then prepare a custom proposal within 48 hours. No commitment.",
+    faq_q6: "Do you also run paid advertising?",
+    faq_a6: "Yes. Meta Ads, Google Ads, TikTok Ads — strategy, visual creation, setup, targeting, budget and continuous optimization.",
+    faq_q7: "Is there a minimum commitment?",
+    faq_a7: "Our missions have no minimum commitment. However, we recommend 3 months to see significant results.",
+
+    /* CONTACT */
+    label_contact: "Take action",
+    contact_h2: "Ready to take your brand<br /><span class='gradient-text'>to the next level?</span>",
+    contact_p: "Take 30 minutes to tell us about your project. No commitment, no pressure.",
+    btn_call: "📞 Book a discovery call",
+    btn_devis: "Request a quote →",
+    reassure_1: "Free & no-commitment call",
+    reassure_2: "Reply within 24h",
+    reassure_3: "Personalized proposal",
+    reassure_4: "Human support",
+    form_title: "Tell us about your project",
+    form_sub: "Fill in this form and we'll get back to you within 24 hours.",
+    form_prenom: "First name *", form_prenom_ph: "Your first name",
+    form_nom: "Last name *", form_nom_ph: "Your last name",
+    form_email: "Professional email *",
+    form_entreprise: "Company", form_entreprise_ph: "Your company or brand",
+    form_service_label: "Which service interests you?",
+    form_service_default: "— Select an option —",
+    form_message_label: "Describe your project",
+    form_message_ph: "E.g.: I'm looking to grow my presence on Instagram...",
+    form_submit: "Send my request →",
+    form_note: "🔒 Your information is confidential and will never be shared.",
+    form_success_title: "✅ Message sent!",
+    form_success_p: "Your email client just opened with your pre-filled request.<br>Click <strong>Send</strong> to finalize.",
+
+    /* FOOTER */
+    footer_desc: "Marketing & communication agency specializing in community management, digital strategy and content creation.",
+    footer_col1: "Services",
+    footer_col2: "Agency",
+    footer_col3: "Contact",
+    footer_sv1: "Community Management", footer_sv2: "Digital strategy",
+    footer_sv3: "Content creation", footer_sv4: "Branding & Identity",
+    footer_sv5: "Online advertising", footer_sv6: "SEO & Search ranking",
+    footer_ag1: "Why us", footer_ag2: "Our method",
+    footer_ag3: "Our results", footer_ag4: "Testimonials",
+    footer_ag5: "Our offer", footer_ag6: "FAQ",
+    footer_copyright: "© 2026 Noble Edge Agency. All rights reserved.",
+    footer_legal: "Legal notice",
+    footer_privacy: "Privacy policy",
+    footer_cgv: "T&Cs",
+
+    /* MOBILE MENU */
+    mob_home: "Home",
+    mob_close_label: "Close menu",
+    mob_open_label: "Open menu",
+  }
+};
+
+/* ============================================================
+   LANG SWITCH LOGIC
+   ============================================================ */
+let currentLang = localStorage.getItem('lang') || 'fr';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+
+  // Mettre à jour tous les éléments data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] !== undefined) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (i18n[lang][key] !== undefined) {
+      el.placeholder = i18n[lang][key];
+    }
+  });
+
+  // Aria-labels
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria');
+    if (i18n[lang][key] !== undefined) {
+      el.setAttribute('aria-label', i18n[lang][key]);
+    }
+  });
+
+  // Mettre à jour le title et meta description
+  if (lang === 'en') {
+    document.title = "Noble Edge Agency | Marketing & Community Management Agency";
+    document.querySelector('meta[name="description"]').content =
+      "Noble Edge Agency — Marketing and communication agency specializing in community management, digital strategy, content creation and online advertising.";
+  } else {
+    document.title = "Noble Edge Agency | Agence Marketing & Community Management";
+    document.querySelector('meta[name="description"]').content =
+      "Noble Edge Agency — Agence marketing et communication spécialisée en community management, stratégie digitale, création de contenu et publicité en ligne.";
+  }
+
+  // Boutons actifs
+  ['btn-fr','btn-fr-mob'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', lang === 'fr');
+  });
+  ['btn-en','btn-en-mob'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', lang === 'en');
+  });
+}
+
+// Init au chargement
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+
+/* ============================================================
+   HEADER SCROLL
+   ============================================================ */
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const nom = document.getElementById('f-nom').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const entreprise = document.getElementById('f-entreprise').value.trim();
+  const service = document.getElementById('f-service').value;
+  const message = document.getElementById('f-message').value.trim();
+  if (!prenom || !nom || !email) return;
+  const t = i18n[currentLang];
+  const sujet = encodeURIComponent((currentLang === 'fr' ? 'Demande de contact — ' : 'Contact request — ') + (service || 'Noble Edge Agency'));
+  const corps = encodeURIComponent(
+    (currentLang === 'fr' ? 'Bonjour,' : 'Hello,') + '\n\n' +
+    (currentLang === 'fr' ? 'Voici ma demande :' : 'Here is my request:') + '\n\n' +
+    (currentLang === 'fr' ? 'Prénom : ' : 'First name: ') + prenom + '\n' +
+    (currentLang === 'fr' ? 'Nom : ' : 'Last name: ') + nom + '\n' +
+    'Email : ' + email + '\n' +
+    (entreprise ? (currentLang === 'fr' ? 'Entreprise : ' : 'Company: ') + entreprise + '\n' : '') +
+    (service ? (currentLang === 'fr' ? 'Service souhaité : ' : 'Service requested: ') + service + '\n' : '') +
+    (message ? '\n' + (currentLang === 'fr' ? 'Message :\n' : 'Message:\n') + message : '') +
+    '\n\n' + (currentLang === 'fr' ? 'Cordialement,' : 'Best regards,') + '\n' + prenom + ' ' + nom
+  );
+  const link = document.createElement('a');
+  link.href = 'mailto:nobleedgeagency@gmail.com?subject=' + sujet + '&body=' + corps;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+</script>
   const header = document.getElementById('mainHeader');
   window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 40); });
   function toggleMenu() {
