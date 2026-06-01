@@ -668,3 +668,8 @@
   };
 
 })();
+function switchLang(lang) {
+  if (window.I18N && typeof window.I18N.setLanguage === 'function') {
+    window.I18N.setLanguage(lang);
+  }
+}
