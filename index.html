@@ -984,6 +984,6 @@ function toggleCookie(type){const el=document.getElementById(type==='analytics'?
 function saveCookieChoices(){const prefs={analytics:document.getElementById('toggleAnalytics').classList.contains('on'),personalization:document.getElementById('togglePersonalization').classList.contains('on')};localStorage.setItem('nobleedge-cookie-consent','custom');localStorage.setItem('nobleedge-cookie-prefs',JSON.stringify(prefs));document.getElementById('cookieBanner').classList.remove('show');closeCookieSettings()}
 document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
 </script>
-  483 src="i18n.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>
