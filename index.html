@@ -1108,18 +1108,30 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
       }, 80);
     }
 
-    // rejoue l'anim quand on revient clairement en haut de la page
-    var lastStateAtTop = true;
-    window.addEventListener('scroll', function() {
-      if (window.scrollY < 10) {
-        if (!lastStateAtTop) {
+    // rejoue l'anim quand le graphique (hero-chart) redevient visible
+    if ('IntersectionObserver' in window) {
+      var heroObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            resetBars();
+          }
+        });
+      }, {
+        threshold: [0.5]
+      });
+      heroObserver.observe(heroChart);
+    } else {
+      // fallback: comportement simple sur anciens navigateurs
+      var lastVisible = true;
+      window.addEventListener('scroll', function() {
+        var rect = heroChart.getBoundingClientRect();
+        var visible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (visible && !lastVisible) {
           resetBars();
         }
-        lastStateAtTop = true;
-      } else {
-        lastStateAtTop = false;
-      }
-    });
+        lastVisible = visible;
+      });
+    }
   });
 
 </script>
