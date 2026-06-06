@@ -1112,12 +1112,12 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
     if ('IntersectionObserver' in window) {
       var heroObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
             resetBars();
           }
         });
       }, {
-        threshold: [0.5]
+        threshold: [0.8]
       });
       heroObserver.observe(heroChart);
     } else {
@@ -1125,7 +1125,7 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
       var lastVisible = true;
       window.addEventListener('scroll', function() {
         var rect = heroChart.getBoundingClientRect();
-        var visible = rect.top < window.innerHeight && rect.bottom > 0;
+        var visible = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
         if (visible && !lastVisible) {
           resetBars();
         }
