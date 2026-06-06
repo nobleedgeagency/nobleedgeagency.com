@@ -37,13 +37,13 @@
     /* ===== MOTION DESIGN UTILITAIRE ===== */
     .motion-fade-up {
       opacity: 0;
-      transform: translateY(40px) scale(0.96);
-      animation: motion-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateY(56px) scale(0.94);
+      animation: motion-fade-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .motion-fade-up-fast {
       opacity: 0;
-      transform: translateY(28px) scale(0.97);
-      animation: motion-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateY(40px) scale(0.95);
+      animation: motion-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .motion-delay-1 { animation-delay: 0.15s; }
     .motion-delay-2 { animation-delay: 0.35s; }
@@ -51,19 +51,19 @@
     .motion-delay-4 { animation-delay: 0.8s; }
 
     @keyframes motion-fade-up {
-      0%   { opacity: 0; transform: translateY(40px) scale(0.96); }
-      60%  { opacity: 1; transform: translateY(-4px) scale(1.02); }
+      0%   { opacity: 0; transform: translateY(56px) scale(0.94); }
+      55%  { opacity: 1; transform: translateY(4px) scale(1.01); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .motion-scroll {
       opacity: 0;
-      transform: translateY(60px) scale(0.96);
-      filter: blur(4px);
+      transform: translateY(80px) scale(0.94);
+      filter: blur(8px);
       transition:
-        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 0.6s ease-out;
+        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.8s ease-out;
     }
     .motion-scroll.is-visible {
       opacity: 1;
@@ -139,7 +139,7 @@
     .bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--purple) 0%, var(--purple-light) 100%); opacity: 0.7; transform-origin: bottom; }
 
     /* Animation barres graphique hero */
-    .chart-bars .bar { animation: bar-grow 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform: scaleY(0.05); }
+    .chart-bars .bar { animation: bar-grow 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform: scaleY(0.02); }
     .chart-bars .bar:nth-child(1) { animation-delay: 0.6s; }
     .chart-bars .bar:nth-child(2) { animation-delay: 0.7s; }
     .chart-bars .bar:nth-child(3) { animation-delay: 0.8s; }
