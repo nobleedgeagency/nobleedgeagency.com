@@ -34,41 +34,52 @@
     .section-title { font-size: clamp(24px, 4vw, 42px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
     .section-subtitle { font-size: 16px; color: var(--gray); max-width: 600px; line-height: 1.7; }
 
-    /* ===== MOTION DESIGN UTILITAIRE ===== */
+    /* ===== MOTION DESIGN UTILITAIRE (version WOW) ===== */
     .motion-fade-up {
       opacity: 0;
-      transform: translateY(24px);
-      animation: motion-fade-up 0.8s ease-out forwards;
+      transform: translateY(40px) scale(0.96);
+      animation: motion-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .motion-fade-up-fast {
       opacity: 0;
-      transform: translateY(16px);
-      animation: motion-fade-up 0.6s ease-out forwards;
+      transform: translateY(28px) scale(0.97);
+      animation: motion-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     .motion-delay-1 { animation-delay: 0.15s; }
-    .motion-delay-2 { animation-delay: 0.3s; }
-    .motion-delay-3 { animation-delay: 0.45s; }
-    .motion-delay-4 { animation-delay: 0.6s; }
+    .motion-delay-2 { animation-delay: 0.35s; }
+    .motion-delay-3 { animation-delay: 0.55s; }
+    .motion-delay-4 { animation-delay: 0.8s; }
 
     @keyframes motion-fade-up {
-      from {
+      0% {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(40px) scale(0.96);
       }
-      to {
+      60% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-4px) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
     }
 
     .motion-scroll {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translateY(60px) scale(0.96);
+      filter: blur(4px);
+      transition:
+        opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.6s ease-out;
     }
     .motion-scroll.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      filter: blur(0);
     }
 
     .motion-scale-on-hover {
@@ -87,6 +98,13 @@
     @keyframes subtle-float {
       0%,100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 480px) {
+      .motion-scroll {
+        filter: none;
+        transform: translateY(40px) scale(0.97);
+      }
     }
 
     /* ===== HEADER ===== */
@@ -132,6 +150,27 @@
     .hero-card-badge { background: rgba(34,197,94,0.12); color: #4ade80; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(34,197,94,0.2); white-space: nowrap; }
     .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; margin-bottom: 16px; }
     .bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--purple) 0%, var(--purple-light) 100%); opacity: 0.7; transform-origin: bottom; }
+
+    /* Animation des barres du graphique */
+    .chart-bars .bar {
+      animation: bar-grow 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: scaleY(0.1);
+    }
+    .chart-bars .bar:nth-child(1) { animation-delay: 0.1s; }
+    .chart-bars .bar:nth-child(2) { animation-delay: 0.16s; }
+    .chart-bars .bar:nth-child(3) { animation-delay: 0.22s; }
+    .chart-bars .bar:nth-child(4) { animation-delay: 0.28s; }
+    .chart-bars .bar:nth-child(5) { animation-delay: 0.34s; }
+    .chart-bars .bar:nth-child(6) { animation-delay: 0.4s; }
+    .chart-bars .bar:nth-child(7) { animation-delay: 0.46s; }
+    .chart-bars .bar:nth-child(8) { animation-delay: 0.52s; }
+
+    @keyframes bar-grow {
+      0%   { transform: scaleY(0.1); opacity: 0; }
+      40%  { transform: scaleY(1.1); opacity: 1; }
+      100% { transform: scaleY(1);   opacity: 1; }
+    }
+
     .chart-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .chart-stat { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px; }
     .chart-stat-num { font-size: 20px; font-weight: 800; color: var(--white); }
@@ -252,7 +291,7 @@
     .cta-glow { position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 400px; height: 300px; background: radial-gradient(circle, rgba(108,63,255,0.2) 0%, transparent 70%); pointer-events: none; }
     .cta-block h2 { font-size: clamp(24px, 4vw, 46px); font-weight: 900; margin-bottom: 16px; line-height: 1.1; }
     .cta-block p { font-size: 17px; color: var(--gray); max-width: 500px; margin: 0 auto 36px; line-height: 1.7; }
-    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .cta-reassurance { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .cta-reassure-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray); }
     .cta-reassure-item::before { content: '✓'; color: #4ade80; font-weight: 700; }
@@ -576,251 +615,29 @@
 </head>
 <body>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="toggleMenu()" aria-label="Fermer le menu">✕</button>
-  <a href="#hero" onclick="toggleMenu()" data-i18n="mobile.home">Accueil</a>
-  <a href="#services" onclick="toggleMenu()" data-i18n="nav.services">Services</a>
-  <a href="#methode" onclick="toggleMenu()" data-i18n="nav.method">Méthode</a>
-  <a href="#realisations" onclick="toggleMenu()" data-i18n="mobile.results">Réalisations</a>
-  <a href="#temoignages" onclick="toggleMenu()" data-i18n="mobile.testimonials">Témoignages</a>
-  <a href="#faq" onclick="toggleMenu()" data-i18n="nav.faq">FAQ</a>
-  <a href="#contact" onclick="toggleMenu()" data-i18n="mobile.contact">Contact</a>
-  <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary" onclick="toggleMenu()" data-i18n="nav.book">Réserver un appel</a>
-</div>
+<!-- le reste de ton HTML (header, sections, scripts) reste identique à ta version actuelle -->
+<!-- Assure-toi simplement que ton script IntersectionObserver utilise le nouveau threshold/rootMargin -->
 
-<header id="mainHeader">
-  <div class="container">
-    <div class="header-inner motion-fade-up-fast motion-delay-1">
-      <a href="#hero" class="logo">
-        <div class="logo-icon motion-subtle-float">
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">            <rect x="2" y="4" width="7" height="2.5" rx="0.5" fill="white"/>
-            <rect x="2" y="10.75" width="5.5" height="2.5" rx="0.5" fill="white"/>
-            <rect x="2" y="17.5" width="7" height="2.5" rx="0.5" fill="white"/>
-            <rect x="12.5" y="4" width="2.5" height="16" rx="0.5" fill="white"/>
-            <rect x="19" y="4" width="2.5" height="16" rx="0.5" fill="white"/>
-            <path d="M12.5 4 L21 19.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="logo-text">Noble<span>Edge</span></span>
-      </a>
-      <nav>
-        <a href="#pourquoi" data-i18n="nav.why">Pourquoi nous</a>
-        <a href="#services" data-i18n="nav.services">Services</a>
-        <a href="#methode" data-i18n="nav.method">Méthode</a>
-        <a href="#offres" data-i18n="nav.offers">Offres</a>
-        <a href="#temoignages" data-i18n="nav.reviews">Avis</a>
-        <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      </nav>
-      <div class="header-cta">
-        <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary btn-hamburger-cta" style="padding:11px 22px;font-size:14px;" data-i18n="nav.book">Réserver un appel</a>
-       <div class="lang-switcher" data-lang-switcher>
-  <button class="active" data-lang="fr" aria-label="Français">FR</button>
-  <span style="color:var(--border);font-size:12px;">|</span>
-  <button data-lang="en" aria-label="English">EN</button>
-</div>
-        <div class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu" role="button" tabindex="0">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
 
-<section id="hero">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
-  </div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge motion-fade-up motion-delay-1"><span class="badge" data-i18n="hero.badge">Agence marketing & communication</span></div>
-        <h1 class="motion-fade-up motion-delay-2"><span data-i18n="hero.title.line1">Votre marque mérite</span><br /><span class="gradient-text"><span data-i18n="hero.title.line2">d'être vue, reconnue</span><br /><span data-i18n="hero.title.line3">et choisie.</span></span></h1>
-        <p class="hero-desc motion-fade-up motion-delay-3" data-i18n="hero.desc">Nous développons votre présence digitale, animons vos réseaux sociaux et transformons votre audience en clients — avec stratégie, créativité et rigueur.</p>
-        <div class="hero-ctas motion-fade-up motion-delay-4">
-          <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary motion-scale-on-hover">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            <span data-i18n="hero.book.discovery">Réserver un appel découverte</span>
-          </a>
-          <a href="#services" class="btn btn-secondary motion-scale-on-hover" data-i18n="hero.discover">Découvrir nos services →</a>
-        </div>
-        <div class="hero-stats motion-fade-up motion-delay-4">
-          <div class="stat"><div class="stat-num">+40</div><div class="stat-label" data-i18n="hero.stat.clients">Clients accompagnés</div></div>
-          <div class="stat"><div class="stat-num">98%</div><div class="stat-label" data-i18n="hero.stat.satisfaction">Satisfaction client</div></div>
-          <div class="stat"><div class="stat-num">5+</div><div class="stat-label" data-i18n="hero.stat.years">Années d'expertise</div></div>
-        </div>
-      </div>
-      <div class="hero-visual motion-fade-up motion-delay-3 motion-subtle-float">
-        <div class="hero-card-main">
-          <div class="hero-card-header">
-            <span class="hero-card-title" data-i18n="hero.performance">Performance réseaux sociaux</span>
-            <span class="hero-card-badge" data-i18n="hero.performance.badge">↑ +68% ce mois</span>
-          </div>
-          <div class="chart-bars">
-            <div class="bar" style="height:35%"></div><div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:45%"></div><div class="bar" style="height:70%"></div>
-            <div class="bar" style="height:60%"></div><div class="bar" style="height:85%"></div>
-            <div class="bar" style="height:75%"></div><div class="bar" style="height:100%"></div>
-          </div>
-          <div class="chart-stats">
-            <div class="chart-stat"><div class="chart-stat-num up">+2 840</div><div class="chart-stat-label">Nouveaux abonnés</div></div>
-            <div class="chart-stat"><div class="chart-stat-num up">+312%</div><div class="chart-stat-label">Taux d'engagement</div></div>
-            <div class="chart-stat"><div class="chart-stat-num">48.5K</div><div class="chart-stat-label">Portée organique</div></div>
-            <div class="chart-stat"><div class="chart-stat-num up">+94</div><div class="chart-stat-label">Leads générés</div></div>
-          </div>
-        </div>
-        <div class="hero-cards-row">
-          <div class="hero-card-floating motion-scale-on-hover"><div class="floating-icon" style="background:rgba(59,130,246,0.15)">📱</div><div><div class="floating-title">Publication planifiée</div><div class="floating-sub">7 posts cette semaine</div></div></div>
-          <div class="hero-card-floating motion-scale-on-hover"><div class="floating-icon" style="background:rgba(34,197,94,0.15)">✅</div><div><div class="floating-title">Rapport livré</div><div class="floating-sub">Résultats du mois</div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollElements = document.querySelectorAll('.motion-scroll');
 
-<div class="trust-band motion-scroll">
-  <div class="container">
-    <div class="trust-inner">
-      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Stratégie personnalisée</div>
-      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Résultats mesurables</div>
-      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>Accompagnement humain</div>
-      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Pilotage data-driven</div>
-      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Gain de temps garanti</div>
-      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>Expertise multi-canal</div>
-    </div>
-  </div>
-</div>
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px'
+    });
 
-<section id="pourquoi" class="motion-scroll">
-  <div class="container">
-    <p class="section-label" data-i18n="why.label">Pourquoi Noble Edge</p>
-    <h2 class="section-title"><span data-i18n="why.title.1">Arrêtez de publier au hasard.</span><br /><span class="gradient-text" data-i18n="why.title.2">Commencez à construire une marque.</span></h2>
-    <p class="section-subtitle" data-i18n="why.subtitle">Beaucoup de marques sont présentes sur les réseaux. Peu construisent quelque chose de solide. Nous, si.</p>
-    <div class="why-grid">
-      <div class="why-card motion-scroll"><div class="why-icon">🎯</div><div class="why-title" data-i18n="why.1.title">Stratégie taillée pour vous</div><div class="why-desc" data-i18n="why.1.desc">Pas de template copié-collé. Chaque stratégie est construite selon votre secteur, vos objectifs et votre audience.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">🎨</div><div class="why-title" data-i18n="why.2.title">Image de marque cohérente</div><div class="why-desc" data-i18n="why.2.desc">Charte graphique, ton éditorial, univers visuel : nous construisons une identité reconnaissable et mémorable.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">🗓️</div><div class="why-title" data-i18n="why.3.title">Communication régulière et pro</div><div class="why-desc" data-i18n="why.3.desc">Fini les longues périodes de silence. Nous assurons une présence constante avec des contenus pertinents.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">⏱️</div><div class="why-title" data-i18n="why.4.title">Vous gagnez du temps</div><div class="why-desc" data-i18n="why.4.desc">Déléguer votre communication, c'est récupérer des heures précieuses. Nous gérons tout, vous validez.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">💬</div><div class="why-title" data-i18n="why.5.title">Contenus qui engagent et vendent</div><div class="why-desc" data-i18n="why.5.desc">Nos contenus sont pensés pour générer de l'engagement, attirer votre clientèle cible et accompagner le parcours d'achat.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">📊</div><div class="why-title" data-i18n="why.6.title">Décisions basées sur les données</div><div class="why-desc" data-i18n="why.6.desc">Chaque action est analysée, mesurée et optimisée. Rapports clairs chaque mois, ajustements en temps réel.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">💰</div><div class="why-title" data-i18n="why.7.title">Vision orientée ROI</div><div class="why-desc" data-i18n="why.7.desc">Chaque action est pensée pour générer un retour sur investissement mesurable : notoriété, leads ou ventes directes.</div></div>
-      <div class="why-card motion-scroll"><div class="why-icon">🤝</div><div class="why-title" data-i18n="why.8.title">Un vrai partenaire, pas un prestataire</div><div class="why-desc" data-i18n="why.8.desc">Nous nous impliquons dans votre marque comme si c'était la nôtre. Transparence totale, succès partagé.</div></div>
-    </div>
-  </div>
-</section>
+    scrollElements.forEach(el => observer.observe(el));
+  });
+</script>
 
-<section id="services" class="motion-scroll">
-  <div class="container">
-    <div class="services-header">
-      <p class="section-label" data-i18n="services.label">Nos services</p>
-      <h2 class="section-title"><span data-i18n="services.title.1">Tout ce qu'il faut pour</span> <span class="gradient-text" data-i18n="services.title.2">dominer votre marché digital</span></h2>
-      <p class="section-subtitle" data-i18n="services.subtitle">De la stratégie à l'exécution, nous couvrons l'ensemble de votre présence en ligne avec une approche intégrée et orientée résultats.</p>
-    </div>
-    <div class="cm-featured motion-scroll">
-      <div>
-        <span class="cm-tag" data-i18n="services.featured.tag">⭐ Service principal</span>
-        <h3 class="cm-title"><span data-i18n="services.featured.title.1">Community Management</span><br /><span class="gradient-text" data-i18n="services.featured.title.2">clé en main</span></h3>
-        <p class="cm-desc" data-i18n="services.featured.desc">Votre présence sociale mérite mieux que des publications improvisées. Nous gérons vos réseaux comme de véritables outils de croissance.</p>
-        <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary motion-scale-on-hover" data-i18n="services.featured.cta">Démarrer mon community management</a>
-      </div>
-      <ul class="cm-features">
-        <li data-i18n="services.featured.item1">Gestion complète de vos réseaux sociaux</li><li data-i18n="services.featured.item2">Calendrier éditorial mensuel</li>
-        <li data-i18n="services.featured.item3">Création de visuels & contenus</li><li data-i18n="services.featured.item4">Rédaction de captions engageantes</li>
-        <li data-i18n="services.featured.item5">Publication programmée & optimisée</li><li data-i18n="services.featured.item6">Modération des messages & commentaires</li>
-        <li data-i18n="services.featured.item7">Animation de communauté</li><li data-i18n="services.featured.item8">Stratégie d'engagement personnalisée</li>
-        <li data-i18n="services.featured.item9">Reporting mensuel des performances</li><li data-i18n="services.featured.item10">Recommandations d'optimisation</li>
-      </ul>
-    </div>
-    <div class="services-grid">
-      <div class="service-card motion-scroll"><div class="service-icon">🧭</div><div class="service-title" data-i18n="services.card1.title">Stratégie de communication</div><div class="service-desc" data-i18n="services.card1.desc">Audit digital, positionnement, ligne éditoriale, ton de marque et plan d'action mensuel.</div><span class="service-benefit" data-i18n="services.card1.benefit">→ Une direction claire</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">✏️</div><div class="service-title" data-i18n="services.card2.title">Création de contenu</div><div class="service-desc" data-i18n="services.card2.desc">Visuels, carrousels, stories, Reels, scripts vidéo, copywriting et templates de marque sur mesure.</div><span class="service-benefit" data-i18n="services.card2.benefit">→ Du contenu qui performe</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">🎨</div><div class="service-title" data-i18n="services.card3.title">Branding & Identité visuelle</div><div class="service-desc" data-i18n="services.card3.desc">Logo, charte graphique, palette de couleurs, typographies et univers visuel cohérent.</div><span class="service-benefit" data-i18n="services.card3.benefit">→ Une marque reconnaissable</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">📣</div><div class="service-title" data-i18n="services.card4.title">Publicité en ligne</div><div class="service-desc" data-i18n="services.card4.desc">Campagnes Meta Ads, Google Ads, génération de leads, retargeting et optimisation continue.</div><span class="service-benefit" data-i18n="services.card4.benefit">→ Des leads à la demande</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">🔍</div><div class="service-title" data-i18n="services.card5.title">SEO & Référencement</div><div class="service-desc" data-i18n="services.card5.desc">Optimisation on-page, mots-clés, rédaction SEO, référencement local et visibilité organique.</div><span class="service-benefit" data-i18n="services.card5.benefit">→ Visible sur Google</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">🖥️</div><div class="service-title" data-i18n="services.card6.title">Web & Landing pages</div><div class="service-desc" data-i18n="services.card6.desc">Création ou optimisation de landing pages orientées conversion, UX pensée pour transformer les visiteurs.</div><span class="service-benefit" data-i18n="services.card6.benefit">→ Plus de conversions</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">📧</div><div class="service-title" data-i18n="services.card7.title">Email marketing & Automation</div><div class="service-desc" data-i18n="services.card7.desc">Newsletters, séquences automatisées, relances prospects et scénarios de nurturing.</div><span class="service-benefit" data-i18n="services.card7.benefit">→ Revenue automatisé</span></div>
-      <div class="service-card motion-scroll"><div class="service-icon">📈</div><div class="service-title" data-i18n="services.card8.title">Reporting & Analyse</div><div class="service-desc" data-i18n="services.card8.desc">Tableaux de bord personnalisés, suivi des KPIs et recommandations stratégiques mensuelles.</div><span class="service-benefit" data-i18n="services.card8.benefit">→ Décisions éclairées</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="methode" class="motion-scroll">
-  <div class="container">
-    <div class="method-header">
-      <p class="section-label" data-i18n="method.label">Notre méthode</p>
-      <h2 class="section-title"><span data-i18n="method.title.1">Un processus structuré</span> <span class="gradient-text" data-i18n="method.title.2">pour des résultats durables</span></h2>
-      <p class="section-subtitle" data-i18n="method.subtitle">Chaque action suit une méthodologie éprouvée en 6 étapes pour maximiser l'impact de chaque euro investi.</p>
-    </div>
-    <div class="method-steps">
-      <div class="method-step motion-scroll"><div class="step-num">01</div><div class="step-title" data-i18n="method.step1.title">Audit</div><div class="step-desc" data-i18n="method.step1.desc">Analyse complète de votre présence digitale, vos concurrents et opportunités inexploitées.</div><div class="step-benefit" data-i18n="method.step1.benefit">→ On sait exactement où vous en êtes</div></div>
-      <div class="method-step motion-scroll"><div class="step-num">02</div><div class="step-title" data-i18n="method.step2.title">Stratégie</div><div class="step-desc" data-i18n="method.step2.desc">Définition des objectifs, des cibles, des plateformes prioritaires et de la ligne éditoriale.</div><div class="step-benefit" data-i18n="method.step2.benefit">→ Un cap clair et actionnable</div></div>
-      <div class="method-step motion-scroll"><div class="step-num">03</div><div class="step-title" data-i18n="method.step3.title">Création</div><div class="step-desc" data-i18n="method.step3.desc">Production des contenus visuels, textuels et vidéo alignés avec votre identité de marque.</div><div class="step-benefit" data-i18n="method.step3.benefit">→ Des contenus qui reflètent votre valeur</div></div>
-      <div class="method-step motion-scroll"><div class="step-num">04</div><div class="step-title" data-i18n="method.step4.title">Diffusion</div><div class="step-desc" data-i18n="method.step4.desc">Publication au bon moment, sur les bonnes plateformes, avec une fréquence optimisée.</div><div class="step-benefit" data-i18n="method.step4.benefit">→ Portée maximale garantie</div></div>
-      <div class="method-step motion-scroll"><div class="step-num">05</div><div class="step-title" data-i18n="method.step5.title">Analyse</div><div class="step-desc" data-i18n="method.step5.desc">Suivi des KPIs clés, analyse des performances et identification des leviers à activer.</div><div class="step-benefit" data-i18n="method.step5.benefit">→ Vous savez ce qui fonctionne</div></div>
-      <div class="method-step motion-scroll"><div class="step-num">06</div><div class="step-title" data-i18n="method.step6.title">Optimisation</div><div class="step-desc" data-i18n="method.step6.desc">Ajustements continus de la stratégie et des contenus pour améliorer les résultats chaque mois.</div><div class="step-benefit" data-i18n="method.step6.benefit">→ Une progression constante</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="offres" class="motion-scroll">
-  <div class="container">
-    <div class="pricing-header">
-      <p class="section-label" data-i18n="offers.label">Notre offre</p>
-      <h2 class="section-title"><span data-i18n="offers.title.1">Un accompagnement</span> <span class="gradient-text" data-i18n="offers.title.2">100% sur mesure</span></h2>
-      <p class="section-subtitle" data-i18n="offers.subtitle">Pas de pack prédéfini. Chaque mission est construite selon vos objectifs, votre secteur et votre budget.</p>
-    </div>
-    <div class="offre-unique motion-scroll">
-      <div class="pricing-badge" data-i18n="offers.badge">⭐ Accompagnement personnalisé</div>
-      <h3><span data-i18n="offers.plan.title.1">Community Management</span> <span class="gradient-text" data-i18n="offers.plan.title.2">Sur Mesure</span></h3>
-      <p class="offre-sub" data-i18n="offers.plan.subtitle">Une stratégie adaptée à votre marque, vos réseaux, vos objectifs.</p>
-      <ul class="offre-features">
-        <li><span class="check">✓</span> Gestion de vos réseaux sociaux (Instagram, Facebook, LinkedIn, TikTok...)</li>
-        <li><span class="check">✓</span> Création de visuels & contenus adaptés à votre marque</li>
-        <li><span class="check">✓</span> Calendrier éditorial mensuel personnalisé</li>
-        <li><span class="check">✓</span> Rédaction de captions engageantes & optimisées</li>
-        <li><span class="check">✓</span> Stories, Reels & formats courts selon votre stratégie</li>
-        <li><span class="check">✓</span> Modération des messages & commentaires</li>
-        <li><span class="check">✓</span> Animation de communauté & engagement actif</li>
-        <li><span class="check">✓</span> Reporting mensuel des performances</li>
-        <li><span class="check">✓</span> Réunion stratégique mensuelle</li>
-        <li><span class="check">✓</span> Recommandations & optimisation continue</li>
-      </ul>
-      <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary motion-scale-on-hover" style="font-size:16px;padding:16px 40px;" data-i18n="offers.cta">Obtenir mon devis personnalisé →</a>
-      <p class="offre-note" data-i18n="offers.note">Le volume de publications, les réseaux gérés et les services inclus sont définis ensemble selon vos besoins réels.</p>
-    </div>
-  </div>
-</section>
-
-<section id="realisations" class="motion-scroll">
-  <div class="container">
-    <div class="real-header">
-      <p class="section-label" data-i18n="results.label">Nos résultats</p>
-      <h2 class="section-title"><span data-i18n="results.title.1">Des chiffres qui</span> <span class="gradient-text" data-i18n="results.title.2">parlent pour nous</span></h2>
-      <p class="section-subtitle" data-i18n="results.subtitle">Chaque client est une histoire de transformation. Voici ce que notre accompagnement produit concrètement.</p>
-    </div>
-    <div class="kpi-row">
-      <div class="kpi-card motion-scroll"><div class="kpi-num">+40</div><div class="kpi-label" data-i18n="results.kpi1">Clients accompagnés</div></div>
-      <div class="kpi-card motion-scroll"><div class="kpi-num">+240%</div><div class="kpi-label" data-i18n="results.kpi2">Engagement moyen généré</div></div>
-      <div class="kpi-card motion-scroll"><div class="kpi-num">200k+</div><div class="kpi-label" data-i18n="results.kpi3">Impressions générées</div></div>
-      <div class="kpi-card motion-scroll"><div class="kpi-num">98%</div><div class="kpi-label" data-i18n="results.kpi4">Taux de satisfaction</div></div>
-    </div>
-    <div class="case-studies">
-      <div class="case-card motion-scroll"><div class="case-sector" data-i18n="results.case1.sector">Restauration</div><div class="case-title" data-i18n="results.case1.title">Restaurant local → marque incontournable</div><div class="case-challenge" data-i18n="results.case1.desc">Un restaurant avec zéro présence sur les réseaux, une clientèle locale limitée et aucune stratégie de communication.</div><div class="case-results"><div class="case-result"><div class="case-result-num">+4 200</div><div class="case-result-label" data-i18n="results.case1.r1">Abonnés en 3 mois</div></div><div class="case-result"><div class="case-result-num">+67%</div><div class="case-result-label" data-i18n="results.case1.r2">Réservations</div></div></div><p class="case-placeholder" data-i18n="results.placeholder">Cas client à venir</p></div>
-      <div class="case-card motion-scroll"><div class="case-sector" data-i18n="results.case2.sector">E-commerce / Mode</div><div class="case-title" data-i18n="results.case2.title">Boutique en ligne → audience engagée</div><div class="case-challenge" data-i18n="results.case2.desc">Peu de trafic organique, faible engagement et coûts publicitaires élevés sans retour mesurable.</div><div class="case-results"><div class="case-result"><div class="case-result-num">+312%</div><div class="case-result-label" data-i18n="results.case2.r1">Engagement organique</div></div><div class="case-result"><div class="case-result-num">×3</div><div class="case-result-label" data-i18n="results.case2.r2">Chiffre d'affaires</div></div></div><p class="case-placeholder" data-i18n="results.placeholder">Cas client à venir</p></div>
-      <div class="case-card motion-scroll"><div class="case-sector" data-i18n="results.case3.sector">Prestataire de services</div><div class="case-title" data-i18n="results.case3.title">Coach / Consultant → autorité digitale</div><div class="case-challenge" data-i18n="results.case3.desc">Expertise reconnue localement mais présence en ligne quasi inexistante et aucune génération de leads digitaux.</div><div class="case-results"><div class="case-result"><div class="case-result-num">+120</div><div class="case-result-label" data-i18n="results.case3.r1">Leads en 60 jours</div></div><div class="case-result"><div class="case-result-num">+89%</div><div class="case-result-label" data-i18n="results.case3.r2">Visibilité LinkedIn</div></div></div><p class="case-placeholder" data-i18n="results.placeholder">Cas client à venir</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="temoignages" class="motion-scroll">
-  <div class="container">
-    <div class="testi-header">
-      <p class="section-label" data-i18n="testimonials.label">Témoignages</p>
-      <h2 class="section-title"><span data-i18n="testimonials.title.1">Ils nous font</span> <span class="gradient-text" data-i18n="testimonials.title.2">confiance</span></h2>
-      <p class="section-subtitle" data-i18n="testimonials.subtitle">La satisfaction de nos clients est notre meilleure carte de visite.</p>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card motion-scroll"><div class="testi-stars">★★★★★</div><p class="testi-quote">"Depuis qu'Enzo gère nos réseaux, notre restaurant affiche complet presque tous les week-ends. Stratégie, réactivité et créativité — je recommande les yeux fermés."</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name" data-i18n="testimonials.n1">Sophie M.</div><div class="testi-role" data-i18n="testimonials.r1">Restauratrice, Lyon</div></div></div></div>
-      <div class="testi-card motion-scroll"><div class="testi-stars">★★★★★</div><p class="testi-quote">"En 2 mois, notre engagement a été multiplié par 4. Enzo comprend vraiment notre secteur et nos contenus ressemblent enfin à notre marque."</p><div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name" data-i18n="testimonials.n2">Thomas R.</div><div class="testi-role" data-i18n="testimonials.r2">Fondateur, e-commerce mode</div></div></div></div>
-     
+</body>
+</html>
