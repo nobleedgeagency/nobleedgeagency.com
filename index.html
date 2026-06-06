@@ -1082,64 +1082,77 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
 </script>
   <script src="i18n.js"></script>
 
+
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var scrollEls = document.querySelectorAll('.motion-scroll');
-    if (!('IntersectionObserver' in window)) {
-      scrollEls.forEach(function(el) { el.classList.add('is-visible'); });
-      return;
-    }
-    var observer = new IntersectionObserver(function(entries, obs) {
+document.addEventListener('DOMContentLoaded', function() {
+  var heroChart = document.querySelector('.hero-chart');
+  if (!heroChart) return;
+  var bars = heroChart.querySelectorAll('.bar');
+
+  var hasPlayedOnce = false; // sait si l'anim a déjà été jouée dans cette "session de vue"
+  var wasVisible = false;    // sait si le graphique était visible à la frame précédente
+
+  function resetBars() {
+    // rejoue l'animation CSS sans toucher à l'opacité finale
+    bars.forEach(function(bar) {
+      bar.style.animation = 'none';
+      void bar.offsetWidth; // force reflow
+      bar.style.animation = '';
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var heroObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
-    scrollEls.forEach(function(el) { observer.observe(el); });
-  });
+        var ratio = entry.intersectionRatio || 0;
+        var visible = entry.isIntersecting && ratio >= 0.3; // ~30 % visible
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var heroChart = document.querySelector('.hero-chart');
-    if (!heroChart) return;
-    var bars = heroChart.querySelectorAll('.bar');
-
-    function resetBars() {
-      bars.forEach(function(bar) {
-        bar.style.animation = 'none';
-        // forcer le reflow
-        void bar.offsetWidth;
-        bar.style.animation = '';
-      });
-    }
-
-    // rejoue l'anim quand le graphique (hero-chart) redevient visible
-    if ('IntersectionObserver' in window) {
-      var heroObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
+        // On vient d'entrer dans la zone visible
+        if (visible && !wasVisible) {
+          if (!hasPlayedOnce) {
+            // Première fois : laisser le CSS jouer l'anim
+            hasPlayedOnce = true;
+          } else {
+            // Fois suivantes : rejouer proprement
             resetBars();
           }
-        });
-      }, {
-        threshold: [0.8]
+        }
+
+        // On est complètement sorti de la zone => on réarme
+        if (!entry.isIntersecting || ratio === 0) {
+          hasPlayedOnce = false;
+        }
+
+        wasVisible = visible;
       });
-      heroObserver.observe(heroChart);
-    } else {
-      // fallback: comportement simple sur anciens navigateurs
-      var lastVisible = true;
-      window.addEventListener('scroll', function() {
-        var rect = heroChart.getBoundingClientRect();
-        var visible = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
-        if (visible && !lastVisible) {
+    }, {
+      threshold: [0, 0.3]
+    });
+
+    heroObserver.observe(heroChart);
+  } else {
+    // Fallback pour anciens navigateurs
+    window.addEventListener('scroll', function() {
+      var rect = heroChart.getBoundingClientRect();
+      var visible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (visible && !wasVisible) {
+        if (!hasPlayedOnce) {
+          hasPlayedOnce = true;
+        } else {
           resetBars();
         }
-        lastVisible = visible;
-      });
-    }
-  });
+      }
 
+      if (!visible) {
+        hasPlayedOnce = false;
+      }
+
+      wasVisible = visible;
+    });
+  }
+});
 </script>
+
 </body>
 </html>
