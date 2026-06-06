@@ -1125,7 +1125,7 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
       var lastVisible = true;
       window.addEventListener('scroll', function() {
         var rect = heroChart.getBoundingClientRect();
-        var visible = rect.top < window.innerHeight * 0.97 && rect.bottom > window.innerHeight * 0;
+        var visible = rect.top < window.innerHeight * 0.98 && rect.bottom > window.innerHeight * 0.1;
         if (visible && !lastVisible) {
           resetBars();
         }
