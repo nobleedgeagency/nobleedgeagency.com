@@ -1112,12 +1112,12 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
     if ('IntersectionObserver' in window) {
       var heroObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.22) {
             resetBars();
           }
         });
       }, {
-        threshold: [0.25]
+        threshold: [0.22]
       });
       heroObserver.observe(heroChart);
     } else {
