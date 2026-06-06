@@ -149,8 +149,8 @@
     .chart-bars .bar:nth-child(7) { animation-delay: 1.2s; }
     .chart-bars .bar:nth-child(8) { animation-delay: 1.3s; }
     @keyframes bar-grow {
-      0%   { transform: scaleY(0.08); opacity: 0; }
-      45%  { transform: scaleY(1.02); opacity: 1; }
+      0%   { transform: scaleY(0.1); opacity: 0; }
+      35%  { transform: scaleY(1.02); opacity: 1; }
       100% { transform: scaleY(1);   opacity: 1; }
     }
     .chart-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1112,12 +1112,12 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
     if ('IntersectionObserver' in window) {
       var heroObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.22) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
             resetBars();
           }
         });
       }, {
-        threshold: [0.22]
+        threshold: [0.8]
       });
       heroObserver.observe(heroChart);
     } else {
@@ -1125,7 +1125,7 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
       var lastVisible = true;
       window.addEventListener('scroll', function() {
         var rect = heroChart.getBoundingClientRect();
-        var visible = rect.top < window.innerHeight * 0.98 && rect.bottom > window.innerHeight * 0.1;
+        var visible = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
         if (visible && !lastVisible) {
           resetBars();
         }
