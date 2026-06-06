@@ -1095,10 +1095,17 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
     function resetBars() {
       bars.forEach(function(bar) {
         bar.style.animation = 'none';
+        bar.style.opacity = '0';
         // forcer le reflow
         void bar.offsetWidth;
-        bar.style.animation = '';
       });
+      // relance douce après un léger délai
+      setTimeout(function() {
+        bars.forEach(function(bar) {
+          bar.style.animation = '';
+          bar.style.opacity = '';
+        });
+      }, 80);
     }
 
     // rejoue l'anim quand on revient clairement en haut de la page
