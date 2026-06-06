@@ -149,8 +149,8 @@
     .chart-bars .bar:nth-child(7) { animation-delay: 1.2s; }
     .chart-bars .bar:nth-child(8) { animation-delay: 1.3s; }
     @keyframes bar-grow {
-      0%   { transform: scaleY(0.05); opacity: 0; }
-      40%  { transform: scaleY(1.08); opacity: 1; }
+      0%   { transform: scaleY(0.08); opacity: 0; }
+      45%  { transform: scaleY(1.02); opacity: 1; }
       100% { transform: scaleY(1);   opacity: 1; }
     }
     .chart-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1101,10 +1101,16 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
       });
     }
 
-    // rejoue l'anim quand on revient proche du haut de la page
+    // rejoue l'anim quand on revient clairement en haut de la page
+    var lastStateAtTop = true;
     window.addEventListener('scroll', function() {
-      if (window.scrollY < 80) {
-        resetBars();
+      if (window.scrollY < 10) {
+        if (!lastStateAtTop) {
+          resetBars();
+        }
+        lastStateAtTop = true;
+      } else {
+        lastStateAtTop = false;
       }
     });
   });
