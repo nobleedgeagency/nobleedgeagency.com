@@ -140,21 +140,25 @@
 
     /* Animation barres graphique hero */
     .chart-bars .bar {
-  animation: bar-grow 0.6s cubic-bezier(0.28, 0.9, 0.35, 1);
-  transform: scaleY(0.18);
+  transform: scaleY(1);
+  opacity: 1;
+  will-change: transform, opacity;
 }
-
-
-    .chart-bars .bar:nth-child(1) { animation-delay: 0.6s; }
-    .chart-bars .bar:nth-child(2) { animation-delay: 0.7s; }
-    .chart-bars .bar:nth-child(3) { animation-delay: 0.8s; }
-    .chart-bars .bar:nth-child(4) { animation-delay: 0.9s; }
-    .chart-bars .bar:nth-child(5) { animation-delay: 1.0s; }
-    .chart-bars .bar:nth-child(6) { animation-delay: 1.1s; }
-    .chart-bars .bar:nth-child(7) { animation-delay: 1.2s; }
-    .chart-bars .bar:nth-child(8) { animation-delay: 1.3s; }
-    @keyframes bar-grow {
-  0%   { transform: scaleY(0.18); opacity: 0; }
+.hero-chart.is-animating .bar {
+  animation: bar-grow 0.55s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+.hero-chart.is-animating .bar:nth-child(1) { animation-delay: 0.00s; }
+.hero-chart.is-animating .bar:nth-child(2) { animation-delay: 0.03s; }
+.hero-chart.is-animating .bar:nth-child(3) { animation-delay: 0.06s; }
+.hero-chart.is-animating .bar:nth-child(4) { animation-delay: 0.09s; }
+.hero-chart.is-animating .bar:nth-child(5) { animation-delay: 0.12s; }
+.hero-chart.is-animating .bar:nth-child(6) { animation-delay: 0.15s; }
+.hero-chart.is-animating .bar:nth-child(7) { animation-delay: 0.18s; }
+.hero-chart.is-animating .bar:nth-child(8) { animation-delay: 0.21s; }
+@keyframes bar-grow {
+  0%   { transform: scaleY(0.72); opacity: 0.25; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
   40%  { transform: scaleY(1.02); opacity: 1; }
   100% { transform: scaleY(1);   opacity: 1; }
 }
@@ -605,6 +609,11 @@
       display: none;
     }
   }
+
+@media (max-width: 900px) {
+  .hero-chart.is-animating .bar { animation-duration: 0.42s; }
+}
+
 </style>
   <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAIAEBAAAAAAIABWAQAAJgAAACAgAAAAACAArwIAAHwBAACJUE5HDQoaCgAAAA1JSERSAAAAEAAAABAIBgAAAB/z/2EAAAEdSURBVHic3VA7TsNQEJx9z7LjSLiCDjhEDkGBhARVSi5Ah8QNuAFXiJQr0OCKNLRBQhEuLCzHn+eAlII4fn5LkVgyIqSLhJhqZ7W7szPAnwQzS2aWLS7afGeqBABxHB/keTpUWXY3Ho9tZial0pPZTF1t2hNNQUQMAGVZVkbrF2PMq+d5kojY6PpMAtfruW8HrFZNALjT6VRd131e1vVcaL0fhmHPwCQMfGz9gJlXDSH2pG1fSkn9JEk+u65za1n2OQmar0W2w/d9KwiCY6XeDgEgz/MbZuZCpQ8rB7/caEKMougomcbTLE2eJpOJAwBFkd2/z9Tjpgx+hDgajeJFuezp2pwOBoMKABaL6sJ23H7b6m7BzNRY2sT/Gb4AdueZDvW/GVUAAAAASUVORK5CYIKJUE5HDQoaCgAAAA1JSERSAAAAIAAAACAIBgAAAHN6evQAAAJ2SURBVHic7Za9btNQFMf/x9dJ/FGIW4WhStgKdAPRnadg5QlYkFC7gNRHoBMDKzMLvAQTKqhiaCulTRzbqhKStGnsxPfew1BHalDVOCqqhMh/Pcfn/ny+7gUWWuh/F+V1ZGZj6kMifYUPXbLzzdBuSbkywMwl3/fXgRSu62E4HMa1Wm3/Dx/q9/vL5XK5GEXR2erq6nme2MZ1xknaoyh64DrWbqlo71qlwq5B/Gly6CTtnU7nzvD89Os4iQ+Z1dvMbs4CmOkAAKap5Wg06iqlOEkSYqADXNR5e3vbAMBCCIM1r5imcKHZzRN3JsCk0fb29g83NjYeDQYDmIUSXFGQAMDMgogUM1Oj0SBTUCqlZIBVXoAbqd1u3w3D1hYA9Hq95ZbfiMbJkAO/sZMB3qwEzExExO12uybT0TulFduWbcRJUq9W729WKpXToNV83Wwe9zzP+9Dyjwvz/sQsQgLASZLcq1arzwEGQBi2micANjPIM8d2doIg+KaV7BvCWPmbAAwAS0tLRydh+FJpDcspEcDtSfcHgT90HNuOk/gjEWylNGBcO1z5ASbbzPO8LoD3U2RZA4Zh+CaO48+mEOtSSp2mKaB17g2bawzr9bpl2/ZDpClcz0Ucy5iIDjKIL77f2Fn2vFfd7q8REdl5D58JwMwGEWnLstaEwHepCWADMh3/APD4woUFgK0w9J85tvNUqfkmMFexTNOUMpVnSuvTNE0HDO5NGAGAiFJAvZBK9SzLmgsg1yKqVCoHURStCSFQKFogwxxndgagsnH9GQTBk0LRKouCOslC3M5CAqav4nk0z3tgyveq+/7Sm4H/mffAQgsttNBvQqNKwDUJrnEAAAAASUVORK5CYII=" />
   <link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFJklEQVR4nO2Zz4sjRRTHv6+q05nu/JqZHeYnOx70oiyiiMqiSHLyqh7mvBf/gMWrMAse9i/wsCAoeHL24HoXJ6wIigiKiIjsHobsZLNjfkzSSSfdXfU8ZDKTmeyPyFZmD9YHCkJ31evK6/erXgMWi8VisVgsFovFYrH87yCTwpiZyuWyfNi9YhEAipqI9LSycHp/TET81Ju0nMaIBTAzERFXq9Vlz3OLYRgy1JhsCS4UClSvt/YuXrz442j+42QeHBzkMpnMIgAGQFrrKJvNVk3sdxzHkBwBQBHR5UJh/iswIOWJJyil4HlZSNm6BeD9IzdJzgoZKaZWq2WTJPqpG6jnlVL6SH7UarVemZ+fv8PMYlpXehKmFAAAEFrHh61WEgSBAnCsASJKpJQOMXemkeO6rtPrDtZZCFcpBSKC40hXiCRtcr+AYQUo0iKVSjlE5JyxAMdxHDBRaho5zMwAIq01A9Bas0gShSiC8SBoVAFaU6yUPiQipZQetwCltZZEMji75lHxgAAiIhoux9FP8xhRABEpAFhvNnc7udwLmWyegyA43nEmm2U/k6NeOBgAQKlUSsbW8jRBcVYYtQC6dCkC8M+085lZAvCIKDjK++eOMCmMmYmZU48ZcnzuzZs3cVCrXa9UKhcwTMnnrgSjCiAiJqL4MUONT9/a2lKJit4W4M+O0tpDq8hZYsQFRj784MGDtXQ69W6322Wik7cphND5fF50Ou27y8vrt7e3t48VT0S11bW196qVyhUi+oKZqdm8C2CqhPHUmC2EtH4jny98DmY4Y2kwUQpzcxm0mq1vANwuFosCwKiQEUEQcCqd+rRarf5MRH/s7e1Jx6htPhqjQZC1jg5bzajbDRRAJ2kQSIQQDhiHE2sYIo5jIiKfCF8y85v1ej2JBr1ziQdG9ayFSPm+77pu2vM8zx2NlOv6vu+7APyJRQwtpUQvDAfzhfyr9/f3ry8tLbWZT8eDWeVIUxbAAEBK1cOw/3scRzqOxZifsxoM+pIIdwCgWCyO/R/2tdZMgNNo1FU6PffRwcHBb9EgbEop55Nk4shgFFOFkAaAlY2NHwC8PMV8dZwShfNXOp1+qxsErDVkHMdg5hsAdBzHwCg18mxs4JxCzUPRzEyu615td4K/Pd93AHCSJGBmTwiR0VoDM64NzAbBYTUny+XyxL3isCV03BEiIt7Z2ZFbW1vtWq12hYi+F0IwM7PWenbF/xmeSfk5zu7urlMqlZL9SuXj+YXCJ41GIyGiiRdDQsB1515aWlr602Q/wHhHyPf917vd9qlCSMq0zvu+OOx2762srPx65vBDu7u7slQqJfv3Kt/lctlSq9VSQohTWWBWCjDcEdKXc1nvlkqiiY5QOuNDt1tfA/jgTEeIi8WiHlaA+1f6/f4v6XR6MYoiTUQzj1Fm6wCt4047SMIwHARBkIxGv9/vB512AsJEPwAYZpFyuSwXFzf2ojj60PO8iTc8K181fRgSQgqHmV0hhDMazOxKKR1mdh+1tlQqJczsbGxs3mp3ghsLCwuO1jpiZjUaJvc6wmxPUFCkte6fyvMY9gS1ZoeJWk8QoXZ2dqRa37jaru2/s7q6+mKv1wMASCnQHyTGDcH0hxG316svh+HkvQueh/vtdnNtba37BBmCiHSj0Xgul8u9dnhYZ605JnIoDMNvNzc3w2fZQToXzrM7ZPxBzNvi2rXJ69eGF6f+vMXMolwuC+Dk7HCmoWKxWCwWi8VisVgsFovFYrFYLJb/yr+zy7Vy41Rj3wAAAABJRU5ErkJggg==" />
@@ -1082,75 +1091,65 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
 </script>
   <script src="i18n.js"></script>
 
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var heroChart = document.querySelector('.hero-chart');
   if (!heroChart) return;
-  var bars = heroChart.querySelectorAll('.bar');
 
-  var hasPlayedOnce = false; // sait si l'anim a déjà été jouée dans cette "session de vue"
-  var wasVisible = false;    // sait si le graphique était visible à la frame précédente
+  var armed = true;
+  var visible = false;
 
-  function resetBars() {
-    // rejoue l'animation CSS sans toucher à l'opacité finale
-    bars.forEach(function(bar) {
-      bar.style.animation = 'none';
-      void bar.offsetWidth; // force reflow
-      bar.style.animation = '';
-    });
+  function playChartAnimation() {
+    heroChart.classList.remove('is-animating');
+    void heroChart.offsetWidth;
+    heroChart.classList.add('is-animating');
+    clearTimeout(heroChart._animTimer);
+    heroChart._animTimer = setTimeout(function() {
+      heroChart.classList.remove('is-animating');
+    }, 900);
   }
 
   if ('IntersectionObserver' in window) {
-    var heroObserver = new IntersectionObserver(function(entries) {
+    var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         var ratio = entry.intersectionRatio || 0;
-        var visible = entry.isIntersecting && ratio >= 0.3; // ~30 % visible
+        var nowVisible = entry.isIntersecting && ratio >= 0.22;
 
-        // On vient d'entrer dans la zone visible
-        if (visible && !wasVisible) {
-          if (!hasPlayedOnce) {
-            // Première fois : laisser le CSS jouer l'anim
-            hasPlayedOnce = true;
-          } else {
-            // Fois suivantes : rejouer proprement
-            resetBars();
-          }
+        if (nowVisible && !visible && armed) {
+          playChartAnimation();
+          armed = false;
         }
 
-        // On est complètement sorti de la zone => on réarme
         if (!entry.isIntersecting || ratio === 0) {
-          hasPlayedOnce = false;
+          armed = true;
         }
 
-        wasVisible = visible;
+        visible = nowVisible;
       });
-    }, {
-      threshold: [0, 0.3]
-    });
+    }, { threshold: [0, 0.22] });
 
-    heroObserver.observe(heroChart);
+    observer.observe(heroChart);
   } else {
-    // Fallback pour anciens navigateurs
     window.addEventListener('scroll', function() {
       var rect = heroChart.getBoundingClientRect();
-      var visible = rect.top < window.innerHeight && rect.bottom > 0;
+      var nowVisible = rect.top < window.innerHeight * 0.98 && rect.bottom > 0;
 
-      if (visible && !wasVisible) {
-        if (!hasPlayedOnce) {
-          hasPlayedOnce = true;
-        } else {
-          resetBars();
-        }
+      if (nowVisible && !visible && armed) {
+        playChartAnimation();
+        armed = false;
       }
 
-      if (!visible) {
-        hasPlayedOnce = false;
+      if (!nowVisible) {
+        armed = true;
       }
 
-      wasVisible = visible;
-    });
+      visible = nowVisible;
+    }, { passive: true });
   }
+
+  // Animation initiale au chargement
+  playChartAnimation();
+  armed = false;
 });
 </script>
 
