@@ -140,25 +140,21 @@
 
     /* Animation barres graphique hero */
     .chart-bars .bar {
-  transform: scaleY(1);
-  opacity: 1;
-  will-change: transform, opacity;
+  animation: bar-grow 0.6s cubic-bezier(0.28, 0.9, 0.35, 1);
+  transform: scaleY(0.18);
 }
-.hero-chart.is-animating .bar {
-  animation: bar-grow 0.55s cubic-bezier(0.22, 0.9, 0.3, 1) both;
-}
-.hero-chart.is-animating .bar:nth-child(1) { animation-delay: 0.00s; }
-.hero-chart.is-animating .bar:nth-child(2) { animation-delay: 0.03s; }
-.hero-chart.is-animating .bar:nth-child(3) { animation-delay: 0.06s; }
-.hero-chart.is-animating .bar:nth-child(4) { animation-delay: 0.09s; }
-.hero-chart.is-animating .bar:nth-child(5) { animation-delay: 0.12s; }
-.hero-chart.is-animating .bar:nth-child(6) { animation-delay: 0.15s; }
-.hero-chart.is-animating .bar:nth-child(7) { animation-delay: 0.18s; }
-.hero-chart.is-animating .bar:nth-child(8) { animation-delay: 0.21s; }
-@keyframes bar-grow {
-  0%   { transform: scaleY(0.72); opacity: 0.25; }
-  100% { transform: scaleY(1); opacity: 1; }
-}
+
+
+    .chart-bars .bar:nth-child(1) { animation-delay: 0.6s; }
+    .chart-bars .bar:nth-child(2) { animation-delay: 0.7s; }
+    .chart-bars .bar:nth-child(3) { animation-delay: 0.8s; }
+    .chart-bars .bar:nth-child(4) { animation-delay: 0.9s; }
+    .chart-bars .bar:nth-child(5) { animation-delay: 1.0s; }
+    .chart-bars .bar:nth-child(6) { animation-delay: 1.1s; }
+    .chart-bars .bar:nth-child(7) { animation-delay: 1.2s; }
+    .chart-bars .bar:nth-child(8) { animation-delay: 1.3s; }
+    @keyframes bar-grow {
+  0%   { transform: scaleY(0.18); opacity: 0; }
   40%  { transform: scaleY(1.02); opacity: 1; }
   100% { transform: scaleY(1);   opacity: 1; }
 }
@@ -610,11 +606,22 @@
     }
   }
 
-@media (max-width: 900px) {
-  .hero-chart.is-animating .bar { animation-duration: 0.42s; }
-}
+    .chart-bars .bar { transform: scaleY(1); opacity: 1; will-change: transform, opacity; }
+    .hero-chart.is-animating .bar { animation: bar-grow 0.6s cubic-bezier(0.22, 0.9, 0.3, 1) both; }
+    .hero-chart.is-animating .bar:nth-child(1) { animation-delay: 0.00s; }
+    .hero-chart.is-animating .bar:nth-child(2) { animation-delay: 0.04s; }
+    .hero-chart.is-animating .bar:nth-child(3) { animation-delay: 0.08s; }
+    .hero-chart.is-animating .bar:nth-child(4) { animation-delay: 0.12s; }
+    .hero-chart.is-animating .bar:nth-child(5) { animation-delay: 0.16s; }
+    .hero-chart.is-animating .bar:nth-child(6) { animation-delay: 0.20s; }
+    .hero-chart.is-animating .bar:nth-child(7) { animation-delay: 0.24s; }
+    .hero-chart.is-animating .bar:nth-child(8) { animation-delay: 0.28s; }
+    @keyframes bar-grow { 0% { transform: scaleY(0.15); opacity: 0; } 45% { transform: scaleY(1.02); opacity: 1; } 100% { transform: scaleY(1); opacity: 1; } }
+    @media (max-width: 900px) { .hero-chart.is-animating .bar { animation-duration: 0.45s; } }
 
-</style>  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,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" />
+</style>
+
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAIAEBAAAAAAIABDAwAAJgAAACAgAAAAACAAbwUAAGkDAACJUE5HDQoaCgAAAA1JSERSAAAAEAAAABAIBgAAAB/z/2EAAAEIaUNDUElDQyBQcm9maWxlAAB4nGNgYDzBAAQsBgwMuXklRUHuTgoRkVEK7A8YGIEQDBKTiwsYcAOgqm/XIGov6+JRhwtwpqQWJwPpD0CsUgS0HGikCJAtkg5ha4DYSRC2DYhdXlJQAmQHgNhFIUHOQHYKkK2RjsROQmInFxSB1PcA2Ta5OaXJCHcz8KTmhQYDaQ4glmEoZghicGdwAvkfoiR/EQODxVcGBuYJCLGkmQwM21sZGCRuIcRUFjAw8LcwMGw7jxBDhElBYlEiWIgFiJnS0hgYPi1nYOCNZGAQvsDAwBUNCwgcblMAu82dIR8I0xlyGFKBIp4MeQzJDHpAlhGDAYMhgxkAptY/P0ds4FAAAAH2SURBVHicpZLNUhNREIW/vncmIfxMArJQcZFnCFW6MbyCuhbZqVX4DBS8gQILrLL0MeQtcE9kQckCEggwE+aH3B8X1ARQWNG7vl197jmnjzSbTc8DSj1k+V4ArTVKXY+UUmit7wQI/n1wznF2doZSiiiKEBHSNMUYw9TUFN7fVjz6RkQwxtBoNNjcWGdtbRWtNWmasbDQ5t3iW4bD4f0SvPeICNZYfu/tsb+/j9aaOI5pt9ssLS1yeXmJiNwtQUoW1nDw54A4iZmebjA/36LfPyGOB/8t3/ZABOcctVqN129e0ev2+PxlnU/Ly3jvGQwGt4y9U0IQBCRJwsrKKhsbmxwdHfFze5uX7QWsNSil7pcAkGYZTx8/4cf3b5yc9Hn/4SNbW19ptVqM18YoigIRQSk1YiPNZtN776lUKkRRhFaKR7OznJ+fk6UpQ2Oo1yMmJybp9nqEYUiSJFxcXKC1JhARrLWM12q8ePGcPM+ZGJ+g2+0yNEOUUszMzJBlOXPP5qjX6+zs/KLT6VwBlBlAhN3dDt47vPdY66iEIXGScHh4yFh1DO89eVFwetonDMMr38r7Z1nG8fEx1hpEFEVRUK1WsdZemRUEOOdwzpHnxcjMEYOiKEjTdDQoI1z2ZYRFBBFFeYzrIIkQhuHoIiWzm4s3gcr6CxKM59mgVbY7AAAAAElFTkSuQmCCiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAEIklEQVR4nO2Wz28UZRjHP++88+7sbmd3W5NCoEVaZAnBA4d65mjgpHtSE40HQE+CB/kL1AR/nACJUqtB4Kr+AYhcUBKMJJQEIyQ0XQph6Ha7s9vO7Oy+83rYdpRsYRfB4IFJ5jDvj+f5zPM87/d5xdjYmOEpPtbTdP4M4BnA/wLA7meRMYZ2u518CyGw7e6tcRxjjMGyLIQQTwbAGIPjOBSLRYQQCAFBEFIul+9bJ4RgcLCAZUnCMCQIgr4gegK025qtL4zy7TdfY9s2tm1z5co0e/ftxxiDEII4jikUChw//gUbN2zg1KnTfPnVCRzHeXwAAK011WoVKW1sW+L7fjJnTEdIhRAMDQ0xPDxMNptNxh8bQCmbcrnMm2+9veKoExUAKeV99RHHMVrrvp1Dn6egrTX37t3D8zzu3vWoVqsYY8hkMrzx+msrq/5dS+kZAa01IyMjHDzwHlJKpJTMzMxw5OgxoiiiVCqxWKtx9uxP/w1AHBvyuRx79uxGKRvbVlz+/TJHjh5LQv3+wQOUZ8u0W60nDyClxV3P48OPPsayLCwhmK9UgE50Go06xeJWDh36AMdxHin/fQFYlkW1WuXkye8AMKYDlc1miaKIE5NTfP7ZJ2zfvo12WxPH8ZMFMMaQTqfZsmUcgQAhaIYht+/cQSnF+fPnOX3mDPv27qXVavcy9+gAq0I0NTWZCNH09FX2v/MuxhiUUkxOTrFz505emphYUcv+ZBj6PIZxHBMEQfKGYfi3ActieXmZw4c/xfM8wDxSGsRad0JjOkZWZVYpRT6fRwiBZVloralUKknT0bqT+5GRjQwNPYfneczPz3ccCJFItpSyC6ArBcYYXNfFdV2CIGDdumEa9QaO4xBFEctBgO/7vLhjB9VqlZrvMz4+Tq1WI5dzuXnzJqOjo6RSKfL5XGdvOo0xhtnZ2d4Aq8JTKr1CpbLA3Nwcg4UCmzZtoub7eJ7HuXM/Uyq9yvc//Iibc9m9+2Wmr1xlcLDArl27qFQqRM2IXN4ljmPGx8b59eJFZmZmsCzr4QBCCKoLC1y48AuZTAatNbPlMo1GgzBsYts224pFrt+4gQB83+dW+Rb1Rh3XHeDSpd9Yv34dsdYY31BbrLG8HBBFUZfzB9ZAKpVKmkoqlcIYg9YapVRyGWk2Q+K4cwqCIEjqQUoLKSVax7TbbZRSSVFGUdQ7BXEcMzExQTabobUirVLK5A/m5m4zMDBAIZ9H2pKoGfHn9ets3vw8juPQilq4rku9XidfKLCwsEC9Xse2Jdeu/dFViF0RMMZQKBRIpVK0Wq3kJAghSKcd6vUGxphEE5SyaTSWsCwLpRRK2YAgDMOkeS0tLaG1ptlsdmnEmjWwuLjYFap/zq+CPmxsrT1rCdSaSrhWsTzIaK+xXs9Tv5Y/A/gLWOv0rn3trf4AAAAASUVORK5CYII=" />
   <link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,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" />
   <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAKOUlEQVR4nO2aW3AT1x3Gf7urXUnEBhvJtrC4WLbAN2wwBmMSCGQS2nRCJmSahyaTSwNJnnIheUnb9PbWdoZkOmk7bZo+p+kDZErSNqSBNAUGsOnUNq3tJAbLBNmWMATfdNvds32wpRpsgWgW1Jn4mznjmdX6nG+//d/O/6xUUVFh8RWGnG8C+ca8APkmkG/MC5BvAvnGvAD5JpBvzAuQbwL5xrwA+SaQb8wLkG8C+ca8APkmkG847JxMCIGu61l/VxQFhyO3JYUQs67Jsv3vyzYBhBCUlJSwprERYc0mr8gy4cEhuru7r/sgkiSxaNEiZEniv90ai4mJyTmF+TKwTQBdN6itreG11/bOaQVOp5P9+9/hu997BafTmXUeIQQLFxbyq1++jtfrxTRNZFkmFovx7HPPEw4P4XAodtG23wVSqdScAkiShGEYOc0jSRIej4eSkpKMAJOTk//fLgBTxBVFmdNMFUW5oQcwTTMzLMvCNE07qWZgmwCSBMlkikgkMueb1jSNsbExJEmya0lbYJsAmqbR0dHBtx5+BGuOPrMkSaRSKTRNu+K6EOKmmHausNUFdF3n8uVU1t8lSbrCAmRZpqCggNHRURTFvsB2I7BVekmSkGU565j58Na0mTz99G48Hs9N8/HrwVYBhBAkEoms4+rsYBgGq+tX8/xzz2IKMyPKrYRtLmCaAr9/CbfffvvcWUBW6A+FaG9vv8Lck8kEDz64k5Mn2/jjgQOzYsTNhm0CGIZBMBjkxz/6Ibo+Ow44nS727dvP8ePHrxDAsiwsy+LFF1+gu6ebvr4zdlHKCTfJBZJzjNkukIZpmni9Xr7z8ss4nU7by91rwfYgqKoqDodj1lBV9ZqRPplM0tq6kad27yKVyr6hshs2FkISk5OT9Pb2Zi2EhoaHZxVCM0VJpVI88cTjhEIhkqns6dRO2FgIqXR2dvHoY09kvceyrEyQkyQJXdfp7umlpaUFmHIhVVXZs+cFtFvkCra6gGVZGIaRdVyd6x0OB2+++TtOnz6dEcY0TTweDwW33XZL0qLtNWi62ss2rlhclhkdHeUnP/0ZExMTmZJYCHHLagLbs0Aqlco6ssWGjo5Ofv2bN1BV1U46OcHWjtDixYtZtWrlnG9PlmWi0QucOXNm1ubH6XTy9tt/YF1TE9u330MikbCL1nVha0eovr6OX7z+8znTmMvlYv/+d3jl+z+Y1RGSJAnTNNn76qtUV1dTXr4k5+bJl8VNCILmFc2M9DAM45pR3eFwcP58mL1792Ka5i3rG9hcCJHzbnAuuFwuDn/0N9566/fX7BvaCVv7AYYhmJycnLPkNQyDZPL6xY2qqrzx2zdpbGykpWUDuq4jyzK6rt8Uq5Ds+k7QsixcLhfFxUVZO0LxeJzLly9f90EMw8Dv91NfX4cwBZIEhmnS3n6KeDxuqxC2CQBTImTzc8sCWZZybn+l48ZMaJpmuxXckAukSTmdTnRdx+FwXBHcNE1DCIEpBBJT5pze7qZPhJLJZGa+9AOl64eZHaW0yTscDhRFQdd1UtP7A03TMpWlJElompbhlu5M53oClbMApmlSVVVFfX0dBw68y113baOtrZ2GhgbuuGMTg+Eh3n33PbZu3UqwqpJ4PM6hwx9RWlKCrCh0dXWhqioPPfRNihYVYZoG7x/8gEgkwvLly9m+/R4sITgfDhPqD7F121YS8Tgff/x3Bs6dY9OmVtavX09keJj3/vRntmzezMpVK7kQjfKX9w9SX1dHS8sGhBB09/Rw4sTJnETIOQsYhkEgUMGeF56nsbGRO7dsYXV9PU/t3sXRo8eoqa1h54MPsG3rnRimydKlS7n361+jfnU965qaMhazY8d9RCIRPuvrI5GIY5qCYLCKtWvW0NPbSygUoqGxAX95OUPDw7z00h6am9fx+GOPcuTIEVxuN16vl7vvuZsvLl2izFfG7l1P0ry+mdLSUnp6eolGozm72g2lQUmSeP/gQe7fcR+SJLF02VLCg2E+/PAQhz48RE11NSldJ1BRQUFBAbFYDMuySCQTJJPJzCFHQ8NqampqMNMBzjAoKi5ifXMzXo8XXdcJDQywb99+TFOwYcMGens/4dNPP6OkxEugooJkMkFn12n27XuHysoAlrDw+8tpbl7HggULct5J3pAAmqbR3x/is74+NrZupLu7h/Il5TzyyMPcf/8O2ttPoaoq/aEQ3T09NDSsRlEU6uvq+Ma991KxYgVCCHqn3/Rt0zs+h8PB2OgYnZ1dxBNxNE2jpqaaZ555mpSe4vChw9TW1rBl82a8Xi/l5UuQZYXNm+9g15Pf5p8dnQAMRyJ0nT6NLMk5W0DOWcCcNmtVdRCJRGhtbeXIkaP4/X42tW7k3Oefc/ToMdauXUugYgW6rnOyrZ0FC9w0NTUhyzLd3T14vR68Xi8AbW3thMNhfD4fGze2oMgyly+Pcra/n6a1a9ENnePHTzAyMkJtTQ3r1q1jaHiI48dPUFdXS2UgwIWREY4dO0agIsDqhtXIkkR4cJD29lM5iZCzADPP59JRWlVVhBAkk0kURclkh6n7JBRFzjQ+0s0QIQRCiEz7LD1X+lp6zFxLVVUMwyCVSqEoSmZdwzCQZRlFUbAAYzpzyLKcc3c5pyxgWRZutztDTFVVUqkUTqeTWCxGZWVlpsjRNA2XywVYeBZ7GBsfR9M03G43ly5dIpVKomlOxsfHM/3DsrJSBgeHiMfjABQXF2dOi5YtW8bIyMj09wdeRkfHEEIwPj5OYWEhlmXh9/uJRqOARSwWx+12MzExkVPNkJMAhmESDAapqgpw6eIXCGEyGYuxbNky2traaWpaSzKZ5MKFEQKBAF1dXSxeXIzH46GrqwuXy8WaxkbaT/0Dn6+M6upqOjo6UFWVoqIiRkYu4vNZ9PX14Xa72LnzAT744K9UVlYyMTGBqqqUlpZQWFhIZ0cn2+7ayieffIokyRQWFnDhwgherwefz8fCwkL+9e9uxsbGcjpuyylSTJ38JiksXMSKiuWYwmRlMMjCwkL8fj+aprLA7SY2OUlpiRdJmmp2GvpU/T84OMTwcISJiQncbjeh/hDVq6opLi7GsgSJRJxgVRWGYVBbW4clTNasWTNtNRdZGQzidrky7nX+fBi/309ZaSma5uTs2TNTsePMWQoKChgYGMj5rDGnGCCEwOPxUFxchCzJCEsQi8WJxWKUlZVx8eIImubE4XAQi8UoKipCliVKSkoZHh4mHA5TVlrKyMWLlHi9JFOpqVa5w4Eky5SXL2Fg4ByhUIiVwSCDQ0P4fD50XScQqCAajaLrOkuWlDM8PEQimURP6Xg8HiYmxqmqqqKv7wzRaBSfz8e5c+fszwJX1/npYJUOXlffm/6b3gYLy0Kecf9cXSNFUTJfhKTXsqwpC5w5X7Z1ZFnGNM0bOmnOuRRO19hzkc4FyvRTXO/+9O//63H5jf7fV/47wXkB8k0g35gXIN8E8o15AfJNIN+YFyDfBPKN/wDkYfvijCoSoQAAAABJRU5ErkJggg==" />
 </head>
@@ -626,8 +633,8 @@
   <a href="#services" onclick="toggleMenu()" data-i18n="nav.services">Services</a>
   <a href="#methode" onclick="toggleMenu()" data-i18n="nav.method">Méthode</a>
   <a href="#realisations" onclick="toggleMenu()" data-i18n="mobile.results">Réalisations</a>
-  <a href="#temoignages" onclick="toggleMenu()" data-i18n="mobile.testimonials"><span data-i18n="testimonials.title">Témoignages</span></a>
-  <a href="#faq" onclick="toggleMenu()" data-i18n="nav.faq"><span data-i18n="faq.title">FAQ</span></a>
+  <a href="#temoignages" onclick="toggleMenu()" data-i18n="mobile.testimonials">Témoignages</a>
+  <a href="#faq" onclick="toggleMenu()" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" onclick="toggleMenu()" data-i18n="mobile.contact">Contact</a>
   <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary" onclick="toggleMenu()" data-i18n="nav.book">Réserver un appel</a>
 </div>
@@ -653,7 +660,7 @@
         <a href="#methode" data-i18n="nav.method">Méthode</a>
         <a href="#offres" data-i18n="nav.offers">Offres</a>
         <a href="#temoignages" data-i18n="nav.reviews">Avis</a>
-        <a href="#faq" data-i18n="nav.faq"><span data-i18n="faq.title">FAQ</span></a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
       </nav>
       <div class="header-cta">
         <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary btn-hamburger-cta" style="padding:11px 22px;font-size:14px;" data-i18n="nav.book">Réserver un appel</a>
@@ -738,7 +745,7 @@
 
 <section id="pourquoi">
   <div class="container">
-    <p class="section-label" data-i18n="why.label"><span data-i18n="why.title">Pourquoi Noble Edge</span></p>
+    <p class="section-label" data-i18n="why.label">Pourquoi Noble Edge</p>
     <h2 class="section-title"><span data-i18n="why.title.1">Arrêtez de publier au hasard.</span><br /><span class="gradient-text" data-i18n="why.title.2">Commencez à construire une marque.</span></h2>
     <p class="section-subtitle" data-i18n="why.subtitle">Beaucoup de marques sont présentes sur les réseaux. Peu construisent quelque chose de solide. Nous, si.</p>
     <div class="why-grid">
@@ -757,7 +764,7 @@
 <section id="services">
   <div class="container">
     <div class="services-header">
-      <p class="section-label" data-i18n="services.label"><span data-i18n="services.title">Nos services</span></p>
+      <p class="section-label" data-i18n="services.label">Nos services</p>
       <h2 class="section-title"><span data-i18n="services.title.1">Tout ce qu'il faut pour</span> <span class="gradient-text" data-i18n="services.title.2">dominer votre marché digital</span></h2>
       <p class="section-subtitle" data-i18n="services.subtitle">De la stratégie à l'exécution, nous couvrons l'ensemble de votre présence en ligne avec une approche intégrée et orientée résultats.</p>
     </div>
@@ -771,9 +778,9 @@
       <ul class="cm-features">
         <li data-i18n="services.featured.item1">Gestion complète de vos réseaux sociaux</li><li data-i18n="services.featured.item2">Calendrier éditorial mensuel</li>
         <li data-i18n="services.featured.item3">Création de visuels & contenus</li><li data-i18n="services.featured.item4">Rédaction de captions engageantes</li>
-        <li data-i18n="services.featured.item5">Publication programmée & optimisée</li><li data-i18n="services.featured.item6"><span data-i18n="offer.cm.bullet8">Modération des messages & commentaires</span></li>
+        <li data-i18n="services.featured.item5">Publication programmée & optimisée</li><li data-i18n="services.featured.item6">Modération des messages & commentaires</li>
         <li data-i18n="services.featured.item7">Animation de communauté</li><li data-i18n="services.featured.item8">Stratégie d'engagement personnalisée</li>
-        <li data-i18n="services.featured.item9"><span data-i18n="offer.cm.bullet9">Reporting mensuel des performances</span></li><li data-i18n="services.featured.item10">Recommandations d'optimisation</li>
+        <li data-i18n="services.featured.item9">Reporting mensuel des performances</li><li data-i18n="services.featured.item10">Recommandations d'optimisation</li>
       </ul>
     </div>
     <div class="services-grid">
@@ -792,7 +799,7 @@
 <section id="methode">
   <div class="container">
     <div class="method-header">
-      <p class="section-label" data-i18n="method.label"><span data-i18n="method.title">Notre méthode</span></p>
+      <p class="section-label" data-i18n="method.label">Notre méthode</p>
       <h2 class="section-title"><span data-i18n="method.title.1">Un processus structuré</span> <span class="gradient-text" data-i18n="method.title.2">pour des résultats durables</span></h2>
       <p class="section-subtitle" data-i18n="method.subtitle">Chaque action suit une méthodologie éprouvée en 6 étapes pour maximiser l'impact de chaque euro investi.</p>
     </div>
@@ -810,7 +817,7 @@
 <section id="offres">
   <div class="container">
     <div class="pricing-header">
-      <p class="section-label" data-i18n="offers.label"><span data-i18n="offers.title">Notre offre</span></p>
+      <p class="section-label" data-i18n="offers.label">Notre offre</p>
       <h2 class="section-title"><span data-i18n="offers.title.1">Un accompagnement</span> <span class="gradient-text" data-i18n="offers.title.2">100% sur mesure</span></h2>
       <p class="section-subtitle" data-i18n="offers.subtitle">Pas de pack prédéfini. Chaque mission est construite selon vos objectifs, votre secteur et votre budget.</p>
     </div>
@@ -819,16 +826,16 @@
       <h3><span data-i18n="offers.plan.title.1">Community Management</span> <span class="gradient-text" data-i18n="offers.plan.title.2">Sur Mesure</span></h3>
       <p class="offre-sub" data-i18n="offers.plan.subtitle">Une stratégie adaptée à votre marque, vos réseaux, vos objectifs.</p>
       <ul class="offre-features">
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet1">Gestion de vos réseaux sociaux (Instagram, Facebook, LinkedIn, TikTok...)</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet6">Création de visuels & contenus adaptés à votre marque</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet2">Calendrier éditorial mensuel personnalisé</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet7">Rédaction de captions engageantes & optimisées</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet3">Stories, Reels & formats courts selon votre stratégie</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet8">Modération des messages & commentaires</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet4">Animation de communauté & engagement actif</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet9">Reporting mensuel des performances</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet5">Réunion stratégique mensuelle</span></li>
-        <li><span class="check">✓</span> <span data-i18n="offer.cm.bullet10">Recommandations & optimisation continue</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item1">Gestion de vos réseaux sociaux (Instagram, Facebook, LinkedIn, TikTok...)</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item2">Création de visuels & contenus adaptés à votre marque</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item3">Calendrier éditorial mensuel personnalisé</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item4">Rédaction de captions engageantes & optimisées</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item5">Stories, Reels & formats courts selon votre stratégie</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item6">Modération des messages & commentaires</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item7">Animation de communauté & engagement actif</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item8">Reporting mensuel des performances</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item9">Réunion stratégique mensuelle</span></li>
+        <li><span class="check">✓</span> <span data-i18n="offers.item10">Recommandations & optimisation continue</span></li>
       </ul>
       <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:16px;padding:16px 40px;" data-i18n="offers.cta">Obtenir mon devis personnalisé →</a>
       <p class="offre-note" data-i18n="offers.note">Le volume de publications, les réseaux gérés et les services inclus sont définis ensemble selon vos besoins réels.</p>
@@ -839,7 +846,7 @@
 <section id="realisations">
   <div class="container">
     <div class="real-header">
-      <p class="section-label" data-i18n="results.label"><span data-i18n="results.title">Nos résultats</span></p>
+      <p class="section-label" data-i18n="results.label">Nos résultats</p>
       <h2 class="section-title"><span data-i18n="results.title.1">Des chiffres qui</span> <span class="gradient-text" data-i18n="results.title.2">parlent pour nous</span></h2>
       <p class="section-subtitle" data-i18n="results.subtitle">Chaque client est une histoire de transformation. Voici ce que notre accompagnement produit concrètement.</p>
     </div>
@@ -860,16 +867,16 @@
 <section id="temoignages">
   <div class="container">
     <div class="testi-header">
-      <p class="section-label" data-i18n="testimonials.label"><span data-i18n="testimonials.title">Témoignages</span></p>
+      <p class="section-label" data-i18n="testimonials.label">Témoignages</p>
       <h2 class="section-title"><span data-i18n="testimonials.title.1">Ils nous font</span> <span class="gradient-text" data-i18n="testimonials.title.2">confiance</span></h2>
       <p class="section-subtitle" data-i18n="testimonials.subtitle">La satisfaction de nos clients est notre meilleure carte de visite.</p>
     </div>
     <div class="testi-grid">
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote"><span data-i18n="testimonials.1.text">Depuis qu'Enzo gère nos réseaux, notre restaurant affiche complet presque tous les week-ends. Stratégie, réactivité et créativité — je recommande les yeux fermés.</span></p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name" data-i18n="testimonials.n1"><span data-i18n="testimonials.1.name">Sophie M.</span></div><div class="testi-role" data-i18n="testimonials.r1">Restauratrice, Lyon</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote"><span data-i18n="testimonials.2.text">En 2 mois, notre engagement a été multiplié par 4. Enzo comprend vraiment notre secteur et nos contenus ressemblent enfin à notre marque.</span></p><div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name" data-i18n="testimonials.n2"><span data-i18n="testimonials.2.name">Thomas R.</span></div><div class="testi-role" data-i18n="testimonials.r2">Fondateur, e-commerce mode</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote"><span data-i18n="testimonials.3.text">J'avais essayé de gérer mes réseaux moi-même mais je n'avais ni le temps ni les compétences. Aujourd'hui je génère des leads qualifiés chaque semaine grâce aux compétences d'Enzo.</span></p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name" data-i18n="testimonials.n3"><span data-i18n="testimonials.3.name">Amélie D.</span></div><div class="testi-role" data-i18n="testimonials.r3">Coach business, Paris</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote"><span data-i18n="testimonials.4.text">Un audit complet, des objectifs clairs et un plan d'action précis. 4 mois plus tard, notre présence digitale est méconnaissable. Excellent investissement.</span></p><div class="testi-author"><div class="testi-avatar">K</div><div><div class="testi-name" data-i18n="testimonials.n4"><span data-i18n="testimonials.4.name">Karim B.</span></div><div class="testi-role" data-i18n="testimonials.r4">Directeur, PME bâtiment</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote"><span data-i18n="testimonials.5.text">Enzo a refondu notre identité visuelle et pris en main nos réseaux. La cohérence est enfin là — notre clientèle remarque la différence, merci.</span></p><div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name" data-i18n="testimonials.n5">Laura V.</div><div class="testi-role" data-i18n="testimonials.r5">Directrice marketing, startup SaaS</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote" data-i18n="testimonials.q1">"Depuis que Noble Edge gère nos réseaux, notre restaurant affiche complet presque tous les week-ends. Stratégie, réactivité et créativité — je recommande les yeux fermés."</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name" data-i18n="testimonials.n1">Sophie M.</div><div class="testi-role" data-i18n="testimonials.r1">Restauratrice, Lyon</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote" data-i18n="testimonials.q2">"En 2 mois, notre engagement a été multiplié par 4. L'équipe comprend vraiment notre secteur et nos contenus ressemblent enfin à notre marque."</p><div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name" data-i18n="testimonials.n2">Thomas R.</div><div class="testi-role" data-i18n="testimonials.r2">Fondateur, e-commerce mode</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote" data-i18n="testimonials.q3">"J'avais essayé de gérer mes réseaux moi-même mais je n'avais ni le temps ni les compétences. Aujourd'hui je génère des leads qualifiés chaque semaine."</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name" data-i18n="testimonials.n3">Amélie D.</div><div class="testi-role" data-i18n="testimonials.r3">Coach business, Paris</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote" data-i18n="testimonials.q4">"Un audit complet, des objectifs clairs et un plan d'action précis. 4 mois plus tard, notre présence digitale est méconnaissable. Excellent investissement."</p><div class="testi-author"><div class="testi-avatar">K</div><div><div class="testi-name" data-i18n="testimonials.n4">Karim B.</div><div class="testi-role" data-i18n="testimonials.r4">Directeur, PME bâtiment</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-quote" data-i18n="testimonials.q5">"Noble Edge a refondu notre identité visuelle et pris en main nos réseaux. La cohérence est enfin là — notre clientèle remarque la différence."</p><div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name" data-i18n="testimonials.n5">Laura V.</div><div class="testi-role" data-i18n="testimonials.r5">Directrice marketing, startup SaaS</div></div></div></div>
     </div>
   </div>
 </section>
@@ -877,18 +884,18 @@
 <section id="faq">
   <div class="container">
     <div class="faq-header">
-      <p class="section-label" data-i18n="faq.label"><span data-i18n="faq.title">FAQ</span></p>
+      <p class="section-label" data-i18n="faq.label">FAQ</p>
       <h2 class="section-title"><span data-i18n="faq.title.1">Vos questions,</span> <span class="gradient-text" data-i18n="faq.title.2">nos réponses</span></h2>
-      <p class="section-subtitle" data-i18n="faq.subtitle"><span data-i18n="faq.subtitle">Tout ce que vous devez savoir avant de démarrer avec Noble Edge Agency.</span></p>
+      <p class="section-subtitle" data-i18n="faq.subtitle">Tout ce que vous devez savoir avant de démarrer avec Noble Edge Agency.</p>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Quels réseaux sociaux gérez-vous ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a1">Nous gérons Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest et X.</div></div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Travaillez-vous avec tous les secteurs d'activité ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a2">Oui. Restauration, e-commerce, immobilier, santé, mode, services BtoB, coaching, artisanat, tourisme, startup tech...</div></div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Comment fonctionne votre offre sur mesure ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a3">Lors de notre appel découverte, nous analysons vos besoins, vos objectifs et votre budget. Nous construisons ensuite une proposition personnalisée adaptée à votre situation.</div></div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Créez-vous aussi les visuels et les textes ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a4">Absolument. Visuels, carrousels, Reels, captions, scripts — nous gérons toute la production. Vous n'avez besoin que de valider.</div></div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Comment se passe le premier échange ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a5">Un appel découverte gratuit de 30 minutes. On comprend votre situation, vos objectifs, et on vous prépare une proposition sur mesure sous 48h. Aucun engagement.</div></div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Faites-vous aussi la publicité payante ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a6">Oui. Meta Ads, Google Ads, TikTok Ads — stratégie, création des visuels, paramétrage, ciblage, budget et optimisation continue.</div></div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span data-i18n="faq.q4">Y a-t-il un engagement minimum ?</span><span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a7">Nos missions sont sans engagement minimum. Nous recommandons cependant 3 mois pour voir des résultats significatifs.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q1">Quels réseaux sociaux gérez-vous ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a1">Nous gérons Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest et X.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q2">Travaillez-vous avec tous les secteurs d'activité ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a2">Oui. Restauration, e-commerce, immobilier, santé, mode, services BtoB, coaching, artisanat, tourisme, startup tech...</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q3">Comment fonctionne votre offre sur mesure ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a3">Lors de notre appel découverte, nous analysons vos besoins, vos objectifs et votre budget. Nous construisons ensuite une proposition personnalisée adaptée à votre situation.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q4">Créez-vous aussi les visuels et les textes ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a4">Absolument. Visuels, carrousels, Reels, captions, scripts — nous gérons toute la production. Vous n'avez besoin que de valider.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q5">Comment se passe le premier échange ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a5">Un appel découverte gratuit de 30 minutes. On comprend votre situation, vos objectifs, et on vous prépare une proposition sur mesure sous 48h. Aucun engagement.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q6">Faites-vous aussi la publicité payante ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a6">Oui. Meta Ads, Google Ads, TikTok Ads — stratégie, création des visuels, paramétrage, ciblage, budget et optimisation continue.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)" data-i18n="faq.q7">Y a-t-il un engagement minimum ?<span class="faq-icon">↓</span></div><div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq.a7">Nos missions sont sans engagement minimum. Nous recommandons cependant 3 mois pour voir des résultats significatifs.</div></div></div>
     </div>
   </div>
 </section>
@@ -897,9 +904,9 @@
   <div class="container">
     <div class="cta-block">
       <div class="cta-glow"></div>
-      <p class="section-label" style="text-align:center;" data-i18n="contact.label"><span data-i18n="cta.title"><span data-i18n="cta.title">Passez à l'action</span></span></p>
+      <p class="section-label" style="text-align:center;" data-i18n="contact.label">Passez à l'action</p>
       <h2><span data-i18n="contact.title.1">Prêt à faire passer votre marque</span><br /><span class="gradient-text" data-i18n="contact.title.2">au niveau supérieur ?</span></h2>
-      <p data-i18n="contact.subtitle"><span data-i18n="cta.subtitle">Prenez 30 minutes pour nous parler de votre projet. Aucun engagement, aucune pression.</span></p>
+      <p data-i18n="contact.subtitle">Prenez 30 minutes pour nous parler de votre projet. Aucun engagement, aucune pression.</p>
       <div class="cta-buttons">
         <a href="https://calendly.com/nobleedgeagency/ton-audit-gratuit" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:16px;padding:16px 32px;" data-i18n="contact.cta1">📞 Réserver un appel découverte</a>
         <a href="#form" class="btn btn-secondary" style="font-size:16px;padding:16px 32px;" data-i18n="contact.cta2">Demander un devis →</a>
@@ -914,7 +921,7 @@
     <div class="contact-form" id="form">
       <div style="text-align:center;margin-bottom:32px;">
         <h3 style="font-size:22px;font-weight:800;margin-bottom:8px;" data-i18n="contact.form.title">Parlez-nous de votre projet</h3>
-        <p style="font-size:14px;color:var(--gray);" data-i18n="contact.form.subtitle"><span data-i18n="cta.formIntro">Remplissez ce formulaire et nous vous recontactons sous 24h.</span></p>
+        <p style="font-size:14px;color:var(--gray);" data-i18n="contact.form.subtitle">Remplissez ce formulaire et nous vous recontactons sous 24h.</p>
       </div>
       <form id="contactForm">
         <div class="form-row">
@@ -985,11 +992,11 @@
       <div class="footer-col">
         <h4 data-i18n="footer.agency">Agence</h4>
         <a href="#pourquoi" data-i18n="nav.why">Pourquoi nous</a>
-        <a href="#methode"><span data-i18n="method.title">Notre méthode</span></a>
-        <a href="#realisations"><span data-i18n="results.title">Nos résultats</span></a>
-        <a href="#temoignages"><span data-i18n="testimonials.title">Témoignages</span></a>
-        <a href="#offres"><span data-i18n="offers.title">Notre offre</span></a>
-        <a href="#faq" data-i18n="nav.faq"><span data-i18n="faq.title">FAQ</span></a>
+        <a href="#methode">Notre méthode</a>
+        <a href="#realisations">Nos résultats</a>
+        <a href="#temoignages">Témoignages</a>
+        <a href="#offres">Notre offre</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
       </div>
       <div class="footer-col footer-contact">
         <h4 data-i18n="footer.contact">Contact</h4>
@@ -1091,13 +1098,70 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
   <script src="i18n.js"></script>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var scrollEls = document.querySelectorAll('.motion-scroll');
+    if (!('IntersectionObserver' in window)) {
+      scrollEls.forEach(function(el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    scrollEls.forEach(function(el) { observer.observe(el); });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var heroChart = document.querySelector('.hero-chart');
+    if (!heroChart) return;
+    var bars = heroChart.querySelectorAll('.bar');
+
+    function resetBars() {
+      bars.forEach(function(bar) {
+        bar.style.animation = 'none';
+        // forcer le reflow
+        void bar.offsetWidth;
+        bar.style.animation = '';
+      });
+    }
+
+    // rejoue l'anim quand le graphique (hero-chart) redevient visible
+    if ('IntersectionObserver' in window) {
+      var heroObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
+            resetBars();
+          }
+        });
+      }, {
+        threshold: [0.8]
+      });
+      heroObserver.observe(heroChart);
+    } else {
+      // fallback: comportement simple sur anciens navigateurs
+      var lastVisible = true;
+      window.addEventListener('scroll', function() {
+        var rect = heroChart.getBoundingClientRect();
+        var visible = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+        if (visible && !lastVisible) {
+          resetBars();
+        }
+        lastVisible = visible;
+      });
+    }
+  });
+
+</script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   var heroChart = document.querySelector('.hero-chart');
   if (!heroChart) return;
-
   var armed = true;
   var visible = false;
-
   function playChartAnimation() {
     heroChart.classList.remove('is-animating');
     void heroChart.offsetWidth;
@@ -1107,50 +1171,529 @@ document.addEventListener('DOMContentLoaded', function() {
       heroChart.classList.remove('is-animating');
     }, 900);
   }
-
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         var ratio = entry.intersectionRatio || 0;
         var nowVisible = entry.isIntersecting && ratio >= 0.22;
-
-        if (nowVisible && !visible && armed) {
-          playChartAnimation();
-          armed = false;
-        }
-
-        if (!entry.isIntersecting || ratio === 0) {
-          armed = true;
-        }
-
+        if (nowVisible && !visible && armed) { playChartAnimation(); armed = false; }
+        if (!entry.isIntersecting || ratio === 0) { armed = true; }
         visible = nowVisible;
       });
     }, { threshold: [0, 0.22] });
-
     observer.observe(heroChart);
   } else {
     window.addEventListener('scroll', function() {
       var rect = heroChart.getBoundingClientRect();
       var nowVisible = rect.top < window.innerHeight * 0.98 && rect.bottom > 0;
-
-      if (nowVisible && !visible && armed) {
-        playChartAnimation();
-        armed = false;
-      }
-
-      if (!nowVisible) {
-        armed = true;
-      }
-
+      if (nowVisible && !visible && armed) { playChartAnimation(); armed = false; }
+      if (!nowVisible) { armed = true; }
       visible = nowVisible;
     }, { passive: true });
   }
-
-  // Animation initiale au chargement
-  playChartAnimation();
-  armed = false;
+  playChartAnimation(); armed = false;
 });
 </script>
-
+<script>
+(function () {
+  "use strict";
+  const translations = {
+    fr: {
+  "nav.why": "Pourquoi nous",
+  "nav.services": "Services",
+  "nav.method": "Méthode",
+  "nav.offers": "Offres",
+  "nav.reviews": "Avis",
+  "nav.faq": "FAQ",
+  "nav.book": "Réserver un appel",
+  "mobile.home": "Accueil",
+  "mobile.results": "Réalisations",
+  "mobile.testimonials": "Témoignages",
+  "mobile.contact": "Contact",
+  "hero.badge": "Agence marketing & communication",
+  "hero.title.line1": "Votre marque mérite",
+  "hero.title.line2": "d'être vue, reconnue",
+  "hero.title.line3": "et choisie.",
+  "hero.desc": "Nous développons votre présence digitale, animons vos réseaux sociaux et transformons votre audience en clients — avec stratégie, créativité et rigueur.",
+  "hero.book.discovery": "Réserver un appel découverte",
+  "hero.discover": "Découvrir nos services →",
+  "hero.stat.clients": "Clients accompagnés",
+  "hero.stat.satisfaction": "Satisfaction client",
+  "hero.stat.years": "Années d'expertise",
+  "hero.performance": "Performance réseaux sociaux",
+  "hero.performance.badge": "↑ +68% ce mois",
+  "why.label": "Pourquoi Noble Edge",
+  "why.title.1": "Arrêtez de publier au hasard.",
+  "why.title.2": "Commencez à construire une marque.",
+  "why.subtitle": "Beaucoup de marques sont présentes sur les réseaux. Peu construisent quelque chose de solide. Nous, si.",
+  "why.1.title": "Stratégie taillée pour vous",
+  "why.1.desc": "Pas de template copié-collé. Chaque stratégie est construite selon votre secteur, vos objectifs et votre audience.",
+  "why.2.title": "Image de marque cohérente",
+  "why.2.desc": "Charte graphique, ton éditorial, univers visuel : nous construisons une identité reconnaissable et mémorable.",
+  "why.3.title": "Communication régulière et pro",
+  "why.3.desc": "Fini les longues périodes de silence. Nous assurons une présence constante avec des contenus pertinents.",
+  "why.4.title": "Vous gagnez du temps",
+  "why.4.desc": "Déléguer votre communication, c'est récupérer des heures précieuses. Nous gérons tout, vous validez.",
+  "why.5.title": "Contenus qui engagent et vendent",
+  "why.5.desc": "Nos contenus sont pensés pour générer de l'engagement, attirer votre clientèle cible et accompagner le parcours d'achat.",
+  "why.6.title": "Décisions basées sur les données",
+  "why.6.desc": "Chaque action est analysée, mesurée et optimisée. Rapports clairs chaque mois, ajustements en temps réel.",
+  "why.7.title": "Vision orientée ROI",
+  "why.7.desc": "Chaque action est pensée pour générer un retour sur investissement mesurable : notoriété, leads ou ventes directes.",
+  "why.8.title": "Un vrai partenaire, pas un prestataire",
+  "why.8.desc": "Nous nous impliquons dans votre marque comme si c'était la nôtre. Transparence totale, succès partagé.",
+  "services.label": "Nos services",
+  "services.title.1": "Tout ce qu'il faut pour",
+  "services.title.2": "dominer votre marché digital",
+  "services.subtitle": "De la stratégie à l'exécution, nous couvrons l'ensemble de votre présence en ligne avec une approche intégrée et orientée résultats.",
+  "services.featured.tag": "⭐ Service principal",
+  "services.featured.title.1": "Community Management",
+  "services.featured.title.2": "clé en main",
+  "services.featured.desc": "Votre présence sociale mérite mieux que des publications improvisées. Nous gérons vos réseaux comme de véritables outils de croissance.",
+  "services.featured.cta": "Démarrer mon community management",
+  "services.featured.item1": "Gestion complète de vos réseaux sociaux",
+  "services.featured.item2": "Calendrier éditorial mensuel",
+  "services.featured.item3": "Création de visuels & contenus",
+  "services.featured.item4": "Rédaction de captions engageantes",
+  "services.featured.item5": "Publication programmée & optimisée",
+  "services.featured.item6": "Modération des messages & commentaires",
+  "services.featured.item7": "Animation de communauté",
+  "services.featured.item8": "Stratégie d'engagement personnalisée",
+  "services.featured.item9": "Reporting mensuel des performances",
+  "services.featured.item10": "Recommandations d'optimisation",
+  "services.card1.title": "Stratégie de communication",
+  "services.card1.desc": "Audit digital, positionnement, ligne éditoriale, ton de marque et plan d'action mensuel.",
+  "services.card1.benefit": "→ Une direction claire",
+  "services.card2.title": "Création de contenu",
+  "services.card2.desc": "Visuels, carrousels, stories, Reels, scripts vidéo, copywriting et templates de marque sur mesure.",
+  "services.card2.benefit": "→ Du contenu qui performe",
+  "services.card3.title": "Branding & Identité visuelle",
+  "services.card3.desc": "Logo, charte graphique, palette de couleurs, typographies et univers visuel cohérent.",
+  "services.card3.benefit": "→ Une marque reconnaissable",
+  "services.card4.title": "Publicité en ligne",
+  "services.card4.desc": "Campagnes Meta Ads, Google Ads, génération de leads, retargeting et optimisation continue.",
+  "services.card4.benefit": "→ Des leads à la demande",
+  "services.card5.title": "SEO & Référencement",
+  "services.card5.desc": "Optimisation on-page, mots-clés, rédaction SEO, référencement local et visibilité organique.",
+  "services.card5.benefit": "→ Visible sur Google",
+  "services.card6.title": "Web & Landing pages",
+  "services.card6.desc": "Création ou optimisation de landing pages orientées conversion, UX pensée pour transformer les visiteurs.",
+  "services.card6.benefit": "→ Plus de conversions",
+  "services.card7.title": "Email marketing & Automation",
+  "services.card7.desc": "Newsletters, séquences automatisées, relances prospects et scénarios de nurturing.",
+  "services.card7.benefit": "→ Revenue automatisé",
+  "services.card8.title": "Reporting & Analyse",
+  "services.card8.desc": "Tableaux de bord personnalisés, suivi des KPIs et recommandations stratégiques mensuelles.",
+  "services.card8.benefit": "→ Décisions éclairées",
+  "method.label": "Notre méthode",
+  "method.title.1": "Un processus structuré",
+  "method.title.2": "pour des résultats durables",
+  "method.subtitle": "Chaque action suit une méthodologie éprouvée en 6 étapes pour maximiser l'impact de chaque euro investi.",
+  "method.step1.title": "Audit",
+  "method.step1.desc": "Analyse complète de votre présence digitale, vos concurrents et opportunités inexploitées.",
+  "method.step1.benefit": "→ On sait exactement où vous en êtes",
+  "method.step2.title": "Stratégie",
+  "method.step2.desc": "Définition des objectifs, des cibles, des plateformes prioritaires et de la ligne éditoriale.",
+  "method.step2.benefit": "→ Un cap clair et actionnable",
+  "method.step3.title": "Création",
+  "method.step3.desc": "Production des contenus visuels, textuels et vidéo alignés avec votre identité de marque.",
+  "method.step3.benefit": "→ Des contenus qui reflètent votre valeur",
+  "method.step4.title": "Diffusion",
+  "method.step4.desc": "Publication au bon moment, sur les bonnes plateformes, avec une fréquence optimisée.",
+  "method.step4.benefit": "→ Portée maximale garantie",
+  "method.step5.title": "Analyse",
+  "method.step5.desc": "Suivi des KPIs clés, analyse des performances et identification des leviers à activer.",
+  "method.step5.benefit": "→ Vous savez ce qui fonctionne",
+  "method.step6.title": "Optimisation",
+  "method.step6.desc": "Ajustements continus de la stratégie et des contenus pour améliorer les résultats chaque mois.",
+  "method.step6.benefit": "→ Une progression constante",
+  "offers.label": "Notre offre",
+  "offers.title.1": "Un accompagnement",
+  "offers.title.2": "100% sur mesure",
+  "offers.subtitle": "Pas de pack prédéfini. Chaque mission est construite selon vos objectifs, votre secteur et votre budget.",
+  "offers.badge": "⭐ Accompagnement personnalisé",
+  "offers.plan.title.1": "Community Management",
+  "offers.plan.title.2": "Sur Mesure",
+  "offers.plan.subtitle": "Une stratégie adaptée à votre marque, vos réseaux, vos objectifs.",
+  "offers.item1": "Gestion de vos réseaux sociaux (Instagram, Facebook, LinkedIn, TikTok...)",
+  "offers.item2": "Création de visuels & contenus adaptés à votre marque",
+  "offers.item3": "Calendrier éditorial mensuel personnalisé",
+  "offers.item4": "Rédaction de captions engageantes & optimisées",
+  "offers.item5": "Stories, Reels & formats courts selon votre stratégie",
+  "offers.item6": "Modération des messages & commentaires",
+  "offers.item7": "Animation de communauté & engagement actif",
+  "offers.item8": "Reporting mensuel des performances",
+  "offers.item9": "Réunion stratégique mensuelle",
+  "offers.item10": "Recommandations & optimisation continue",
+  "offers.cta": "Obtenir mon devis personnalisé →",
+  "offers.note": "Le volume de publications, les réseaux gérés et les services inclus sont définis ensemble selon vos besoins réels.",
+  "results.label": "Nos résultats",
+  "results.title.1": "Des chiffres qui",
+  "results.title.2": "parlent pour nous",
+  "results.subtitle": "Chaque client est une histoire de transformation. Voici ce que notre accompagnement produit concrètement.",
+  "results.kpi1": "Clients accompagnés",
+  "results.kpi2": "Engagement moyen généré",
+  "results.kpi3": "Impressions générées",
+  "results.kpi4": "Taux de satisfaction",
+  "results.case1.sector": "Restauration",
+  "results.case1.title": "Restaurant local → marque incontournable",
+  "results.case1.desc": "Un restaurant avec zéro présence sur les réseaux, une clientèle locale limitée et aucune stratégie de communication.",
+  "results.case1.r1": "Abonnés en 3 mois",
+  "results.case1.r2": "Réservations",
+  "results.case2.sector": "E-commerce / Mode",
+  "results.case2.title": "Boutique en ligne → audience engagée",
+  "results.case2.desc": "Peu de trafic organique, faible engagement et coûts publicitaires élevés sans retour mesurable.",
+  "results.case2.r1": "Engagement organique",
+  "results.case2.r2": "Chiffre d'affaires",
+  "results.case3.sector": "Prestataire de services",
+  "results.case3.title": "Coach / Consultant → autorité digitale",
+  "results.case3.desc": "Expertise reconnue localement mais présence en ligne quasi inexistante et aucune génération de leads digitaux.",
+  "results.case3.r1": "Leads en 60 jours",
+  "results.case3.r2": "Visibilité LinkedIn",
+  "results.placeholder": "Cas client à venir",
+  "testimonials.label": "Témoignages",
+  "testimonials.title.1": "Ils nous font",
+  "testimonials.title.2": "confiance",
+  "testimonials.subtitle": "La satisfaction de nos clients est notre meilleure carte de visite.",
+  "testimonials.q1": "\u201cDepuis que Noble Edge gère nos réseaux, notre restaurant affiche complet presque tous les week-ends. Stratégie, réactivité et créativité — je recommande les yeux fermés.\u201d",
+  "testimonials.q2": "\u201cEn 2 mois, notre engagement a été multiplié par 4. L'équipe comprend vraiment notre secteur et nos contenus ressemblent enfin à notre marque.\u201d",
+  "testimonials.q3": "\u201cJ'avais essayé de gérer mes réseaux moi-même mais je n'avais ni le temps ni les compétences. Aujourd'hui je génère des leads qualifiés chaque semaine.\u201d",
+  "testimonials.q4": "\u201cUn audit complet, des objectifs clairs et un plan d'action précis. 4 mois plus tard, notre présence digitale est méconnaissable. Excellent investissement.\u201d",
+  "testimonials.q5": "\u201cNoble Edge a refondu notre identité visuelle et pris en main nos réseaux. La cohérence est enfin là — notre clientèle remarque la différence.\u201d",
+  "testimonials.n1": "Sophie M.",
+  "testimonials.n2": "Thomas R.",
+  "testimonials.n3": "Amélie D.",
+  "testimonials.n4": "Karim B.",
+  "testimonials.n5": "Laura V.",
+  "testimonials.r1": "Restauratrice, Lyon",
+  "testimonials.r2": "Fondateur, e-commerce mode",
+  "testimonials.r3": "Coach business, Paris",
+  "testimonials.r4": "Directeur, PME bâtiment",
+  "testimonials.r5": "Directrice marketing, startup SaaS",
+  "faq.label": "FAQ",
+  "faq.title.1": "Vos questions,",
+  "faq.title.2": "nos réponses",
+  "faq.subtitle": "Tout ce que vous devez savoir avant de démarrer avec Noble Edge Agency.",
+  "faq.q1": "Quels réseaux sociaux gérez-vous ?",
+  "faq.a1": "Nous gérons Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest et X.",
+  "faq.q2": "Travaillez-vous avec tous les secteurs d'activité ?",
+  "faq.a2": "Oui. Restauration, e-commerce, immobilier, santé, mode, services BtoB, coaching, artisanat, tourisme, startup tech...",
+  "faq.q3": "Comment fonctionne votre offre sur mesure ?",
+  "faq.a3": "Lors de notre appel découverte, nous analysons vos besoins, vos objectifs et votre budget. Nous construisons ensuite une proposition personnalisée adaptée à votre situation.",
+  "faq.q4": "Créez-vous aussi les visuels et les textes ?",
+  "faq.a4": "Absolument. Visuels, carrousels, Reels, captions, scripts — nous gérons toute la production. Vous n'avez besoin que de valider.",
+  "faq.q5": "Comment se passe le premier échange ?",
+  "faq.a5": "Un appel découverte gratuit de 30 minutes. On comprend votre situation, vos objectifs, et on vous prépare une proposition sur mesure sous 48h. Aucun engagement.",
+  "faq.q6": "Faites-vous aussi la publicité payante ?",
+  "faq.a6": "Oui. Meta Ads, Google Ads, TikTok Ads — stratégie, création des visuels, paramétrage, ciblage, budget et optimisation continue.",
+  "faq.q7": "Y a-t-il un engagement minimum ?",
+  "faq.a7": "Nos missions sont sans engagement minimum. Nous recommandons cependant 3 mois pour voir des résultats significatifs.",
+  "contact.label": "Passez à l'action",
+  "contact.title.1": "Prêt à faire passer votre marque",
+  "contact.title.2": "au niveau supérieur ?",
+  "contact.subtitle": "Prenez 30 minutes pour nous parler de votre projet. Aucun engagement, aucune pression.",
+  "contact.cta1": "📞 Réserver un appel découverte",
+  "contact.cta2": "Demander un devis →",
+  "contact.reassure1": "Appel gratuit & sans engagement",
+  "contact.reassure2": "Réponse sous 24h",
+  "contact.reassure3": "Proposition personnalisée",
+  "contact.reassure4": "Accompagnement humain",
+  "contact.form.title": "Parlez-nous de votre projet",
+  "contact.form.subtitle": "Remplissez ce formulaire et nous vous recontactons sous 24h.",
+  "contact.form.firstname": "Prénom *",
+  "contact.form.firstname.ph": "Votre prénom",
+  "contact.form.lastname": "Nom *",
+  "contact.form.lastname.ph": "Votre nom",
+  "contact.form.email": "Email professionnel *",
+  "contact.form.email.ph": "vous@exemple.com",
+  "contact.form.company": "Entreprise",
+  "contact.form.company.ph": "Votre entreprise ou marque",
+  "contact.form.service": "Quel service vous intéresse ?",
+  "contact.form.select": "— Sélectionnez une option —",
+  "contact.form.project": "Décrivez votre projet",
+  "contact.form.project.ph": "Ex : Je cherche à développer ma présence sur Instagram...",
+  "contact.form.submit": "Envoyer ma demande →",
+  "contact.form.note": "🔒 Vos informations sont confidentielles et ne seront jamais partagées.",
+  "contact.form.success.title": "✅ Message envoyé !",
+  "contact.form.success.desc": "Votre messagerie mail vient de s'ouvrir avec votre demande pré-remplie.<br>Cliquez sur <strong>Envoyer</strong> pour finaliser.",
+  "footer.desc": "Agence marketing & communication spécialisée dans le community management, la stratégie digitale et la création de contenu.",
+  "footer.services": "Services",
+  "footer.agency": "Agence",
+  "footer.contact": "Contact",
+  "footer.copy": "© 2026 Noble Edge Agency. Tous droits réservés.",
+  "footer.legal": "Mentions légales",
+  "footer.privacy": "Politique de confidentialité",
+  "footer.terms": "CGV",
+  "footer.cookies": "Cookies",
+  "cookie.title": "Cookies 🍪",
+  "cookie.desc": "Nous utilisons des cookies strictement nécessaires au fonctionnement du site, et, avec votre accord, des cookies de mesure d'audience ou de personnalisation.",
+  "cookie.reject": "Refuser",
+  "cookie.settings": "Paramétrer",
+  "cookie.accept": "Accepter",
+  "cookie.pref.title": "Préférences cookies",
+  "cookie.pref.desc": "Vous pouvez personnaliser vos choix. Les cookies nécessaires restent actifs pour faire fonctionner le site.",
+  "cookie.necessary.title": "Cookies nécessaires",
+  "cookie.necessary.desc": "Indispensables au fonctionnement du site et toujours actifs.",
+  "cookie.analytics.title": "Cookies de mesure d'audience",
+  "cookie.analytics.desc": "Nous aident à comprendre l'utilisation du site et à l'améliorer.",
+  "cookie.personal.title": "Cookies de personnalisation",
+  "cookie.personal.desc": "Permettent d'adapter certains contenus ou outils embarqués.",
+  "cookie.cancel": "Annuler",
+  "cookie.save": "Enregistrer"
+},
+    en: {
+  "nav.why": "Why us",
+  "nav.services": "Services",
+  "nav.method": "Method",
+  "nav.offers": "Offers",
+  "nav.reviews": "Reviews",
+  "nav.faq": "FAQ",
+  "nav.book": "Book a call",
+  "mobile.home": "Home",
+  "mobile.results": "Case Studies",
+  "mobile.testimonials": "Testimonials",
+  "mobile.contact": "Contact",
+  "hero.badge": "Marketing & communication agency",
+  "hero.title.line1": "Your brand deserves",
+  "hero.title.line2": "to be seen, recognized",
+  "hero.title.line3": "and chosen.",
+  "hero.desc": "We grow your digital presence, manage your social channels and turn your audience into customers — with strategy, creativity and rigor.",
+  "hero.book.discovery": "Book a discovery call",
+  "hero.discover": "Discover our services →",
+  "hero.stat.clients": "Clients supported",
+  "hero.stat.satisfaction": "Client satisfaction",
+  "hero.stat.years": "Years of expertise",
+  "hero.performance": "Social media performance",
+  "hero.performance.badge": "\u2191 +68% this month",
+  "why.label": "Why Noble Edge",
+  "why.title.1": "Stop posting at random.",
+  "why.title.2": "Start building a brand.",
+  "why.subtitle": "Many brands are present on social media. Few build something truly solid. We do.",
+  "why.1.title": "Tailored strategy",
+  "why.1.desc": "No copy-paste templates. Every strategy is built around your sector, objectives and audience.",
+  "why.2.title": "Consistent brand image",
+  "why.2.desc": "Brand guidelines, editorial tone, visual world: we build an identity that is memorable and recognizable.",
+  "why.3.title": "Regular, professional communication",
+  "why.3.desc": "No more long silent periods. We maintain a steady presence with relevant content.",
+  "why.4.title": "You save time",
+  "why.4.desc": "Delegating your communication means getting precious hours back. We handle everything, you validate.",
+  "why.5.title": "Content that engages and sells",
+  "why.5.desc": "Our content is designed to generate engagement, attract your target audience and support the buying journey.",
+  "why.6.title": "Data-driven decisions",
+  "why.6.desc": "Every action is analysed, measured and optimised. Clear monthly reports, real-time adjustments.",
+  "why.7.title": "ROI-focused vision",
+  "why.7.desc": "Every action is built to generate measurable return on investment: awareness, leads or direct sales.",
+  "why.8.title": "A true partner, not just a provider",
+  "why.8.desc": "We invest in your brand as if it were our own. Total transparency, shared success.",
+  "services.label": "Our services",
+  "services.title.1": "Everything you need to",
+  "services.title.2": "dominate your digital market",
+  "services.subtitle": "From strategy to execution, we cover your full online presence with an integrated, results-driven approach.",
+  "services.featured.tag": "\u2b50 Main service",
+  "services.featured.title.1": "Community Management",
+  "services.featured.title.2": "done for you",
+  "services.featured.desc": "Your social presence deserves better than improvised posts. We manage your channels as real growth tools.",
+  "services.featured.cta": "Start my community management",
+  "services.featured.item1": "Full management of your social media channels",
+  "services.featured.item2": "Monthly editorial calendar",
+  "services.featured.item3": "Visual and content creation",
+  "services.featured.item4": "Engaging caption writing",
+  "services.featured.item5": "Scheduled and optimised publishing",
+  "services.featured.item6": "Message and comment moderation",
+  "services.featured.item7": "Community animation",
+  "services.featured.item8": "Personalised engagement strategy",
+  "services.featured.item9": "Monthly performance reporting",
+  "services.featured.item10": "Optimisation recommendations",
+  "services.card1.title": "Communication strategy",
+  "services.card1.desc": "Digital audit, positioning, editorial line, brand tone and monthly action plan.",
+  "services.card1.benefit": "\u2192 A clear direction",
+  "services.card2.title": "Content creation",
+  "services.card2.desc": "Visuals, carousels, stories, Reels, video scripts, copywriting and custom brand templates.",
+  "services.card2.benefit": "\u2192 Content that performs",
+  "services.card3.title": "Branding & visual identity",
+  "services.card3.desc": "Logo, brand guidelines, color palette, typography and a coherent visual universe.",
+  "services.card3.benefit": "\u2192 A recognizable brand",
+  "services.card4.title": "Online advertising",
+  "services.card4.desc": "Meta Ads, Google Ads, lead generation, retargeting and continuous optimisation.",
+  "services.card4.benefit": "\u2192 Leads on demand",
+  "services.card5.title": "SEO & search visibility",
+  "services.card5.desc": "On-page optimisation, keywords, SEO writing, local SEO and organic visibility.",
+  "services.card5.benefit": "\u2192 Visible on Google",
+  "services.card6.title": "Web & landing pages",
+  "services.card6.desc": "Creation or optimisation of conversion-focused landing pages, with UX designed to convert visitors.",
+  "services.card6.benefit": "\u2192 More conversions",
+  "services.card7.title": "Email marketing & automation",
+  "services.card7.desc": "Newsletters, automated sequences, prospect follow-ups and nurturing flows.",
+  "services.card7.benefit": "\u2192 Automated revenue",
+  "services.card8.title": "Reporting & analysis",
+  "services.card8.desc": "Custom dashboards, KPI monitoring and monthly strategic recommendations.",
+  "services.card8.benefit": "\u2192 Smarter decisions",
+  "method.label": "Our method",
+  "method.title.1": "A structured process",
+  "method.title.2": "for lasting results",
+  "method.subtitle": "Every action follows a proven 6-step methodology to maximize the impact of every euro invested.",
+  "method.step1.title": "Audit",
+  "method.step1.desc": "Complete analysis of your digital presence, competitors and untapped opportunities.",
+  "method.step1.benefit": "\u2192 We know exactly where you stand",
+  "method.step2.title": "Strategy",
+  "method.step2.desc": "Definition of objectives, targets, priority platforms and editorial direction.",
+  "method.step2.benefit": "\u2192 A clear and actionable path",
+  "method.step3.title": "Creation",
+  "method.step3.desc": "Production of visual, written and video content aligned with your brand identity.",
+  "method.step3.benefit": "\u2192 Content that reflects your value",
+  "method.step4.title": "Distribution",
+  "method.step4.desc": "Publishing at the right time, on the right platforms, with an optimized rhythm.",
+  "method.step4.benefit": "\u2192 Maximum reach guaranteed",
+  "method.step5.title": "Analysis",
+  "method.step5.desc": "Tracking key KPIs, analysing performance and identifying the best levers to activate.",
+  "method.step5.benefit": "\u2192 You know what works",
+  "method.step6.title": "Optimization",
+  "method.step6.desc": "Continuous adjustments to strategy and content to improve results month after month.",
+  "method.step6.benefit": "\u2192 Constant progress",
+  "offers.label": "Our offer",
+  "offers.title.1": "Tailored",
+  "offers.title.2": "100% custom support",
+  "offers.subtitle": "No predefined package. Every mission is built around your goals, industry and budget.",
+  "offers.badge": "\u2b50 Personalized support",
+  "offers.plan.title.1": "Community Management",
+  "offers.plan.title.2": "Tailored",
+  "offers.plan.subtitle": "A strategy adapted to your brand, your channels and your goals.",
+  "offers.item1": "Management of your social media channels (Instagram, Facebook, LinkedIn, TikTok...)",
+  "offers.item2": "Visual and content creation tailored to your brand",
+  "offers.item3": "Personalized monthly editorial calendar",
+  "offers.item4": "Engaging and optimized caption writing",
+  "offers.item5": "Stories, Reels and short-form formats aligned with your strategy",
+  "offers.item6": "Message and comment moderation",
+  "offers.item7": "Community animation & active engagement",
+  "offers.item8": "Monthly performance reporting",
+  "offers.item9": "Monthly strategic meeting",
+  "offers.item10": "Recommendations & continuous optimisation",
+  "offers.cta": "Get my custom quote \u2192",
+  "offers.note": "Posting volume, managed platforms and included services are defined together according to your real needs.",
+  "results.label": "Our results",
+  "results.title.1": "Numbers that",
+  "results.title.2": "speak for us",
+  "results.subtitle": "Every client is a transformation story. Here is what our support produces in concrete terms.",
+  "results.kpi1": "Clients supported",
+  "results.kpi2": "Average engagement generated",
+  "results.kpi3": "Impressions generated",
+  "results.kpi4": "Satisfaction rate",
+  "results.case1.sector": "Hospitality",
+  "results.case1.title": "Local restaurant \u2192 must-know brand",
+  "results.case1.desc": "A restaurant with zero social presence, limited local clientele and no communication strategy.",
+  "results.case1.r1": "Followers in 3 months",
+  "results.case1.r2": "Bookings",
+  "results.case2.sector": "E-commerce / Fashion",
+  "results.case2.title": "Online store \u2192 engaged audience",
+  "results.case2.desc": "Low organic traffic, weak engagement and high advertising costs with no measurable return.",
+  "results.case2.r1": "Organic engagement",
+  "results.case2.r2": "Revenue",
+  "results.case3.sector": "Service business",
+  "results.case3.title": "Coach / Consultant \u2192 digital authority",
+  "results.case3.desc": "Strong local expertise but almost no online presence and no digital lead generation.",
+  "results.case3.r1": "Leads in 60 days",
+  "results.case3.r2": "LinkedIn visibility",
+  "results.placeholder": "Case study coming soon",
+  "testimonials.label": "Testimonials",
+  "testimonials.title.1": "They",
+  "testimonials.title.2": "trust us",
+  "testimonials.subtitle": "Client satisfaction is our best calling card.",
+  "testimonials.q1": "\u201cSince Noble Edge started managing our channels, our restaurant has been fully booked almost every weekend. Strategy, responsiveness and creativity \u2014 I recommend them without hesitation.\u201d",
+  "testimonials.q2": "\u201cIn 2 months, our engagement multiplied by 4. The team truly understands our industry and our content finally looks like our brand.\u201d",
+  "testimonials.q3": "\u201cI tried managing my social media myself but I had neither the time nor the skills. Today I generate qualified leads every week.\u201d",
+  "testimonials.q4": "\u201cA complete audit, clear objectives and a precise action plan. Four months later, our digital presence is unrecognizable. Excellent investment.\u201d",
+  "testimonials.q5": "\u201cNoble Edge redesigned our visual identity and took over our social channels. The consistency is finally there \u2014 our clients notice the difference.\u201d",
+  "testimonials.n1": "Sophie M.",
+  "testimonials.n2": "Thomas R.",
+  "testimonials.n3": "Am\u00e9lie D.",
+  "testimonials.n4": "Karim B.",
+  "testimonials.n5": "Laura V.",
+  "testimonials.r1": "Restaurant owner, Lyon",
+  "testimonials.r2": "Founder, fashion e-commerce",
+  "testimonials.r3": "Business coach, Paris",
+  "testimonials.r4": "Director, construction SME",
+  "testimonials.r5": "Marketing director, SaaS startup",
+  "faq.label": "FAQ",
+  "faq.title.1": "Your questions,",
+  "faq.title.2": "our answers",
+  "faq.subtitle": "Everything you need to know before starting with Noble Edge Agency.",
+  "faq.q1": "Which social platforms do you manage?",
+  "faq.a1": "We manage Instagram, Facebook, LinkedIn, TikTok, YouTube Shorts, Pinterest and X.",
+  "faq.q2": "Do you work with all industries?",
+  "faq.a2": "Yes. Hospitality, e-commerce, real estate, health, fashion, B2B services, coaching, craft businesses, tourism, tech startups...",
+  "faq.q3": "How does your tailored offer work?",
+  "faq.a3": "During our discovery call, we analyse your needs, goals and budget. We then build a personalized proposal adapted to your situation.",
+  "faq.q4": "Do you also create visuals and copy?",
+  "faq.a4": "Absolutely. Visuals, carousels, Reels, captions, scripts \u2014 we handle the full production. You only need to validate.",
+  "faq.q5": "How does the first meeting work?",
+  "faq.a5": "A free 30-minute discovery call. We understand your situation and goals, then prepare a tailored proposal within 48 hours. No commitment.",
+  "faq.q6": "Do you also handle paid advertising?",
+  "faq.a6": "Yes. Meta Ads, Google Ads, TikTok Ads \u2014 strategy, creative production, setup, targeting, budgeting and continuous optimization.",
+  "faq.q7": "Is there a minimum commitment?",
+  "faq.a7": "Our missions have no minimum commitment. We still recommend 3 months to see meaningful results.",
+  "contact.label": "Take action",
+  "contact.title.1": "Ready to take your brand",
+  "contact.title.2": "to the next level?",
+  "contact.subtitle": "Take 30 minutes to tell us about your project. No commitment, no pressure.",
+  "contact.cta1": "\ud83d\udcde Book a discovery call",
+  "contact.cta2": "Request a quote \u2192",
+  "contact.reassure1": "Free call & no commitment",
+  "contact.reassure2": "Reply within 24h",
+  "contact.reassure3": "Personalized proposal",
+  "contact.reassure4": "Human support",
+  "contact.form.title": "Tell us about your project",
+  "contact.form.subtitle": "Fill in this form and we will get back to you within 24h.",
+  "contact.form.firstname": "First name *",
+  "contact.form.firstname.ph": "Your first name",
+  "contact.form.lastname": "Last name *",
+  "contact.form.lastname.ph": "Your last name",
+  "contact.form.email": "Business email *",
+  "contact.form.email.ph": "you@example.com",
+  "contact.form.company": "Company",
+  "contact.form.company.ph": "Your company or brand",
+  "contact.form.service": "Which service are you interested in?",
+  "contact.form.select": "\u2014 Select an option \u2014",
+  "contact.form.project": "Describe your project",
+  "contact.form.project.ph": "E.g. I want to grow my presence on Instagram...",
+  "contact.form.submit": "Send my request \u2192",
+  "contact.form.note": "\ud83d\udd12 Your information is confidential and will never be shared.",
+  "contact.form.success.title": "\u2705 Message sent!",
+  "contact.form.success.desc": "Your email client has opened with your pre-filled request.<br>Click <strong>Send</strong> to finalize.",
+  "footer.desc": "Marketing & communication agency specialized in community management, digital strategy and content creation.",
+  "footer.services": "Services",
+  "footer.agency": "Agency",
+  "footer.contact": "Contact",
+  "footer.copy": "\u00a9 2026 Noble Edge Agency. All rights reserved.",
+  "footer.legal": "Legal notice",
+  "footer.privacy": "Privacy policy",
+  "footer.terms": "Terms & conditions",
+  "footer.cookies": "Cookies",
+  "cookie.title": "Cookies \ud83c\udf6a",
+  "cookie.desc": "We use cookies strictly necessary for the site to function and, with your consent, audience measurement or personalization cookies.",
+  "cookie.reject": "Reject",
+  "cookie.settings": "Settings",
+  "cookie.accept": "Accept",
+  "cookie.pref.title": "Cookie preferences",
+  "cookie.pref.desc": "You can customize your choices. Necessary cookies remain active so the site can function.",
+  "cookie.necessary.title": "Necessary cookies",
+  "cookie.necessary.desc": "Essential for the site to function and always active.",
+  "cookie.analytics.title": "Analytics cookies",
+  "cookie.analytics.desc": "Help us understand site usage and improve it.",
+  "cookie.personal.title": "Personalization cookies",
+  "cookie.personal.desc": "Allow us to adapt certain embedded content or tools.",
+  "cookie.cancel": "Cancel",
+  "cookie.save": "Save"
+}
+  };
+  let currentLang = 'fr';
+  try { currentLang = localStorage.getItem('i18n-lang') || 'fr'; } catch (e) { currentLang = 'fr'; }
+  function t(key, lang = currentLang) { return (translations[lang] && translations[lang][key]) || (translations.fr && translations.fr[key]) || key; }
+  function setNodeText(el, value) { const textNodes = Array.from(el.childNodes).filter(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim()); if (!textNodes.length) { el.textContent = value; return; } textNodes[0].textContent = value; for (let i = 1; i < textNodes.length; i++) textNodes[i].textContent = ''; }
+  function updateDOM() { document.documentElement.lang = currentLang; document.querySelectorAll('[data-i18n]').forEach((el) => { const key = el.getAttribute('data-i18n'); const value = t(key); if (!value || value === key) return; if (el.children.length === 0) el.textContent = value; else setNodeText(el, value); }); document.querySelectorAll('[data-i18n-html]').forEach((el)=>{ const key=el.getAttribute('data-i18n-html'); const value=t(key); if(value && value!==key) el.innerHTML=value; }); document.querySelectorAll('[data-i18n-placeholder]').forEach((el)=>{ const key=el.getAttribute('data-i18n-placeholder'); const value=t(key); if(value && value!==key) el.setAttribute('placeholder', value); }); document.querySelectorAll('[data-lang-switcher] [data-lang]').forEach((btn) => { btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang); }); }
+  function setLanguage(lang) { currentLang = lang === 'en' ? 'en' : 'fr'; try { localStorage.setItem('i18n-lang', currentLang); } catch (e) {} updateDOM(); }
+  document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('[data-lang-switcher] [data-lang]').forEach((btn) => { btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))); }); updateDOM(); });
+  window.I18N = { t, setLanguage, getLanguage: () => currentLang }; window.switchLang = setLanguage;
+})();
+</script>
 </body>
 </html>
