@@ -680,7 +680,7 @@
             <span class="hero-card-title" data-i18n="hero.performance">Performance réseaux sociaux</span>
             <span class="hero-card-badge" data-i18n="hero.performance.badge">↑ +68% ce mois</span>
           </div>
-          <div class="chart-bars">
+          <div class="chart-bars hero-chart">
             <div class="bar" style="height:35%"></div><div class="bar" style="height:55%"></div>
             <div class="bar" style="height:45%"></div><div class="bar" style="height:70%"></div>
             <div class="bar" style="height:60%"></div><div class="bar" style="height:85%"></div>
@@ -1086,6 +1086,29 @@ document.addEventListener('DOMContentLoaded',showCookieBannerIfNeeded)
     }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
     scrollEls.forEach(function(el) { observer.observe(el); });
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var heroChart = document.querySelector('.hero-chart');
+    if (!heroChart) return;
+    var bars = heroChart.querySelectorAll('.bar');
+
+    function resetBars() {
+      bars.forEach(function(bar) {
+        bar.style.animation = 'none';
+        // forcer le reflow
+        void bar.offsetWidth;
+        bar.style.animation = '';
+      });
+    }
+
+    // rejoue l'anim quand on revient proche du haut de la page
+    window.addEventListener('scroll', function() {
+      if (window.scrollY < 80) {
+        resetBars();
+      }
+    });
+  });
+
 </script>
 </body>
 </html>
