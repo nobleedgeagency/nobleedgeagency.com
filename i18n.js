@@ -1,5 +1,6 @@
 (function () {
   "use strict";
+
   const translations = {
     fr: {
       "nav.why": "Pourquoi nous",
@@ -393,7 +394,7 @@
     }
   };
 
-  // Give global access to translations for use in inline scripts (e.g. success message renders)
+  // Expose translations globally for inline scripts (e.g. success message renders)
   window.I18N_T = translations;
 
   // Current language (persisted in localStorage)
@@ -405,49 +406,77 @@
     return 'fr';
   })();
 
+  // --- CORE FUNCTIONS ---
+
+  // t: lookup translation key, fallback to FR then return key
   function t(key, lang) {
     lang = lang || currentLang;
-    if (translations[lang] && translations[lang][key]) return translations[lang][key];
-    if (translations.fr && translations.fr[key]) return translations.fr[key];
+    if (translations[lang] && translations[lang][key] !== undefined) return translations[lang][key];
+    // Fallback to FR with dev warning
+    if (lang !== 'fr' && translations.fr && translations.fr[key] !== undefined) {
+      console.warn('[i18n] Missing key "' + key + '" for lang "' + lang + '", falling back to FR.');
+      return translations.fr[key];
+    }
+    console.warn('[i18n] Missing key "' + key + '" entirely.');
     return key;
   }
 
+  // setNodeText: safe replacement of visible text nodes, preserving children
   function setNodeText(el, value) {
-    // Replace the first non-whitespace text node, or set textContent if none exists
+    // Find first non-whitespace text node and replace it
     var nodes = Array.prototype.slice.call(el.childNodes).filter(function(n) {
       return n.nodeType === Node.TEXT_NODE && n.textContent.trim();
     });
     if (nodes.length === 0) {
-      el.textContent = value;
+      // No text nodes: insert a text node at the beginning
+      el.insertBefore(document.createTextNode(value), el.firstChild);
       return;
     }
-    nodes[0].textContent = value;
+    nodes[0].nodeValue = value;
   }
 
+  // updateDOM: apply translations, handle text nodes, placeholders and labels
   function updateDOM() {
-    // Update <html> lang attribute
+    // Update lang attribute on <html>
     document.documentElement.lang = currentLang;
 
-    // Update all [data-i18n] elements
+    // 1. Handle [data-i18n] elements
     Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function(el) {
       var key = el.getAttribute('data-i18n');
       var value = t(key);
+
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        // Form elements: update placeholder
         el.placeholder = value;
-      } else if (el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
-        el.textContent = value;
       } else {
-        setNodeText(el, value);
+        // Elements with children: only update text nodes, leave HTML intact
+        var hasOnlyTextChild = (
+          el.childNodes.length === 1 &&
+          el.childNodes[0].nodeType === Node.TEXT_NODE
+        );
+        if (hasOnlyTextChild) {
+          el.textContent = value;
+        } else {
+          // Has HTML children (span, br, etc.): replace visible text nodes only
+          setNodeText(el, value);
+        }
       }
     });
 
-    // Update labels that have data-i18n-label but are not the main element
+    // 2. Handle [data-i18n-placeholder] elements (placeholder translations)
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-placeholder]'), function(el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      el.placeholder = t(key);
+    });
+
+    // 3. Handle [data-i18n-label] elements (label translations)
     Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-label]'), function(el) {
       var key = el.getAttribute('data-i18n-label');
       el.textContent = t(key);
     });
   }
 
+  // setLanguage: change language and refresh the DOM
   function setLanguage(lang) {
     currentLang = lang === 'en' ? 'en' : 'fr';
     try {
@@ -456,26 +485,56 @@
     updateDOM();
   }
 
-  // Attach language switcher listeners once DOM is ready
+  // getPreferredLang: determine preferred language from localStorage or browser
+  function getPreferredLang() {
+    try {
+      var saved = localStorage.getItem('i18n-lang');
+      if (saved === 'fr' || saved === 'en') return saved;
+    } catch (e) {}
+    // Fallback: try browser language
+    var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (browserLang.indexOf('en') === 0) return 'en';
+    return 'fr';
+  }
+
+  // Attach language switcher listeners when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', (function() {
+      // Bind click events on all language switcher buttons
       Array.prototype.forEach.call(document.querySelectorAll('[data-lang-switcher] [data-lang]'), function(btn) {
         btn.addEventListener('click', function() {
           setLanguage(btn.getAttribute('data-lang'));
         });
       });
+      // Apply initial translation
       updateDOM();
+      // Set initial lang attribute from preferred language
+      document.documentElement.lang = currentLang;
     }));
   } else {
+    // DOM already ready, skip event listener registration
     Array.prototype.forEach.call(document.querySelectorAll('[data-lang-switcher] [data-lang]'), function(btn) {
       btn.addEventListener('click', function() {
         setLanguage(btn.getAttribute('data-lang'));
       });
     });
     updateDOM();
+    document.documentElement.lang = currentLang;
   }
 
-  // Public API
-  window.I18N = { t: t, setLanguage: setLanguage, getLanguage: function() { return currentLang; } };
+  // --- PUBLIC API ---
+  window.I18N = {
+    t: t,
+    setLanguage: setLanguage,
+    getLanguage: function() {
+      return currentLang;
+    },
+    // refresh: force re-apply translations (for dynamically injected content)
+    refresh: updateDOM,
+    // getPreferredLang: detect user's preferred language
+    getPreferredLang: getPreferredLang
+  };
+
+  // Alias for legacy inline usage
   window.switchLang = setLanguage;
 })();
